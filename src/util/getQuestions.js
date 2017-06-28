@@ -1,6 +1,7 @@
 import { get } from './getPostMethods';
 
 function getAllQuestions(callback) {
+  console.log('GETTING QUESTIONS')
   get('/questions', callback);
 }
 
