@@ -1,6 +1,6 @@
 
-let onDevice = false;
-const baseUrl = onDevice ? 'http://cambook.local:1337' : 'http://localhost:1337';
+let onDevice = true;
+const baseUrl = onDevice ? 'http://192.168.1.143:1337' : 'http://localhost:1337';
 
 console.log('REQUESTING => ', baseUrl)
 

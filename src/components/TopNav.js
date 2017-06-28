@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
     position: 'relative',
 
-    paddingTop: 10,
+    paddingTop: 15,
 
     borderBottomWidth: 1,
     borderColor: colors.lightGrey,
