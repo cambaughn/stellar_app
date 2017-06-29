@@ -15,6 +15,7 @@ class RecordAnswer extends Component {
     this.state = {
       recording: false,
       visible: true,
+      finishedRecording: false,
     }
 
     console.log( 'question answering state => ', this.props.location.state)
@@ -41,7 +42,7 @@ class RecordAnswer extends Component {
 
   stopRecording() {
     console.log('stopping video')
-    this.setState({ recording: false });
+    this.setState({ recording: false, finishedRecording: true });
     this.camera.stopCapture();
   }
 
@@ -74,6 +75,7 @@ class RecordAnswer extends Component {
                 captureAudio={true}
                 type={Camera.constants.Type.front}
                 orientation={Camera.constants.Orientation.portrait}
+                captureTarget={Camera.constants.CaptureTarget.temp}
               >
                 <TouchableHighlight
                   onPressIn={this.startRecording}
@@ -104,9 +106,17 @@ class RecordAnswer extends Component {
                     <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
                     {/* <Text style={styles.questionText}>State: {this.props.location.state.question.text}</Text> */}
                   </View>
+
                 </View>
               </View>
 
+              { this.state.finishedRecording &&
+                <View style={styles.doneWrapper}>
+                  <View style={styles.doneButton}>
+                    <Text style={styles.doneText}>Send</Text>
+                  </View>
+                </View>
+              }
             </View>
           </Modal>
         </View>
@@ -200,7 +210,41 @@ const styles = StyleSheet.create({
 
   questionText: {
     color: 'black',
-  }
+  },
+
+  // Done button
+
+  doneWrapper: {
+
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+
+    width: Dimensions.get('window').width,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  doneButton: {
+    backgroundColor: colors.blue,
+
+    borderRadius: 100,
+    width: 65,
+    height: 65,
+    margin: 40,
+
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  doneText: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 15
+  },
 })
 
 export default RecordAnswer;

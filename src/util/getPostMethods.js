@@ -1,6 +1,7 @@
 
+// 192.168.1.143
 let onDevice = true;
-const baseUrl = onDevice ? 'http://192.168.1.143:1337' : 'http://localhost:1337';
+const baseUrl = onDevice ? 'http://192.168.86.53:1337' : 'http://localhost:1337';
 
 console.log('REQUESTING => ', baseUrl)
 
