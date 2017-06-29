@@ -52,8 +52,9 @@ class App extends Component {
       console.log('setting questions')
       this.store.dispatch(setQuestions(questions));
     })
-    
+
     getAllUsers(users => {
+      console.log('setting users')
       this.store.dispatch(setUsers(users));
     })
 
