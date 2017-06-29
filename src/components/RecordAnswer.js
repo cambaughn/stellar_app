@@ -17,6 +17,7 @@ class RecordAnswer extends Component {
       visible: true,
     }
 
+    console.log( 'question answering state => ', this.props.location.state)
     this.startRecording = this.startRecording.bind(this);
     this.stopRecording = this.stopRecording.bind(this);
     this.exitModal = this.exitModal.bind(this);
@@ -62,13 +63,7 @@ class RecordAnswer extends Component {
             visible={this.state.visible}
           >
             <View style={styles.container}>
-              <TouchableHighlight
-                onPress={this.exitModal}
-                style={styles.exit}
-                underlayColor={'transparent'}
-              >
-                <Text style={styles.exitText}>X</Text>
-              </TouchableHighlight>
+
               <Camera
                 ref={(cam) => {
                     this.camera = cam;
@@ -90,8 +85,28 @@ class RecordAnswer extends Component {
                 </TouchableHighlight>
               </Camera>
 
-              {/* <Text>{this.props.match.params.questionId}</Text> */}
-              {/* <Text>State: {this.props.location.state.question.text}</Text> */}
+              {/* Buttons and UI elements that aren't a part of the camera component */}
+              <View style={styles.overlayContainer}>
+
+                <View style={styles.exitWrapper}>
+                  <TouchableHighlight
+                    onPress={this.exitModal}
+                    style={styles.exit}
+                    underlayColor={'transparent'}
+                  >
+                    <Text style={styles.exitText}>X</Text>
+                  </TouchableHighlight>
+                </View>
+
+                <View style={styles.questionWrapper}>
+                  <View style={styles.question}>
+                    <Text>Luke Skywalker asks:</Text>
+                    <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
+                    {/* <Text style={styles.questionText}>State: {this.props.location.state.question.text}</Text> */}
+                  </View>
+                </View>
+              </View>
+
             </View>
           </Modal>
         </View>
@@ -106,6 +121,7 @@ const styles = StyleSheet.create({
     // paddingTop: 80,
     flex: 1,
   },
+
   preview: {
     flex: 1,
     justifyContent: 'flex-end',
@@ -127,16 +143,63 @@ const styles = StyleSheet.create({
     backgroundColor: 'red'
   },
 
-  exit: {
+  // Overlay
+
+  overlayContainer: {
+    width: '100%',
+    height: Dimensions.get('window').height - 110,
     position: 'absolute',
-    zIndex: 1,
-    top: 20,
-    left: 20,
+    // backgroundColor: 'pink',
+
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+
+  exitWrapper: {
+    width: Dimensions.get('window').width,
+    paddingTop: 30,
+    paddingLeft: 25,
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+
+  exit: {
+
   },
 
   exitText: {
     color: 'white',
-    fontSize: 30,
+    fontSize: 25,
+  },
+
+  questionWrapper: {
+    width: Dimensions.get('window').width,
+    // backgroundColor: 'lightgreen',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+
+    paddingBottom: 10,
+  },
+
+  question: {
+    width: Dimensions.get('window').width - 40,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+
+    padding: 15,
+  },
+
+  questionText: {
+    color: 'black',
   }
 })
 
