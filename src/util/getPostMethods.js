@@ -1,7 +1,8 @@
 
 // 192.168.1.143
-let onDevice = false;
-const baseUrl = onDevice ? 'http://192.168.86.53:1337' : 'http://localhost:1337';
+let onDevice = true;
+let ipAddress = '192.168.1.143';
+const baseUrl = onDevice ? `http://${ipAddress}:1337` : 'http://localhost:1337';
 
 console.log('REQUESTING => ', baseUrl)
 
@@ -32,9 +33,11 @@ function post(path, body, callback) {
 
   fetch(`${baseUrl}${path}`, init)
     .then(result => {
+      console.log('EXECUTING CALLBACK ONE')
       return result.json();
     })
     .then(result => {
+      console.log('EXECUTING CALLBACK TWO')
       callback(result);
     })
     .catch(error => {

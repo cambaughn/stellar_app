@@ -5,7 +5,7 @@ const postAnswer = (video, callback) => {
   // console.log(video.path)
   RNFS.readFile(video.path, 'base64')
     .then(video => {
-      post('/answers/new', video, callback);
+      post('/answers/new', {text: 'SENDING VIDEO'}, callback);
       console.log('wooooohooo')
     })
   // post('/answers/new', video, callback);
