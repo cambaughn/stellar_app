@@ -106,13 +106,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
 
     width: Dimensions.get("window").width - 100,
-    height: 35,
+    height: 40,
 
     marginTop: 20,
 
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+
+    borderRadius: 3,
 
   },
 

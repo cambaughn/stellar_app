@@ -71,7 +71,7 @@ class LoginModal extends Component {
                     />
                   </View>
                 }
-                
+
                 <View style={styles.inputWrapper}>
                   <TextInput
                     style={styles.input}
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
 
     width: Dimensions.get("window").width - 100,
-    height: 35,
+    height: 40,
 
     marginTop: 5,
 
@@ -178,6 +178,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
 
+    borderRadius: 3,
   },
 
   buttonPrimaryText: {

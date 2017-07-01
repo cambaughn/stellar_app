@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    height: 100,
+    height: 120,
   },
 
   divider: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 
   button: {
     width: '80%',
-    height: 40,
+    height: 50,
 
     display: 'flex',
     alignItems: 'center',
@@ -69,10 +69,12 @@ const styles = StyleSheet.create({
   buttonPrimaryText: {
     color: 'white',
     fontWeight: 'bold',
+    fontSize: 15,
   },
 
   buttonText: {
     fontWeight: '500',
+    fontSize: 15,
   },
 })
 
