@@ -71,7 +71,7 @@ class LoginModal extends Component {
                     />
                   </View>
                 }
-
+                
                 <View style={styles.inputWrapper}>
                   <TextInput
                     style={styles.input}
@@ -80,7 +80,7 @@ class LoginModal extends Component {
                     autoCorrect={false}
                     returnKeyType={'next'}
                     autoCapitalize={'none'}
-                    autoFocus={true}
+                    autoFocus={this.props.mode === 'Log In' ? true : false}
 
                     onChangeText={email => this.setState({ email })}
                     value={this.state.email}
