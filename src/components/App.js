@@ -46,15 +46,13 @@ class App extends Component {
 
 
   componentDidMount() {
-    console.log('component Mounting')
-
     getAllQuestions(questions => {
-      console.log('setting questions')
+      // console.log('setting questions')
       this.store.dispatch(setQuestions(questions));
     })
 
     getAllUsers(users => {
-      console.log('setting users')
+      // console.log('setting users')
       this.store.dispatch(setUsers(users));
     })
 
@@ -65,7 +63,6 @@ class App extends Component {
     if (!this.store.getState().currentUser.id) {
       return (
         <View>
-          <TopNav />
           <Login setCurrentUser={this.setCurrentUser} />
         </View>
       )
@@ -75,8 +72,8 @@ class App extends Component {
           <View style={styles.container}>
             <TopNav />
             <Switch>
-              <Route exact path='/' render={() => <Redirect to='/record_answer/2' /> }/>
-              {/* <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/> */}
+              {/* <Route exact path='/' render={() => <Redirect to='/record_answer/2' /> }/> */}
+              <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/>
               <Route path='/search' render={() => <Search users={this.getUsers()} /> }/>
 
               <Route path='/record_answer/:questionId' component={RecordAnswer} />

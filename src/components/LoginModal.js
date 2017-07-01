@@ -108,7 +108,9 @@ class LoginModal extends Component {
                 style={styles.buttonPrimary}
                 underlayColor={colors.primary}
               >
-                <Text style={styles.buttonPrimaryText}>Ask</Text>
+                <Text style={styles.buttonPrimaryText}>
+                  {this.props.mode === 'Sign Up' ? 'Sign Up' : 'Log In'}
+                </Text>
               </TouchableHighlight>
 
             </View>
@@ -139,7 +141,6 @@ const styles = StyleSheet.create({
   },
 
   inputsContainer: {
-    height: 150,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -149,6 +150,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
+    marginBottom: 20,
   },
 
   input: {
@@ -160,6 +162,7 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
 
+
     fontSize: 20,
   },
 
@@ -169,7 +172,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get("window").width - 100,
     height: 35,
 
-    marginTop: 20,
+    marginTop: 5,
 
     display: 'flex',
     alignItems: 'center',

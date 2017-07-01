@@ -5,6 +5,7 @@ import { NativeRouter, Route, Link } from 'react-router-native';
 import LoginButtons from './LoginButtons';
 import LoginModal from './LoginModal';
 import stylePresets from '../util/stylePresets';
+import colors from '../util/colors';
 
 class Login extends Component {
   constructor(props) {
@@ -31,7 +32,7 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        {/* <Text>Log In or Sign up</Text> */}
+        <Text style={styles.welcome}>Welcome!</Text>
         <LoginButtons handlePress={this.handlePress} />
         <LoginModal
           visible={this.state.modalVisible}
@@ -50,12 +51,17 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    height: Dimensions.get('window').height - 100,
+    height: Dimensions.get('window').height - 40,
 
+    backgroundColor: 'white',
   },
-  input: {
-    height: 40,
+
+  welcome: {
+    fontSize: 20,
+    fontWeight: '500',
+    margin: 20,
   },
+
 });
 
 export default Login;

@@ -15,6 +15,10 @@ const LoginButtons = ({ handlePress }) => {
         <Text style={styles.buttonPrimaryText}>Sign Up</Text>
       </TouchableHighlight>
 
+      {/* <View style={styles.divider}>
+        <Text>or</Text>
+      </View> */}
+
       <TouchableHighlight
         style={[styles.button, styles.buttonSecondary]}
         underlayColor={'white'}
@@ -36,6 +40,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     width: '100%',
     height: 100,
+  },
+
+  divider: {
+    margin: 10
   },
 
   button: {
@@ -60,10 +68,11 @@ const styles = StyleSheet.create({
 
   buttonPrimaryText: {
     color: 'white',
+    fontWeight: 'bold',
   },
 
   buttonText: {
-
+    fontWeight: '500',
   },
 })
 

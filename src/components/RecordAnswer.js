@@ -5,7 +5,7 @@ import { Link, Redirect } from 'react-router-native';
 import Camera from 'react-native-camera';
 
 import colors from '../util/colors';
-import postAnswer from '../util/postAnswer';
+import { postAnswer } from '../util/postAnswer';
 
 class RecordAnswer extends Component {
 
@@ -18,12 +18,11 @@ class RecordAnswer extends Component {
       finishedRecording: false,
     }
 
-    console.log( 'question answering state => ', this.props.location.state)
     this.startRecording = this.startRecording.bind(this);
     this.stopRecording = this.stopRecording.bind(this);
     this.exitModal = this.exitModal.bind(this);
 
-    Camera.checkDeviceAuthorizationStatus().then(result => console.log(result))
+    Camera.checkDeviceAuthorizationStatus().then(result => console.log('Authorized => ', result))
   }
 
 
@@ -35,7 +34,7 @@ class RecordAnswer extends Component {
     })
     .then(video => {
       console.log('DONE RECORDING => ', video)
-      // postAnswer(video, console.log)
+      postAnswer(video, () => console.log('YIPPEE'))
     })
     .catch(err => console.error(err));
   }
