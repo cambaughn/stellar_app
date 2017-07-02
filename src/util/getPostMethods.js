@@ -9,6 +9,7 @@ console.log('REQUESTING => ', baseUrl)
 function get(path, callback) {
   fetch(`${baseUrl}${path}`)
     .then(result => {
+      setTimeout(() => null, 0);  // workaround for issue-6679
       return result.json();
     })
     .then(result => {
@@ -34,6 +35,7 @@ function post(path, body, callback) {
   fetch(`${baseUrl}${path}`, init)
     .then(result => {
       console.log('EXECUTING CALLBACK ONE')
+      setTimeout(() => null, 0);  // workaround for issue-6679
       return result.json();
     })
     .then(result => {
