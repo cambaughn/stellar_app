@@ -1,12 +1,13 @@
-import { post } from './getPostMethods';
+import { postMedia } from './getPostMethods';
 let RNFS = require('react-native-fs');
 
 const postAnswer = (video, callback) => {
   // console.log(video.path)
+
+  let path = video.path;
   RNFS.readFile(video.path, 'base64')
     .then(video => {
-      post('/answers/new', {text: 'SENDING VIDEO'}, callback);
-      console.log('wooooohooo')
+      postMedia('/answers/new', {answer: path}, callback);
     })
   // post('/answers/new', video, callback);
 }

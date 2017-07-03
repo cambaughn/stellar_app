@@ -34,14 +34,15 @@ class RecordAnswer extends Component {
     })
     .then(video => {
       console.log('DONE RECORDING => ', video)
-      postAnswer(video, () => console.log('YIPPEE'))
+      postAnswer(video, console.log)
     })
     .catch(err => console.error(err));
   }
 
   stopRecording() {
     console.log('stopping video')
-    this.setState({ recording: false, finishedRecording: true });
+    // this.setState({ recording: false, finishedRecording: true });
+    this.setState({ recording: false });
     this.camera.stopCapture();
   }
 
@@ -143,9 +144,12 @@ const styles = StyleSheet.create({
     flex: 0,
     backgroundColor: 'white',
     borderRadius: 100,
-    width: 65,
-    height: 65,
-    margin: 40
+    width: 70,
+    height: 70,
+    margin: 40,
+
+    borderWidth: 1,
+    borderColor: colors.midGrey,
   },
 
   recording: {

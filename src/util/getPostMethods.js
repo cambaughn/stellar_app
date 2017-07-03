@@ -34,12 +34,10 @@ function post(path, body, callback) {
 
   fetch(`${baseUrl}${path}`, init)
     .then(result => {
-      console.log('EXECUTING CALLBACK ONE')
       setTimeout(() => null, 0);  // workaround for issue-6679
       return result.json();
     })
     .then(result => {
-      console.log('EXECUTING CALLBACK TWO')
       callback(result);
     })
     .catch(error => {
@@ -47,5 +45,34 @@ function post(path, body, callback) {
     })
 }
 
+function postMedia(path, body, callback) {
+  let headers = new Headers({
+    'Content-Type': 'multipart/form-data',
+  });
 
-export { get, post };
+  let formData  = new FormData();
+
+  for(let name in data) {
+    formData.append(name, data[name]);
+  }
+
+  let init = { method: 'POST',
+                mode: 'cors',
+                headers: headers,
+                body: formData
+              };
+
+  fetch(`${baseUrl}${path}`, init)
+    .then(result => {
+      setTimeout(() => null, 0);  // workaround for issue-6679
+      return result.json();
+    })
+    .then(result => {
+      callback(result);
+    })
+    .catch(error => {
+      console.log(`ERROR => ${error}`);
+    })
+}
+
+export { get, post, postMedia };
