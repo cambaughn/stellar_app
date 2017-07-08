@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Route, Link } from 'react-router-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 import stylePresets from '../util/stylePresets';
 import colors from '../util/colors';
 
 
-const BottomNav = ({ currentUser }) => {
+const BottomNav = ({ currentUser, match, location }) => {
+
+  let path = location.pathname;
+  let isCurrentUserProfile = path.includes('user') && path.slice(6) == currentUser.id
+
   return (
     <View style={styles.container}>
       <Link to='/' underlayColor='white' style={styles.button}>
-        <Text>Home</Text>
+        <Icon name='home' style={[styles.icon, path.length === 1 && styles.selected]} />
       </Link>
       <Link to='/search' underlayColor='white' style={styles.button}>
-        <Text>Search</Text>
+        <Icon name='search' style={[styles.icon, path.includes('search') && styles.selected]} />
       </Link>
       <Link to={`/user/${currentUser.id}`} underlayColor='white' style={styles.button}>
-        <Text>Profile</Text>
+        <Icon name='user' style={[styles.icon, isCurrentUserProfile && styles.selected]}/>
       </Link>
     </View>
   )
@@ -51,7 +57,16 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+
+  icon: {
+    color: colors.midGrey,
+    fontSize: 20,
+  },
+
+  selected: {
+    color: colors.blue,
+  },
 })
 
 export default BottomNav;

@@ -52,8 +52,8 @@ function postMedia(path, body, callback) {
 
   let formData  = new FormData();
 
-  for(let name in data) {
-    formData.append(name, data[name]);
+  for(let name in body) {
+    formData.append(name, body[name]);
   }
 
   let init = { method: 'POST',

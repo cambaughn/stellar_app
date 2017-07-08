@@ -72,8 +72,8 @@ class App extends Component {
           <View style={styles.container}>
             <TopNav />
             <Switch>
-              <Route exact path='/' render={() => <Redirect to='/record_answer/2' /> }/>
-              {/* <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/> */}
+              {/* <Route exact path='/' render={() => <Redirect to='/record_answer/2' /> }/> */}
+              <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/>
               <Route path='/search' render={() => <Search users={this.getUsers()} /> }/>
 
               <Route path='/record_answer/:questionId' component={RecordAnswer} />
@@ -81,9 +81,11 @@ class App extends Component {
               <Route path='/user/:userId' render={({ match }) =>  <UserProfileContainer match={match} store={this.store} /> } />
 
               <Route path='/login' component={Login} />
+
             </Switch>
 
-            <BottomNav currentUser={this.getCurrentUser()}  />
+            <Route path='/' render={({match, location}) => <BottomNav currentUser={this.getCurrentUser()} match={match} location={location} /> }/>
+
           </View>
         </NativeRouter>
       );
