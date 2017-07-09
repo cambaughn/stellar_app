@@ -81,7 +81,7 @@ class App extends Component {
               <Route path='/user/:userId' render={({ match }) =>  <UserProfileContainer match={match} store={this.store} /> } />
 
               <Route path='/login' component={Login} />
-
+              
             </Switch>
 
             <Route path='/' render={({match, location}) => <BottomNav currentUser={this.getCurrentUser()} match={match} location={location} /> }/>

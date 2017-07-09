@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { NativeRouter, Route, Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -8,24 +8,58 @@ import stylePresets from '../util/stylePresets';
 import colors from '../util/colors';
 
 
-const BottomNav = ({ currentUser, match, location }) => {
+class BottomNav extends Component {
 
-  let path = location.pathname;
-  let isCurrentUserProfile = path.includes('user') && path.slice(6) == currentUser.id
+  constructor(props) {
+    super(props);
 
-  return (
-    <View style={styles.container}>
-      <Link to='/' underlayColor='white' style={styles.button}>
-        <Icon name='home' style={[styles.icon, path.length === 1 && styles.selected]} />
-      </Link>
-      <Link to='/search' underlayColor='white' style={styles.button}>
-        <Icon name='search' style={[styles.icon, path.includes('search') && styles.selected]} />
-      </Link>
-      <Link to={`/user/${currentUser.id}`} underlayColor='white' style={styles.button}>
-        <Icon name='user' style={[styles.icon, isCurrentUserProfile && styles.selected]}/>
-      </Link>
-    </View>
-  )
+    this.state = {
+      selected: 'home',
+    }
+
+    this.setSelected = this.setSelected.bind(this)
+  }
+
+  setSelected(selected) {
+    console.log('triggered')
+    this.setState({ selected })
+  }
+
+  render() {
+
+    console.log(this.state.selected)
+    return (
+      <View style={styles.container}>
+
+        <Link
+          to='/'
+          underlayColor='white'
+          style={styles.button}
+          onPress={() => this.setSelected('home')}
+        >
+          <Icon name='home' style={[styles.icon, this.state.selected === 'home' && styles.selected]} />
+        </Link>
+
+        <Link
+          to='/search'
+          underlayColor='white'
+          style={styles.button}
+          onPress={() => this.setSelected('search')}
+        >
+          <Icon name='search' style={[styles.icon, this.state.selected === 'search' && styles.selected]} />
+        </Link>
+
+        <Link
+          to={`/user/${this.props.currentUser.id}`}
+          underlayColor='white'
+          onPress={() => this.setSelected('user')}
+          style={styles.button}
+        >
+          <Icon name='user' style={[styles.icon, this.state.selected === 'user' && styles.selected]} />
+        </Link>
+      </View>
+    )
+  }
 }
 
 
