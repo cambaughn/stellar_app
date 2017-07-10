@@ -17,20 +17,16 @@ class BottomNav extends Component {
       selected: 'home',
     }
 
-    this.setSelected = this.setSelected.bind(this)
+    this.setSelected = this.setSelected.bind(this);
   }
 
   setSelected(selected) {
-    console.log('triggered')
-    this.setState({ selected })
-    // return (
-    //   <Redirect to='/search' />
-    // )
+    this.setState({ selected: selected })
   }
+
 
   render() {
 
-    console.log(this.state.selected)
     return (
       <View style={styles.container}>
 
@@ -38,7 +34,7 @@ class BottomNav extends Component {
           to='/'
           underlayColor='white'
           style={styles.button}
-          onPress={() => this.setSelected('home')}
+          onPress={() => this.setSelected('home', '/')}
         >
           <Icon name='home' style={[styles.icon, this.state.selected === 'home' && styles.selected]} />
         </Link>
@@ -47,24 +43,24 @@ class BottomNav extends Component {
           to='/search'
           underlayColor='white'
           style={styles.button}
-          onPress={() => this.setSelected('search')}
+          onPress={() => this.setSelected('search', 'search')}
         >
           <Icon name='search' style={[styles.icon, this.state.selected === 'search' && styles.selected]} />
         </Link>
 
-        {/* <Link
+        <Link
           to={`/user/${this.props.currentUser.id}`}
           underlayColor='white'
           style={styles.button}
-        > */}
-        <TouchableHighlight
-          onPress={() => this.setSelected('user')}
-          style={styles.button}
-          underlayColor={'white'}
         >
+          {/* <TouchableHighlight
+            onPress={() => this.setSelected('user')}
+            style={styles.button}
+            underlayColor={'white'}
+          > */}
           <Icon name='user' style={[styles.icon, this.state.selected === 'user' && styles.selected]} />
-        </TouchableHighlight>
-        {/* </Link> */}
+        {/* </TouchableHighlight> */}
+        </Link>
 
       </View>
     )
