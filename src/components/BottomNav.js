@@ -59,7 +59,7 @@ class BottomNav extends Component {
             underlayColor={'white'}
           > */}
           <Icon name='user' style={[styles.icon, this.state.selected === 'user' && styles.selected]} />
-        {/* </TouchableHighlight> */}
+          {/* </TouchableHighlight> */}
         </Link>
 
       </View>
