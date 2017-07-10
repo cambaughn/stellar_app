@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
-import { NativeRouter, Route, Link } from 'react-router-native';
+import { Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
+import NavIcon from './NavIcon';
 import stylePresets from '../util/stylePresets';
 import colors from '../util/colors';
 
@@ -23,6 +23,9 @@ class BottomNav extends Component {
   setSelected(selected) {
     console.log('triggered')
     this.setState({ selected })
+    // return (
+    //   <Redirect to='/search' />
+    // )
   }
 
   render() {
@@ -49,14 +52,20 @@ class BottomNav extends Component {
           <Icon name='search' style={[styles.icon, this.state.selected === 'search' && styles.selected]} />
         </Link>
 
-        <Link
+        {/* <Link
           to={`/user/${this.props.currentUser.id}`}
           underlayColor='white'
+          style={styles.button}
+        > */}
+        <TouchableHighlight
           onPress={() => this.setSelected('user')}
           style={styles.button}
+          underlayColor={'white'}
         >
           <Icon name='user' style={[styles.icon, this.state.selected === 'user' && styles.selected]} />
-        </Link>
+        </TouchableHighlight>
+        {/* </Link> */}
+
       </View>
     )
   }
