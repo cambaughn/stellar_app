@@ -35,7 +35,7 @@ class RecordAnswer extends Component {
     })
     .then(video => {
       console.log('DONE RECORDING => ', video)
-      postAnswer(video, console.log)
+      postAnswer(video, response => console.log(response.message))
     })
     .catch(err => console.error(err));
   }

@@ -3263,6 +3263,10 @@ react-native-fs:
     base-64 "^0.1.0"
     utf8 "^2.1.1"
 
+react-native-uploader:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/react-native-uploader/-/react-native-uploader-0.0.10.tgz#ea46d23c5a8e83392aabc12443184c342245f607"
+
 react-native-vector-icons:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/react-native-vector-icons/-/react-native-vector-icons-4.2.0.tgz#0594b68debdd758dce4c565bf02e2d64d7004d82"

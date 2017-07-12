@@ -77,4 +77,4 @@ function postMedia(path, file, callback) {
     })
 }
 
-export { get, post, postMedia };
+export { get, post, postMedia, baseUrl };
