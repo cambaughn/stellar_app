@@ -6,7 +6,7 @@ import { Link } from 'react-router-native';
 const UserListItem = ({ user }) => {
   return (
     <View style={styles.container}>
-      <Link to={`/user/${user.id}`} style={styles.link}>
+      <Link to={`/user/${user.id}`} style={styles.link} underlayColor={'white'}>
         <Text style={styles.name}>{user.name}</Text>
       </Link>
     </View>

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight } from 'r
 import { Link, Redirect } from 'react-router-native';
 
 import Camera from 'react-native-camera';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import colors from '../util/colors';
 import { postAnswer } from '../util/postAnswer';
@@ -96,7 +97,7 @@ class RecordAnswer extends Component {
                     style={styles.exit}
                     underlayColor={'transparent'}
                   >
-                    <Text style={styles.exitText}>X</Text>
+                    <Icon name='times' style={styles.exitText} />
                   </TouchableHighlight>
                 </View>
 
@@ -110,13 +111,13 @@ class RecordAnswer extends Component {
                 </View>
               </View>
 
-              { this.state.finishedRecording &&
+              {/* { this.state.finishedRecording &&
                 <View style={styles.doneWrapper}>
                   <View style={styles.doneButton}>
                     <Text style={styles.doneText}>Send</Text>
                   </View>
                 </View>
-              }
+              } */}
             </View>
           </Modal>
         </View>
@@ -188,6 +189,9 @@ const styles = StyleSheet.create({
   exitText: {
     color: 'white',
     fontSize: 25,
+    textShadowColor: 'rgba(0, 0, 0, 0.2)',
+    textShadowOffset: {width: -1, height: 1},
+    textShadowRadius: 1,
   },
 
   questionWrapper: {

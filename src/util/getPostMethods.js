@@ -1,6 +1,6 @@
 
 // 192.168.1.143
-let onDevice = false;
+let onDevice = true;
 let ipAddress = '192.168.1.143';
 const baseUrl = onDevice ? `http://${ipAddress}:1337` : 'http://localhost:1337';
 
@@ -45,20 +45,22 @@ function post(path, body, callback) {
     })
 }
 
-function postMedia(path, body, callback) {
+function postMedia(path, file, callback) {
   let headers = new Headers({
     'Content-Type': 'multipart/form-data',
   });
 
   let formData  = new FormData();
 
-  for(let name in body) {
-    formData.append(name, body[name]);
+  for(let name in file) {
+    formData.append(name, file[name]);
   }
 
   let init = { method: 'POST',
                 mode: 'cors',
-                headers: headers,
+                // headers: headers,
+                contentType: false,
+                processData: false,
                 body: formData
               };
 
