@@ -12,22 +12,23 @@ const postAnswer = (video, callback) => {
   let files = [
 		{
 			name: 'answer',
-			filename: 'video1',
+			filename: 'video1.mov',
 			filepath: path,  // image from camera roll/assets library
+      filetype: 'video/mov',
 		},
 	];
 
 
 
-	let opts = {
+	let options = {
 		url: `${baseUrl}/answers/new`,
 		files: files,
 		method: 'POST',                             // optional: POST or PUT
 		// headers: { 'Accept': 'application/json' },  // optional
-		// params: { 'user_id': 1 },                   // optional
+		params: { 'questionId': 1 },                   // optional
 	};
 
-	RNUploader.upload( opts, (err, response) => {
+	RNUploader.upload( options, (err, response) => {
 		if( err ){
 			console.log(err);
 			return;

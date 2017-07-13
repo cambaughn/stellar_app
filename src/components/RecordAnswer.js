@@ -31,7 +31,7 @@ class RecordAnswer extends Component {
     console.log('recording video')
     this.setState({ recording: true });
     this.camera.capture({
-      totalSeconds: 2,
+      totalSeconds: 60,
     })
     .then(video => {
       console.log('DONE RECORDING => ', video)
