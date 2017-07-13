@@ -74,24 +74,24 @@ class AskQuestionModal extends Component {
                 </TouchableHighlight>
               </View>
 
-              <View>
-                <TextInput
-                  multiline={true}
-                  numberOfLines={4}
-                  style={styles.input}
-                  placeholder={`Ask a question`}
-                  placeholderTextColor={colors.midGrey}
-                  autoCapitalize={'sentences'}
-                  autoFocus={true}
-                  returnKeyType={'send'}
+              <View style={styles.inputGroup}>
+                <View>
+                  <TextInput
+                    multiline={true}
+                    numberOfLines={4}
+                    style={styles.input}
+                    placeholder={`Ask a question`}
+                    placeholderTextColor={colors.midGrey}
+                    autoCapitalize={'sentences'}
+                    autoFocus={true}
+                    returnKeyType={'send'}
 
-                  onChangeText={text => this.setState({ text })}
-                  value={this.state.text}
-                />
-
-
-
+                    onChangeText={text => this.setState({ text })}
+                    value={this.state.text}
+                  />
+                </View>
               </View>
+
             </View>
           </Modal>
 
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     paddingLeft: 25,
     paddingRight: 25,
-    marginBottom: 30,
+    marginBottom: 20,
 
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '500',
   },
 
@@ -141,11 +141,36 @@ const styles = StyleSheet.create({
 
   submitButton: {
     width: '20%',
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 
   submitText: {
     fontSize: 16,
     color: colors.blue,
+  },
+
+  inputGroup: {
+    width: Dimensions.get("window").width,
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+  },
+
+  input: {
+    // backgroundColor: 'lightgreen',
+    width: Dimensions.get("window").width - 50,
+    minHeight: 30,
+    maxHeight: 300,
+
+    paddingLeft: 10,
+    paddingRight: 10,
+
+    fontSize: 20,
   },
 
   buttonPrimary: {
@@ -168,18 +193,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 15
-  },
-
-  input: {
-    // backgroundColor: 'lightgreen',
-    width: Dimensions.get("window").width - 100,
-    minHeight: 30,
-    maxHeight: 300,
-
-    paddingLeft: 10,
-    paddingRight: 10,
-
-    fontSize: 20,
   },
 })
 
