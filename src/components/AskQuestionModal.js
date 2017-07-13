@@ -52,13 +52,27 @@ class AskQuestionModal extends Component {
           >
             <View style={styles.container}>
 
-              <TouchableHighlight
-                onPress={this.handleClose}
-                style={styles.exitButton}
-                underlayColor={'transparent'}
-              >
-                <Icon name='times' style={styles.exitText} />
-              </TouchableHighlight>
+              <View style={styles.topNav}>
+                <TouchableHighlight
+                  onPress={this.handleClose}
+                  style={styles.exitButton}
+                  underlayColor={'transparent'}
+                >
+                  <Text style={styles.exitText}>Cancel</Text>
+                </TouchableHighlight>
+
+
+                <Text style={styles.header}>Ask Question</Text>
+
+
+                <TouchableHighlight
+                  onPress={this.handleSubmit}
+                  style={styles.submitButton}
+                  underlayColor={'white'}
+                >
+                  <Text style={styles.submitText}>Send</Text>
+                </TouchableHighlight>
+              </View>
 
               <View>
                 <TextInput
@@ -75,13 +89,7 @@ class AskQuestionModal extends Component {
                   value={this.state.text}
                 />
 
-                <TouchableHighlight
-                  onPress={this.handleSubmit}
-                  style={styles.buttonPrimary}
-                  underlayColor={colors.primary}
-                >
-                  <Text style={styles.buttonPrimaryText}>Ask</Text>
-                </TouchableHighlight>
+
 
               </View>
             </View>
@@ -95,42 +103,49 @@ class AskQuestionModal extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    // marginTop: 50,
-    height: '90%',
-    width: '100%',
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").height,
 
     backgroundColor: 'white',
+  },
+
+  topNav: {
+    height: 60,
+    paddingTop: 15,
+    paddingLeft: 25,
+    paddingRight: 25,
+    marginBottom: 30,
+
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGrey,
 
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between'
   },
 
-  input: {
-    // backgroundColor: 'lightgreen',
-    width: Dimensions.get("window").width - 100,
-    minHeight: 30,
-    maxHeight: 300,
-
-    paddingLeft: 10,
-    paddingRight: 10,
-
-    fontSize: 20,
-  },
-
-  exitWrapper: {
-
+  header: {
+    fontSize: 18,
+    fontWeight: '500',
   },
 
   exitButton: {
-    position: 'absolute',
-    left: 25,
-    top: 30,
+    width: '20%',
   },
 
   exitText: {
-    fontSize: 25,
-    color: colors.midGrey,
+    fontSize: 16,
+    color: colors.blue,
+  },
+
+  submitButton: {
+    width: '20%',
+  },
+
+  submitText: {
+    fontSize: 16,
+    color: colors.blue,
   },
 
   buttonPrimary: {
@@ -153,6 +168,18 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     fontSize: 15
+  },
+
+  input: {
+    // backgroundColor: 'lightgreen',
+    width: Dimensions.get("window").width - 100,
+    minHeight: 30,
+    maxHeight: 300,
+
+    paddingLeft: 10,
+    paddingRight: 10,
+
+    fontSize: 20,
   },
 })
 
