@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, View, Modal, TouchableHighlight, TextInput } from 'react-native';
 import { Link } from 'react-router-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { postQuestion } from '../util/postQuestion';
 import colors from '../util/colors';
@@ -14,7 +15,8 @@ class AskQuestionModal extends Component {
       text: ''
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleSubmit() {
@@ -26,13 +28,18 @@ class AskQuestionModal extends Component {
       }
 
       postQuestion(question, question => {
-        this.setState({ text: '' })
-        this.props.getData(this.props.answerer.id)}
-      );
+        this.setState({ text: '' });
+        this.props.getData(this.props.answerer.id)
+      });
 
       this.props.toggleModal();
       console.log('submitting! => ', this.state.text);
     }
+  }
+
+  handleClose() {
+    this.props.toggleModal();
+    this.setState({ text: '' });
   }
 
   render() {
@@ -44,6 +51,15 @@ class AskQuestionModal extends Component {
             visible={this.props.visible}
           >
             <View style={styles.container}>
+
+              <TouchableHighlight
+                onPress={this.handleClose}
+                style={styles.exitButton}
+                underlayColor={'transparent'}
+              >
+                <Icon name='times' style={styles.exitText} />
+              </TouchableHighlight>
+
               <View>
                 <TextInput
                   multiline={true}
@@ -100,6 +116,21 @@ const styles = StyleSheet.create({
     paddingRight: 10,
 
     fontSize: 20,
+  },
+
+  exitWrapper: {
+
+  },
+
+  exitButton: {
+    position: 'absolute',
+    left: 25,
+    top: 30,
+  },
+
+  exitText: {
+    fontSize: 25,
+    color: colors.midGrey,
   },
 
   buttonPrimary: {
