@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Dimensions, StyleSheet, Text, View, Modal, TouchableHighlight, TextInput } from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  TouchableHighlight,
+  TextInput,
+  KeyboardAvoidingView
+} from 'react-native';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -20,7 +29,7 @@ class AskQuestionModal extends Component {
   }
 
   handleSubmit() {
-    if (this.state.text.length > 3) {
+    if (this.state.text.length > 3 && this.state.text.length <= 200 ) {
       let question = {
         text: this.state.text,
         askerId: this.props.asker.id,
@@ -70,7 +79,9 @@ class AskQuestionModal extends Component {
                   style={styles.submitButton}
                   underlayColor={'white'}
                 >
-                  <Text style={styles.submitText}>Send</Text>
+                  <Text style={[styles.submitText, this.state.text.length < 3 && styles.greyedOut, this.state.text.length >= 200 && styles.greyedOut]}>
+                    Send
+                  </Text>
                 </TouchableHighlight>
               </View>
 
@@ -84,13 +95,24 @@ class AskQuestionModal extends Component {
                     placeholderTextColor={colors.midGrey}
                     autoCapitalize={'sentences'}
                     autoFocus={true}
-                    returnKeyType={'send'}
+                    returnKeyType={'default'}
 
                     onChangeText={text => this.setState({ text })}
                     value={this.state.text}
                   />
                 </View>
               </View>
+
+
+              <KeyboardAvoidingView
+                style={styles.keyboardAvoidingView}
+                contentContainerStyle={styles.keyboardAvoidingView}
+                behavior={'position'}
+              >
+                <Text style={[styles.textCount, this.state.text.length >= 200 && styles.noCharsLeft]}>
+                  {200 - this.state.text.length}
+                </Text>
+              </KeyboardAvoidingView>
 
             </View>
           </Modal>
@@ -102,6 +124,7 @@ class AskQuestionModal extends Component {
 
 
 const styles = StyleSheet.create({
+
   container: {
     width: Dimensions.get("window").width,
     height: Dimensions.get("window").height,
@@ -111,7 +134,7 @@ const styles = StyleSheet.create({
 
   topNav: {
     height: 60,
-    paddingTop: 15,
+    paddingTop: 18,
     paddingLeft: 25,
     paddingRight: 25,
     marginBottom: 20,
@@ -126,7 +149,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: '500',
   },
 
@@ -135,7 +158,7 @@ const styles = StyleSheet.create({
   },
 
   exitText: {
-    fontSize: 16,
+    fontSize: 18,
     color: colors.blue,
   },
 
@@ -148,8 +171,12 @@ const styles = StyleSheet.create({
   },
 
   submitText: {
-    fontSize: 16,
+    fontSize: 18,
     color: colors.blue,
+  },
+
+  greyedOut: {
+    color: colors.midGrey
   },
 
   inputGroup: {
@@ -163,7 +190,7 @@ const styles = StyleSheet.create({
 
   input: {
     // backgroundColor: 'lightgreen',
-    width: Dimensions.get("window").width - 50,
+    width: Dimensions.get("window").width - 25,
     minHeight: 30,
     maxHeight: 300,
 
@@ -173,26 +200,36 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
 
-  buttonPrimary: {
-    backgroundColor: colors.primary,
+  keyboardAvoidingView: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
 
-    width: Dimensions.get("window").width - 100,
-    height: 40,
-
-    marginTop: 20,
+    width: Dimensions.get("window").width,
+    height: 50,
 
     display: 'flex',
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
 
-    borderRadius: 3,
+    paddingLeft: 25,
+    paddingRight: 25,
 
+    borderTopWidth: 1,
+    borderTopColor: colors.lightGrey,
+
+    // backgroundColor: 'yellow',
   },
 
-  buttonPrimaryText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 15
+  textCount: {
+    fontSize: 17,
+    fontWeight: '500',
+    color: colors.blue,
+  },
+
+  noCharsLeft: {
+    color: colors.red,
   },
 })
 
