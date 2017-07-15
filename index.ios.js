@@ -1,5 +1,6 @@
 // Ignore Remote Debugger warning
 console.ignoredYellowBox = ['Remote debugger'];
+console.disableYellowBox = true;
 
 import React, { Component } from 'react';
 import {

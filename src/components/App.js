@@ -73,9 +73,9 @@ class App extends Component {
             <TopNav />
             <Switch>
               {/* <Route exact path='/' render={() => <Redirect to='/record_answer/2' /> }/> */}
-              <Route exact path='/' render={() => <Redirect to='/user/1' /> }/>
+              {/* <Route exact path='/' render={() => <Redirect to='/user/1' /> }/> */}
 
-              {/* <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/> */}
+              <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/>
               <Route path='/search' render={() => <Search users={this.getUsers()} /> }/>
 
               <Route path='/record_answer/:questionId' component={RecordAnswer} />

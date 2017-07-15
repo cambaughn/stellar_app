@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
   },
 
   topNav: {
-    height: 60,
+    height: 65,
     paddingTop: 18,
     paddingLeft: 25,
     paddingRight: 25,
