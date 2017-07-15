@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Dimensions } from 'react-native';
 import { Link } from 'react-router-native';
 
+import AnsweredQuestionList from './AnsweredQuestionList';
 import PendingQuestionList from './PendingQuestionList';
 import UserProfileButtons from './UserProfileButtons';
 import colors from '../util/colors';
@@ -17,6 +18,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
             <Text style={styles.username}>{user.name}</Text>
             <Text style={styles.bio}>{user.bio}</Text>
           </View>
+
 
           <PendingQuestionList questions={questions} />
         </View>
@@ -39,7 +41,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
 
           </View>
 
-          <PendingQuestionList questions={questions} />
+          <AnsweredQuestionList questions={questions} />
         </View>
       </ScrollView>
     )

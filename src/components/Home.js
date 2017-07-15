@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 
-import PendingQuestionList from './PendingQuestionList';
+import AnsweredQuestionList from './AnsweredQuestionList';
 
 const Home = ({ questions }) => {
   if (questions.length) {
     return (
       <ScrollView style={styles.scrollView}>
-        <PendingQuestionList questions={questions} />
+        <AnsweredQuestionList questions={questions} />
       </ScrollView>
     )
   } else {
