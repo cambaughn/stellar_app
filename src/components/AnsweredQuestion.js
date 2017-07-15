@@ -5,31 +5,40 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import colors from '../util/colors';
 
-const AnsweredQuestion = ({ question }) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.topRow}>
-        <View style={styles.questionAnswerer}>
-          <Link to={`/user/${question.answerer.id}`} style={styles.link} underlayColor='white'>
-            <Text style={styles.bold}>{question.answerer.name}</Text>
-          </Link>
+class AnsweredQuestion extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modalVisible: false,
+    }
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.topRow}>
+          <View style={styles.questionAnswerer}>
+            <Link to={`/user/${this.props.question.answerer.id}`} style={styles.link} underlayColor='white'>
+              <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
+            </Link>
+          </View>
+
+          <TouchableHighlight
+            underlayColor={'white'}
+            onPress={() => console.log('playing video')}
+          >
+            <Icon name={'play'} style={styles.replyText} />
+          </TouchableHighlight>
+
         </View>
 
-        <Link to={{
-          pathname: `/record_answer/${question.id}`,
-          state: { question: question }
-        }}
-        >
-          {/* <Text style={styles.replyText}>Reply</Text> */}
-          <Icon name={'play'} style={styles.replyText} />
-        </Link>
+        <Text style={styles.questionText}>{this.props.question.text}</Text>
 
       </View>
-
-      <Text style={styles.questionText}>{question.text}</Text>
-
-    </View>
-  )
+    )
+  }
 }
 
 
