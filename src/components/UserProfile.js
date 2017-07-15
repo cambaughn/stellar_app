@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Dimensions } fr
 import { Link } from 'react-router-native';
 
 import AnsweredQuestionList from './AnsweredQuestionList';
+import MixedQuestionList from './MixedQuestionList';
 import PendingQuestionList from './PendingQuestionList';
 import UserProfileButtons from './UserProfileButtons';
 import colors from '../util/colors';
@@ -20,7 +21,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
           </View>
 
 
-          <PendingQuestionList questions={questions} />
+          <MixedQuestionList questions={questions} />
         </View>
       </ScrollView>
     )
@@ -41,7 +42,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
 
           </View>
 
-          <AnsweredQuestionList questions={questions} />
+          <MixedQuestionList questions={questions} />
         </View>
       </ScrollView>
     )
