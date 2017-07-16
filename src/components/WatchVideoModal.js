@@ -7,6 +7,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 class WatchVideoModal extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+    }
   }
 
   render() {
@@ -26,6 +29,15 @@ class WatchVideoModal extends Component {
           </TouchableHighlight>
         </View>
 
+        <View style={styles.questionWrapper}>
+          <View style={styles.question}>
+            <Text>Luke Skywalker asks:</Text>
+            <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
+            {/* <Text style={styles.questionText}>State: {this.props.location.state.question.text}</Text> */}
+          </View>
+
+        </View>
+
       </Modal>
     )
   }
@@ -33,7 +45,8 @@ class WatchVideoModal extends Component {
 
 const styles = StyleSheet.create({
   container: {
-
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
 
   exitWrapper: {
@@ -57,6 +70,29 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0, 0, 0, 0.2)',
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 1,
+  },
+
+  questionWrapper: {
+    width: Dimensions.get('window').width,
+    // backgroundColor: 'lightgreen',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+
+    position: 'absolute',
+    bottom: 10,
+    left: 0
+  },
+
+  question: {
+    width: Dimensions.get('window').width - 40,
+    backgroundColor: 'white',
+    borderRadius: 5,
+    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+
+    padding: 15,
   },
 })
 
