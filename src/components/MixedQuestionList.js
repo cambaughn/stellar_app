@@ -6,8 +6,6 @@ import UnansweredQuestion from './UnansweredQuestion';
 
 
 const MixedQuestionList = ({ questions }) => {
-
-  console.log('logging questions => ', questions)
   return (
     <View style={styles.container}>
       { questions.map(question => {

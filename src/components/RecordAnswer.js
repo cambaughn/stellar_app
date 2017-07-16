@@ -15,13 +15,11 @@ class RecordAnswer extends Component {
 
     this.state = {
       recording: false,
-      visible: true,
       finishedRecording: false,
     }
 
     this.startRecording = this.startRecording.bind(this);
     this.stopRecording = this.stopRecording.bind(this);
-    this.exitModal = this.exitModal.bind(this);
 
     Camera.checkDeviceAuthorizationStatus().then(result => console.log('Authorized => ', result))
   }
@@ -47,82 +45,73 @@ class RecordAnswer extends Component {
     this.camera.stopCapture();
   }
 
-  exitModal() {
-    console.log('exiting modal')
-    this.setState({ visible: false });
-  }
-
 
   render() {
-    if (!this.state.visible) {
-      return (<Redirect to='/' />)
-    } else {
-      return (
-        <View>
-          <Modal
-            animationType={"slide"}
-            transparent={false}
-            visible={this.state.visible}
-          >
-            <View style={styles.container}>
+    return (
+      <View>
+        <Modal
+          animationType={"slide"}
+          transparent={false}
+          visible={this.props.visible}
+        >
+          <View style={styles.container}>
 
-              <Camera
-                ref={(cam) => {
-                    this.camera = cam;
-                }}
-                style={styles.preview}
-                aspect={Camera.constants.Aspect.fill}
-                captureMode={Camera.constants.CaptureMode.video}
-                captureAudio={true}
-                type={Camera.constants.Type.front}
-                orientation={Camera.constants.Orientation.portrait}
-                captureTarget={Camera.constants.CaptureTarget.temp}
+            <Camera
+              ref={(cam) => {
+                  this.camera = cam;
+              }}
+              style={styles.preview}
+              aspect={Camera.constants.Aspect.fill}
+              captureMode={Camera.constants.CaptureMode.video}
+              captureAudio={true}
+              type={Camera.constants.Type.front}
+              orientation={Camera.constants.Orientation.portrait}
+              captureTarget={Camera.constants.CaptureTarget.temp}
+            >
+              <TouchableHighlight
+                onPressIn={this.startRecording}
+                onPressOut={this.stopRecording}
+                underlayColor={colors.lightGrey}
+                style={[styles.capture, this.state.recording && styles.recording]}
               >
+                <View></View>
+              </TouchableHighlight>
+            </Camera>
+
+            {/* Buttons and UI elements that aren't a part of the camera component */}
+            <View style={styles.overlayContainer}>
+
+              <View style={styles.exitWrapper}>
                 <TouchableHighlight
-                  onPressIn={this.startRecording}
-                  onPressOut={this.stopRecording}
-                  underlayColor={colors.lightGrey}
-                  style={[styles.capture, this.state.recording && styles.recording]}
+                  onPress={this.props.toggleModal}
+                  style={styles.exit}
+                  underlayColor={'transparent'}
                 >
-                  <View></View>
+                  <Icon name='times' style={styles.exitText} />
                 </TouchableHighlight>
-              </Camera>
-
-              {/* Buttons and UI elements that aren't a part of the camera component */}
-              <View style={styles.overlayContainer}>
-
-                <View style={styles.exitWrapper}>
-                  <TouchableHighlight
-                    onPress={this.exitModal}
-                    style={styles.exit}
-                    underlayColor={'transparent'}
-                  >
-                    <Icon name='times' style={styles.exitText} />
-                  </TouchableHighlight>
-                </View>
-
-                <View style={styles.questionWrapper}>
-                  <View style={styles.question}>
-                    <Text>Luke Skywalker asks:</Text>
-                    <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
-                    {/* <Text style={styles.questionText}>State: {this.props.location.state.question.text}</Text> */}
-                  </View>
-
-                </View>
               </View>
 
-              {/* { this.state.finishedRecording &&
-                <View style={styles.doneWrapper}>
-                  <View style={styles.doneButton}>
-                    <Text style={styles.doneText}>Send</Text>
-                  </View>
+              <View style={styles.questionWrapper}>
+                <View style={styles.question}>
+                  <Text>Luke Skywalker asks:</Text>
+                  <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
+                  {/* <Text style={styles.questionText}>State: {this.props.location.state.question.text}</Text> */}
                 </View>
-              } */}
+
+              </View>
             </View>
-          </Modal>
-        </View>
-      )
-    }
+
+            {/* { this.state.finishedRecording &&
+              <View style={styles.doneWrapper}>
+                <View style={styles.doneButton}>
+                  <Text style={styles.doneText}>Send</Text>
+                </View>
+              </View>
+            } */}
+          </View>
+        </Modal>
+      </View>
+    )
   }
 }
 

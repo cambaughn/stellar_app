@@ -3,34 +3,53 @@ import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-na
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import RecordAnswer from './RecordAnswer';
 import colors from '../util/colors';
 
-const UnansweredQuestion = ({ question }) => {
-  return (
-    <View style={styles.container}>
-      <View style={styles.topRow}>
-        <View style={styles.questionAsker}>
-          <Link to={`/user/${question.asker.id}`} style={styles.link} underlayColor='white'>
-            <Text style={styles.bold}>{question.asker.name}</Text>
-          </Link>
-          <Text> asks:</Text>
+class UnansweredQuestion extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modalVisible: false,
+    }
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({ modalVisible: !this.state.modalVisible })
+  }
+
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.topRow}>
+          <View style={styles.questionAsker}>
+            <Link to={`/user/${this.props.question.asker.id}`} style={styles.link} underlayColor='white'>
+              <Text style={styles.bold}>{this.props.question.asker.name}</Text>
+            </Link>
+            <Text> asks:</Text>
+          </View>
+
+          <TouchableHighlight
+            underlayColor={'white'}
+            onPress={this.toggleModal}
+          >
+            <Icon name={'reply'} style={styles.replyText} />
+          </TouchableHighlight>
+
         </View>
 
-        <Link to={{
-          pathname: `/record_answer/${question.id}`,
-          state: { question: question }
-        }}
-        >
-          {/* <Text style={styles.replyText}>Reply</Text> */}
-          <Icon name={'reply'} style={styles.replyText} />
-        </Link>
+        <Text style={styles.questionText}>{this.props.question.text}</Text>
+
+        <RecordAnswer toggleModal={this.toggleModal} visible={this.state.modalVisible} />
 
       </View>
-
-      <Text style={styles.questionText}>{question.text}</Text>
-
-    </View>
-  )
+    )
+  }
 }
 
 
