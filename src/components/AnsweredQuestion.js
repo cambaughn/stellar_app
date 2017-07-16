@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-na
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import WatchVideoModal from './WatchVideoModal';
 import colors from '../util/colors';
 
 class AnsweredQuestion extends Component {
@@ -11,8 +12,14 @@ class AnsweredQuestion extends Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
+      modalVisible: true,
     }
+
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({ modalVisible: !this.state.modalVisible })
   }
 
   render() {
@@ -27,7 +34,7 @@ class AnsweredQuestion extends Component {
 
           <TouchableHighlight
             underlayColor={'white'}
-            onPress={() => console.log('playing video')}
+            onPress={this.toggleModal}
           >
             <Icon name={'play'} style={styles.replyText} />
           </TouchableHighlight>
@@ -35,6 +42,12 @@ class AnsweredQuestion extends Component {
         </View>
 
         <Text style={styles.questionText}>{this.props.question.text}</Text>
+
+        <WatchVideoModal
+          visible={this.state.modalVisible}
+          toggleModal={this.toggleModal}
+          question={this.props.question}
+        />
 
       </View>
     )

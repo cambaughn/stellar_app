@@ -18,7 +18,12 @@ const styles = StyleSheet.create({
 
 export default Example;
 
-// OR
+
+// OR  -----------------------------------------
+
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Link } from 'react-router-native';
 
 class Example extends Component {
   constructor(props) {
@@ -31,6 +36,13 @@ class Example extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+
+  },
+})
+
 
 export default Example;
 
