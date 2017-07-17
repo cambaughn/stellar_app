@@ -9,7 +9,6 @@ function getQuestionsByUserId(userId, callback) {
 }
 
 function getCurrentUserQuestions(userId, callback) {
-  console.log('GETTING CURRENT USER QUESTIONS ', userId)
   let body = { userId };
   post(`/questions/current_user`, body, callback);
 }
