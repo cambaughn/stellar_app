@@ -77,4 +77,18 @@ function postMedia(path, file, callback) {
     })
 }
 
-export { get, post, postMedia, baseUrl };
+function getMedia(path, callback) {
+  fetch(`${baseUrl}${path}`)
+    .then(result => {
+      setTimeout(() => null, 0);  // workaround for issue-6679
+      return result.blob();
+    })
+    .then(result => {
+      callback(result);
+    })
+    .catch(error => {
+      console.log(`ERROR => ${error}`);
+    })
+}
+
+export { get, post, postMedia, getMedia, baseUrl };

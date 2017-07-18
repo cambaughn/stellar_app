@@ -1,8 +1,11 @@
 
-import { get, post } from './getPostMethods';
+import { get, post, getMedia } from './getPostMethods';
 
 
 function getVideoById(answerId, callback) {
   // let body = { answerId };
-  get(`/answer/${answerId}`, callback);
+  getMedia(`/answer/${answerId}`, callback);
 }
+
+
+export { getVideoById };
