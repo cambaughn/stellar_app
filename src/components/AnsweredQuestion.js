@@ -4,7 +4,6 @@ import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import WatchVideoModal from './WatchVideoModal';
-import { getVideoById } from '../util/getVideo';
 import colors from '../util/colors';
 
 class AnsweredQuestion extends Component {
@@ -13,21 +12,12 @@ class AnsweredQuestion extends Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
+      modalVisible: true,
     }
 
     this.toggleModal = this.toggleModal.bind(this);
   }
 
-  componentDidMount() {
-    let answerId = this.props.question.Answers[0].id;
-    console.log(answerId);
-    getVideoById(answerId, this.receiveVideo);
-  }
-
-  receiveVideo(response) {
-    console.log('getting something! => ', response)
-  }
 
   toggleModal() {
     this.setState({ modalVisible: !this.state.modalVisible })

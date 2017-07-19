@@ -1,6 +1,6 @@
 
 // 192.168.1.143
-let onDevice = false;
+let onDevice = true;
 let ipAddress = '192.168.1.143';
 const baseUrl = onDevice ? `http://${ipAddress}:1337` : 'http://localhost:1337';
 
