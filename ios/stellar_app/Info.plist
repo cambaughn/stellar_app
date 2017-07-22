@@ -36,9 +36,21 @@
 		<dict>
 			<key>localhost</key>
 			<dict>
+        <!--Include to allow subdomains-->
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <!--Include to allow HTTP requests-->
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 			</dict>
+      <key>192.168.1.143</key>
+      <dict>
+        <!--Include to allow subdomains-->
+        <key>NSIncludesSubdomains</key>
+        <true/>
+        <key>NSExceptionAllowsInsecureHTTPLoads</key>
+        <true/>
+      </dict>
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>

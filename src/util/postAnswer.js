@@ -1,11 +1,9 @@
 import { postMedia, baseUrl } from './getPostMethods';
 import { NativeModules } from 'react-native';
 
-let RNFS = require('react-native-fs');
 let RNUploader = NativeModules.RNUploader;
 
 const postAnswer = (video, callback) => {
-  // console.log(video.path)
 
   let path = video.path;
 
@@ -13,7 +11,7 @@ const postAnswer = (video, callback) => {
 		{
 			name: 'answer',
 			filename: 'video1.mov',
-			filepath: path,  // image from camera roll/assets library
+			filepath: path,  // video from camera roll/assets library or memory
       filetype: 'video/mov',
 		},
 	];

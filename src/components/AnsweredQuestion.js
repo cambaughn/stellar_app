@@ -12,7 +12,7 @@ class AnsweredQuestion extends Component {
     super(props);
 
     this.state = {
-      modalVisible: false,
+      modalVisible: true,
     }
 
     this.toggleModal = this.toggleModal.bind(this);

@@ -2,9 +2,9 @@
 import { get, post, getMedia } from './getPostMethods';
 
 
-function getVideoById(answerId, callback) {
+function getVideoById(answerPath, callback) {
   // let body = { answerId };
-  getMedia(`/answer/${answerId}`, callback);
+  getMedia(`/answer/${answerPath}`, callback);
 }
 
 

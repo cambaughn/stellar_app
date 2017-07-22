@@ -20,13 +20,13 @@ class WatchVideoModal extends Component {
     console.log(answerId);
     // getVideoById(answerId, this.receiveVideo);
 
-    if (this.props.visible) {
+    // if (this.props.visible) {
       // Later to trigger fullscreen
       this.player.presentFullscreenPlayer()
 
       // To set video position in seconds (seek)
       this.player.seek(0)
-    }
+    // }
   }
 
   receiveVideo(response) {
@@ -48,25 +48,25 @@ class WatchVideoModal extends Component {
         transparent={false}
         visible={this.props.visible}
       >
-        {this.props.visible &&
-          <Video source={{uri: `${baseUrl}/answer/1`}}
-            ref={(ref) => {
+        {/* {this.props.visible && */}
+        <Video source={{uri: `${baseUrl}/answer/answer-1500086355570.mp4`}}
+          ref={(ref) => {
               this.player = ref
-            }}
-            rate={1.0}
-            volume={1.0}
-            muted={false}
-            paused={false}
-            resizeMode="cover"
-            repeat={true}
-            playInBackground={false}
-            playWhenInactive={false}
-            ignoreSilentSwitch={"ignore"}
-            progressUpdateInterval={250.0}
-            onLoadStart={this.loadStart}
-            onError={this.videoError}
-          />
-        }
+          }}
+          rate={1.0}
+          volume={1.0}
+          muted={false}
+          paused={false}
+          resizeMode="cover"
+          repeat={true}
+          playInBackground={false}
+          playWhenInactive={false}
+          ignoreSilentSwitch={"ignore"}
+          progressUpdateInterval={250.0}
+          onLoadStart={this.loadStart}
+          onError={this.videoError}
+        />
+        {/* } */}
 
 
 
