@@ -26,20 +26,17 @@ class RecordAnswer extends Component {
 
 
   startRecording() {
-    console.log('recording video')
     this.setState({ recording: true });
     this.camera.capture({
       totalSeconds: 60,
     })
     .then(video => {
-      console.log('DONE RECORDING => ', video)
       postAnswer(video, response => console.log(response.message))
     })
     .catch(err => console.error(err));
   }
 
   stopRecording() {
-    console.log('stopping video')
     // this.setState({ recording: false, finishedRecording: true });
     this.setState({ recording: false });
     this.camera.stopCapture();
