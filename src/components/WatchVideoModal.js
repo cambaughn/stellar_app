@@ -97,13 +97,15 @@ class WatchVideoModal extends Component {
           </TouchableHighlight>
         </View>
 
-        <View style={styles.questionWrapper}>
-          <View style={styles.question}>
-            <Text>Luke Skywalker asks:</Text>
-            <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
-          </View>
+        { this.props.question &&
+          <View style={styles.questionWrapper}>
+            <View style={styles.question}>
+              <Text>{this.props.question.asker.name} asks:</Text>
+              <Text>{this.props.question.text}</Text>
+            </View>
 
-        </View>
+          </View>
+        }
 
       </Modal>
     )
