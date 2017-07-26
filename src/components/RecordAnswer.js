@@ -71,10 +71,10 @@ class RecordAnswer extends Component {
         <Modal
           animationType={"slide"}
           transparent={false}
-          visible={true}
+          visible={this.props.visible}
         >
           <View style={styles.container}>
-
+            
             { !this.state.finishedRecording &&
               <Camera
                 ref={(cam) => {
@@ -122,7 +122,6 @@ class RecordAnswer extends Component {
               />
             }
 
-            {/* Buttons and UI elements that aren't a part of the camera component */}
             <View style={styles.overlayContainer}>
 
               <View style={styles.exitWrapper}>

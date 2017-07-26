@@ -16,7 +16,6 @@ class WatchVideoModal extends Component {
 
     this.loadStart = this.loadStart.bind(this);
     this.videoError = this.videoError.bind(this);
-    this.onLoad = this.onLoad.bind(this);
     this.onEnd = this.onEnd.bind(this);
   }
 
