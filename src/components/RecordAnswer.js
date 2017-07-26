@@ -16,10 +16,12 @@ class RecordAnswer extends Component {
     this.state = {
       recording: false,
       finishedRecording: false,
+      video: null,
     }
 
     this.startRecording = this.startRecording.bind(this);
     this.stopRecording = this.stopRecording.bind(this);
+    this.sendVideo = this.sendVideo.bind(this);
 
     Camera.checkDeviceAuthorizationStatus().then(result => console.log('Authorized => ', result))
   }
@@ -31,15 +33,19 @@ class RecordAnswer extends Component {
       totalSeconds: 60,
     })
     .then(video => {
-      postAnswer(video, response => console.log(response.message))
+      this.setState({ video });
     })
     .catch(err => console.error(err));
   }
 
   stopRecording() {
-    // this.setState({ recording: false, finishedRecording: true });
-    this.setState({ recording: false });
+    this.setState({ recording: false, finishedRecording: true });
     this.camera.stopCapture();
+  }
+
+  sendVideo() {
+    postAnswer(this.state.video, response => console.log(response.message));
+    // this.props.toggleModal();
   }
 
 
@@ -49,31 +55,38 @@ class RecordAnswer extends Component {
         <Modal
           animationType={"slide"}
           transparent={false}
-          visible={this.props.visible}
+          visible={true}
         >
           <View style={styles.container}>
 
-            <Camera
-              ref={(cam) => {
+            { !this.state.finishedRecording &&
+              <Camera
+                ref={(cam) => {
                   this.camera = cam;
-              }}
-              style={styles.preview}
-              aspect={Camera.constants.Aspect.fill}
-              captureMode={Camera.constants.CaptureMode.video}
-              captureAudio={true}
-              type={Camera.constants.Type.front}
-              orientation={Camera.constants.Orientation.portrait}
-              captureTarget={Camera.constants.CaptureTarget.temp}
-            >
-              <TouchableHighlight
-                onPressIn={this.startRecording}
-                onPressOut={this.stopRecording}
-                underlayColor={colors.lightGrey}
-                style={[styles.capture, this.state.recording && styles.recording]}
+                }}
+                style={styles.preview}
+                aspect={Camera.constants.Aspect.fill}
+                captureMode={Camera.constants.CaptureMode.video}
+                captureAudio={true}
+                type={Camera.constants.Type.front}
+                orientation={Camera.constants.Orientation.portrait}
+                captureTarget={Camera.constants.CaptureTarget.temp}
               >
-                <View></View>
-              </TouchableHighlight>
-            </Camera>
+                <TouchableHighlight
+                  onPressIn={this.startRecording}
+                  onPressOut={this.stopRecording}
+                  underlayColor={colors.lightGrey}
+                  style={[styles.capture, this.state.recording && styles.recording]}
+                >
+                  <View></View>
+                </TouchableHighlight>
+              </Camera>
+
+            }
+
+            { this.state.finishedRecording &&
+              <Text>Finished</Text>
+            }
 
             {/* Buttons and UI elements that aren't a part of the camera component */}
             <View style={styles.overlayContainer}>
@@ -92,19 +105,22 @@ class RecordAnswer extends Component {
                 <View style={styles.question}>
                   <Text>Luke Skywalker asks:</Text>
                   <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
-                  {/* <Text style={styles.questionText}>State: {this.props.location.state.question.text}</Text> */}
                 </View>
 
               </View>
             </View>
 
-            {/* { this.state.finishedRecording &&
+            { this.state.finishedRecording &&
               <View style={styles.doneWrapper}>
-                <View style={styles.doneButton}>
-                  <Text style={styles.doneText}>Send</Text>
+                <TouchableHighlight
+                  style={styles.doneButton}
+                  onPress={this.sendVideo}
+                  underlayColor={colors.blue}
+                >
+                  <Icon name='paper-plane' style={styles.doneText} />
+                </TouchableHighlight>
                 </View>
-              </View>
-            } */}
+            }
           </View>
         </Modal>
       </View>
@@ -224,8 +240,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.blue,
 
     borderRadius: 100,
-    width: 65,
-    height: 65,
+    width: 70,
+    height: 70,
     margin: 40,
 
     display: 'flex',
@@ -236,7 +252,7 @@ const styles = StyleSheet.create({
   doneText: {
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 15
+    fontSize: 25
   },
 })
 
