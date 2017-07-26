@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight } from 'react-native';
 import { Link, Redirect } from 'react-router-native';
+import Video from 'react-native-video';
 
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -39,13 +40,28 @@ class RecordAnswer extends Component {
   }
 
   stopRecording() {
-    this.setState({ recording: false, finishedRecording: true });
     this.camera.stopCapture();
+    this.setState({ recording: false, finishedRecording: true });
   }
 
   sendVideo() {
     postAnswer(this.state.video, response => console.log(response.message));
     // this.props.toggleModal();
+  }
+
+
+  loadStart(data) {
+    console.log('LOADING VIDEO', data);
+  }
+
+
+
+  onEnd() {
+    console.log('reached the end')
+  }
+
+  videoError(error) {
+    console.log('ERROR => ', error)
   }
 
 
@@ -84,8 +100,26 @@ class RecordAnswer extends Component {
 
             }
 
-            { this.state.finishedRecording &&
-              <Text>Finished</Text>
+            { this.state.video &&
+              <Video source={{uri: this.state.video.path}}
+                ref={(ref) => {
+                    this.player = ref
+                }}
+                rate={1.0}
+                volume={1.0}
+                muted={false}
+                paused={false}
+                resizeMode="cover"
+                repeat={true}
+                playInBackground={false}
+                playWhenInactive={false}
+                ignoreSilentSwitch={"ignore"}
+                progressUpdateInterval={250.0}
+                onLoadStart={this.loadStart}
+                onEnd={this.onEnd}
+                onError={this.videoError}
+                style={styles.backgroundVideo}
+              />
             }
 
             {/* Buttons and UI elements that aren't a part of the camera component */}
@@ -103,8 +137,8 @@ class RecordAnswer extends Component {
 
               <View style={styles.questionWrapper}>
                 <View style={styles.question}>
-                  <Text>Luke Skywalker asks:</Text>
-                  <Text>But I was going to go to Tosche station to pick up some power converters!</Text>
+                  <Text>{this.props.question.asker.name} asks:</Text>
+                  <Text>{this.props.question.text}</Text>
                 </View>
 
               </View>
@@ -133,6 +167,7 @@ const styles = StyleSheet.create({
   container: {
     // paddingTop: 80,
     flex: 1,
+    backgroundColor: 'black',
   },
 
   preview: {
@@ -157,6 +192,18 @@ const styles = StyleSheet.create({
 
   recording: {
     backgroundColor: 'red'
+  },
+
+  // Video Review
+
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+
+    backgroundColor: 'black',
   },
 
   // Overlay

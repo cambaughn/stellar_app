@@ -45,7 +45,7 @@ class UnansweredQuestion extends Component {
 
         <Text style={styles.questionText}>{this.props.question.text}</Text>
 
-        <RecordAnswer toggleModal={this.toggleModal} visible={this.state.modalVisible} />
+        <RecordAnswer toggleModal={this.toggleModal} visible={this.state.modalVisible} question={this.props.question} />
 
       </View>
     )

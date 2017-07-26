@@ -22,12 +22,6 @@ class WatchVideoModal extends Component {
 
   componentDidMount() {
     let answerId = this.props.question.Answers[0].id;
-    console.log(answerId);
-    // getVideoById(answerId, this.receiveVideo);
-
-    if (this.props.visible) {
-
-    }
   }
 
   receiveVideo(response) {
@@ -36,15 +30,6 @@ class WatchVideoModal extends Component {
 
   loadStart(data) {
     console.log('LOADING VIDEO', data);
-  }
-
-
-  onLoad() {
-    // Later to trigger fullscreen
-    this.player.presentFullscreenPlayer();
-
-    // To set video position in seconds (seek)
-    this.player.seek(0)
   }
 
   onEnd() {
@@ -78,7 +63,6 @@ class WatchVideoModal extends Component {
             ignoreSilentSwitch={"ignore"}
             progressUpdateInterval={250.0}
             onLoadStart={this.loadStart}
-            // onLoad={this.onLoad}
             onEnd={this.onEnd}
             onError={this.videoError}
             style={styles.backgroundVideo}
