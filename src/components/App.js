@@ -86,7 +86,7 @@ class App extends Component {
 
             </Switch>
 
-            <Route path='/' render={({match, location}) => <BottomNav currentUser={this.getCurrentUser()} match={match} location={location} /> }/>
+            <Route path='/' render={({match, location}) => <BottomNav currentUser={this.getCurrentUser()} selectedTab={this.store.getState().selectedTab} store={this.store} /> }/>
 
           </View>
         </NativeRouter>

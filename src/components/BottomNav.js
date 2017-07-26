@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import NavIcon from './NavIcon';
 import stylePresets from '../util/stylePresets';
 import colors from '../util/colors';
+import { setSelectedTab } from '../redux/actionCreators';
 
 
 class BottomNav extends Component {
@@ -18,10 +19,12 @@ class BottomNav extends Component {
     }
 
     this.setSelected = this.setSelected.bind(this);
+    this.store = this.props.store;
+    console.log(this.props.selectedTab)
   }
 
   setSelected(selected) {
-    this.setState({ selected: selected })
+    this.store.dispatch(setSelectedTab(selected));
   }
 
 
@@ -36,16 +39,16 @@ class BottomNav extends Component {
           style={styles.button}
           onPress={() => this.setSelected('home', '/')}
         >
-          <Icon name='home' style={[styles.icon, this.state.selected === 'home' && styles.selected]} />
+          <Icon name='home' style={[styles.icon, this.props.selectedTab === 'home' && styles.selected]} />
         </Link>
 
         <Link
           to='/search'
           underlayColor='white'
           style={styles.button}
-          onPress={() => this.setSelected('search', 'search')}
+          onPress={() => this.setSelected('search')}
         >
-          <Icon name='search' style={[styles.icon, this.state.selected === 'search' && styles.selected]} />
+          <Icon name='search' style={[styles.icon, this.props.selectedTab === 'search' && styles.selected]} />
         </Link>
 
         <Link
@@ -58,7 +61,7 @@ class BottomNav extends Component {
             style={styles.button}
             underlayColor={'white'}
           > */}
-          <Icon name='user' style={[styles.icon, this.state.selected === 'user' && styles.selected]} />
+          <Icon name='user' style={[styles.icon, this.props.selectedTab === 'user' && styles.selected]} />
           {/* </TouchableHighlight> */}
         </Link>
 

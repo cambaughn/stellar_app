@@ -8,6 +8,7 @@ import {
   SET_USERS,
   UPDATE_FOCUSED_USER,
   SET_FOCUSED_USER_QUESTIONS,
+  SET_SELECTED_TAB,
 } from './actionTypes';
 
 function setUsers(users) {
@@ -45,4 +46,11 @@ function setFocusedUserQuestions(questions) {
   }
 }
 
-export { setUsers, setQuestions, updateCurrentUser, updateFocusedUser, setFocusedUserQuestions };
+function setSelectedTab(selected) {
+  return {
+    type: SET_SELECTED_TAB,
+    selected
+  }
+}
+
+export { setUsers, setQuestions, updateCurrentUser, updateFocusedUser, setFocusedUserQuestions, setSelectedTab };
