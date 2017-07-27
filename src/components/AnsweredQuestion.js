@@ -24,6 +24,7 @@ class AnsweredQuestion extends Component {
   }
 
   render() {
+    console.log('yoooo')
     return (
       <View style={styles.container}>
         <View style={styles.topRow}>
@@ -48,6 +49,7 @@ class AnsweredQuestion extends Component {
           visible={this.state.modalVisible}
           toggleModal={this.toggleModal}
           question={this.props.question}
+          answer={this.props.question.Answers[0]}
         />
 
       </View>

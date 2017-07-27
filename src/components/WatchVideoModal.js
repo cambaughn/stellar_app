@@ -21,6 +21,7 @@ class WatchVideoModal extends Component {
 
   componentDidMount() {
     let answerId = this.props.question.Answers[0].id;
+    console.log(this.props.answer)
   }
 
   receiveVideo(response) {
@@ -47,7 +48,7 @@ class WatchVideoModal extends Component {
         visible={this.props.visible}
       >
         { this.props.visible &&
-          <Video source={{uri: `${baseUrl}/answer/answer-1500086355570.mp4`}}
+          <Video source={{uri: `${baseUrl}/answer/${this.props.answer.path}`}}
             ref={(ref) => {
               this.player = ref
             }}
