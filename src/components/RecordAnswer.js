@@ -45,8 +45,8 @@ class RecordAnswer extends Component {
   }
 
   sendVideo() {
-    postAnswer(this.state.video, response => console.log(response.message));
-    // this.props.toggleModal();
+    postAnswer(this.state.video, this.props.question.id, response => console.log(response.message));
+    this.props.toggleModal();
   }
 
 
@@ -74,7 +74,7 @@ class RecordAnswer extends Component {
           visible={this.props.visible}
         >
           <View style={styles.container}>
-            
+
             { !this.state.finishedRecording &&
               <Camera
                 ref={(cam) => {

@@ -3,7 +3,7 @@ import { NativeModules } from 'react-native';
 
 let RNUploader = NativeModules.RNUploader;
 
-const postAnswer = (video, callback) => {
+const postAnswer = (video, questionId, callback) => {
 
   let path = video.path;
 
@@ -23,7 +23,7 @@ const postAnswer = (video, callback) => {
 		files: files,
 		method: 'POST',                             // optional: POST or PUT
 		// headers: { 'Accept': 'application/json' },  // optional
-		params: { 'questionId': 1 },                   // optional
+		params: { 'questionId': questionId },                   // optional
 	};
 
 	RNUploader.upload( options, (err, response) => {
