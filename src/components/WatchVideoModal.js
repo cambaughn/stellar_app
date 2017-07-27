@@ -21,7 +21,6 @@ class WatchVideoModal extends Component {
 
   componentDidMount() {
     let answerId = this.props.question.Answers[0].id;
-    console.log(this.props.answer)
   }
 
   receiveVideo(response) {
@@ -100,6 +99,7 @@ const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
+    backgroundColor: 'black',
   },
 
   backgroundVideo: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
 
-    backgroundColor: 'white',
+    backgroundColor: 'black',
   },
 
   exitWrapper: {

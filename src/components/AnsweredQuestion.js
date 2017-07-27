@@ -24,7 +24,6 @@ class AnsweredQuestion extends Component {
   }
 
   render() {
-    console.log('yoooo')
     return (
       <View style={styles.container}>
         <View style={styles.topRow}>
