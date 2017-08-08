@@ -1,7 +1,8 @@
 
 import { combineReducers } from 'redux';
 
-function currentUser(state = {id: 2}, action) {
+// Tact as a logged in user for development, add an id to the default state of currentUser
+function currentUser(state = {id: 2, name: 'Obi-Wan Kenobi', email: 'obi-wan@gmail.com', profile_photo: null, bio: null}, action) {
   switch (action.type) {
     case 'UPDATE_USER':
       return action.user;
