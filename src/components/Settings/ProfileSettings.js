@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { Link } from 'react-router-native';
 
+import TopNavOverlay from '../TopNav/TopNavOverlay';
 import colors from '../../util/colors';
 
 
@@ -18,20 +19,24 @@ class ProfileSettings extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <TopNavOverlay leftText={'Cancel'} rightText={'Save'} />
+
         <ScrollView style={styles.scrollView}>
 
           {/* <Text style={styles.text}>{this.props.user.profile_photo || 'Photo goes here'}</Text> */}
 
-          <TextInput
-            style={styles.input}
-            placeholder={`Name`}
-            placeholderTextColor={colors.midGrey}
-            autoCorrect={false}
-            returnKeyType={'next'}
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              placeholder={`Name`}
+              placeholderTextColor={colors.midGrey}
+              autoCorrect={false}
+              returnKeyType={'next'}
 
-            // onChangeText={name => this.setState({ name })}
-            value={this.state.name}
-          />
+              // onChangeText={name => this.setState({ name })}
+              value={this.state.name}
+            />
+          </View>
 
           <Link to={'/'} style={styles.optionLink}>
             <Text style={styles.text}>{this.props.user.name}</Text>
@@ -55,7 +60,6 @@ const styles = StyleSheet.create({
   // ------------------------ CONTAINER
 
   container: {
-
   },
 
   scrollView: {
@@ -77,10 +81,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
 
-  input: {
-    height: 50,
+  inputWrapper: {
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
+  },
+
+  input: {
+    height: 50,
 
     paddingLeft: 20,
 
