@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
-import { Link } from 'react-router-native';
+import { Link, Redirect } from 'react-router-native';
 
 import TopNavOverlay from '../TopNav/TopNavOverlay';
 import colors from '../../util/colors';
@@ -13,13 +13,36 @@ class ProfileSettings extends Component {
 
     this.state = {
       name: this.props.user.name,
+      email: this.props.user.email,
+      bio: this.props.user.bio,
+
+      cancel: false,
     }
+
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleCancel() {
+    this.setState({ cancel: true });
+  }
+
+  handleSubmit() {
+    console.log('SUBMITTING');
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <TopNavOverlay leftText={'Cancel'} rightText={'Save'} />
+        <TopNavOverlay leftText={'Cancel'}
+          rightText={'Save'}
+          leftOnPress={this.handleCancel}
+          rightOnPress={this.handleSubmit}
+        />
+
+        { this.state.cancel &&
+          <Redirect to={`/user/${this.props.user.id}`} />
+        }
 
         <ScrollView style={styles.scrollView}>
 
@@ -33,22 +56,38 @@ class ProfileSettings extends Component {
               autoCorrect={false}
               returnKeyType={'next'}
 
-              // onChangeText={name => this.setState({ name })}
+              onChangeText={name => this.setState({ name })}
               value={this.state.name}
             />
           </View>
 
-          <Link to={'/'} style={styles.optionLink}>
-            <Text style={styles.text}>{this.props.user.name}</Text>
-          </Link>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              placeholder={`Email`}
+              placeholderTextColor={colors.midGrey}
+              autoCorrect={false}
+              returnKeyType={'next'}
 
-          <Link to={'/'} style={styles.optionLink}>
-            <Text style={styles.text}>{this.props.user.email}</Text>
-          </Link>
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
+            />
+          </View>
 
-          <Link to={'/'} style={styles.optionLink}>
-            <Text style={styles.text}>{this.props.user.bio || 'Write your bio!'}</Text>
-          </Link>
+          <View style={styles.inputWrapper}>
+            <TextInput
+              style={styles.input}
+              placeholder={`Write your bio`}
+              placeholderTextColor={colors.midGrey}
+              autoCorrect={true}
+              returnKeyType={'next'}
+              multiline = {true}
+              numberOfLines = {4}
+
+              onChangeText={bio => this.setState({ bio })}
+              value={this.state.bio}
+            />
+          </View>
 
         </ScrollView>
       </View>
@@ -66,42 +105,29 @@ const styles = StyleSheet.create({
     height: '100%',
   },
 
-  // ------------------------ LINK
-
-  optionLink: {
-    height: 50,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.lightGrey,
-
-    paddingLeft: 20,
-
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
+  // ------------------------ INPUT
 
   inputWrapper: {
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
+    
+    // backgroundColor: 'pink',
   },
 
   input: {
-    height: 50,
-
+    minHeight: 50,
     paddingLeft: 20,
+
+    fontSize: 16,
 
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'flex-start',
+
+    // backgroundColor: 'lightgreen',
   },
 
-  // ------------------------ TEXT
-
-  text: {
-    fontSize: 16,
-  }
 })
 
 

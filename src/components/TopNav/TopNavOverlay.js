@@ -4,11 +4,21 @@ import { Link } from 'react-router-native';
 
 import colors from '../../util/colors';
 
-const TopNavOverlay = ({ leftText, rightText }) => {
+const TopNavOverlay = ({ leftText, rightText, leftOnPress, rightOnPress }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{leftText}</Text>
-      <Text style={styles.text}>{rightText}</Text>
+      <Text
+        style={styles.text}
+        onPress={leftOnPress}
+      >
+        {leftText}
+      </Text>
+      <Text
+        style={styles.text}
+        onPress={rightOnPress}
+      >
+        {rightText}
+      </Text>
     </View>
   )
 }
