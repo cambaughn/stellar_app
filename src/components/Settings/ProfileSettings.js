@@ -38,7 +38,7 @@ class ProfileSettings extends Component {
     }
 
     if (userSettings.name.length >= 3 && userSettings.email.length >= 3) {
-      updateUser(userSettings, response => console.log('UPDATED => ', response.message));
+      updateUser(userSettings, this.handleCancel);
     }
   }
 
