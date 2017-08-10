@@ -5,6 +5,7 @@ import { Link, Redirect } from 'react-router-native';
 
 import TopNavOverlay from '../TopNav/TopNavOverlay';
 import colors from '../../util/colors';
+import { updateUser } from '../../util/updateUserProfile';
 
 
 class ProfileSettings extends Component {
@@ -28,7 +29,17 @@ class ProfileSettings extends Component {
   }
 
   handleSubmit() {
-    console.log('SUBMITTING');
+
+    let userSettings = {
+      id: this.props.user.id,
+      name: this.state.name,
+      email: this.state.email,
+      bio: this.state.bio,
+    }
+
+    if (userSettings.name.length >= 3 && userSettings.email.length >= 3) {
+      updateUser(userSettings, response => console.log('UPDATED => ', response.message));
+    }
   }
 
   render() {
@@ -38,6 +49,7 @@ class ProfileSettings extends Component {
           rightText={'Save'}
           leftOnPress={this.handleCancel}
           rightOnPress={this.handleSubmit}
+          show={this.state.name.length >= 3 && this.state.email.length > 3}
         />
 
         { this.state.cancel &&
@@ -76,7 +88,7 @@ class ProfileSettings extends Component {
 
           <View style={styles.inputWrapper}>
             <TextInput
-              style={styles.input}
+              style={styles.multilineInput}
               placeholder={`Write your bio`}
               placeholderTextColor={colors.midGrey}
               autoCorrect={true}
@@ -110,7 +122,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
-    
+
     // backgroundColor: 'pink',
   },
 
@@ -127,6 +139,23 @@ const styles = StyleSheet.create({
 
     // backgroundColor: 'lightgreen',
   },
+
+  multilineInput: {
+    minHeight: 80,
+    paddingLeft: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+
+    fontSize: 16,
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+
+    // backgroundColor: 'lightgreen',
+  },
+
 
 })
 

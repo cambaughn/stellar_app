@@ -4,7 +4,7 @@ import { Link } from 'react-router-native';
 
 import colors from '../../util/colors';
 
-const TopNavOverlay = ({ leftText, rightText, leftOnPress, rightOnPress }) => {
+const TopNavOverlay = ({ leftText, rightText, leftOnPress, rightOnPress, show }) => {
   return (
     <View style={styles.container}>
       <Text
@@ -14,8 +14,8 @@ const TopNavOverlay = ({ leftText, rightText, leftOnPress, rightOnPress }) => {
         {leftText}
       </Text>
       <Text
-        style={styles.text}
-        onPress={rightOnPress}
+        style={[styles.text, !show && styles.grey] }
+        onPress={show ? rightOnPress : () => console.log('Can\'t submit.')}
       >
         {rightText}
       </Text>
@@ -52,6 +52,11 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     color: colors.blue,
+  },
+
+  grey: {
+    fontSize: 16,
+    color: colors.midGrey,
   },
 })
 
