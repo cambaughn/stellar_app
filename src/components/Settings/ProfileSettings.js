@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { Link, Redirect } from 'react-router-native';
 
-import TopNavOverlay from '../TopNav/TopNavOverlay';
+import TextTopNavOverlay from '../TopNav/TextTopNavOverlay';
 import colors from '../../util/colors';
 import { updateUser } from '../../util/updateUserProfile';
 
@@ -45,7 +45,7 @@ class ProfileSettings extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TopNavOverlay leftText={'Cancel'}
+        <TextTopNavOverlay leftText={'Cancel'}
           rightText={'Save'}
           leftOnPress={this.handleCancel}
           rightOnPress={this.handleSubmit}
@@ -80,6 +80,7 @@ class ProfileSettings extends Component {
               placeholderTextColor={colors.midGrey}
               autoCorrect={false}
               returnKeyType={'next'}
+              keyboardType={'email-address'}
 
               onChangeText={email => this.setState({ email })}
               value={this.state.email}

@@ -78,6 +78,7 @@ class LoginModal extends Component {
                     placeholder={`Email`}
                     placeholderTextColor={colors.midGrey}
                     autoCorrect={false}
+                    keyboardType={'email-address'}
                     returnKeyType={'next'}
                     autoCapitalize={'none'}
                     autoFocus={this.props.mode === 'Log In' ? true : false}

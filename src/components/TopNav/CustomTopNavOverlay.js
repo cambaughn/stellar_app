@@ -4,23 +4,18 @@ import { Link } from 'react-router-native';
 
 import colors from '../../util/colors';
 
-const TopNavOverlay = ({ leftText, rightText, leftOnPress, rightOnPress, show }) => {
-  return (
-    <View style={styles.container}>
-      <Text
-        style={styles.text}
-        onPress={leftOnPress}
-      >
-        {leftText}
-      </Text>
-      <Text
-        style={[styles.text, !show && styles.grey] }
-        onPress={show ? rightOnPress : () => console.log('Can\'t submit.')}
-      >
-        {rightText}
-      </Text>
-    </View>
-  )
+class CustomTopNavOverlay extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={[styles.container, this.props.style && this.props.style]}>
+        {this.props.children}
+      </View>
+    )
+  }
 }
 
 
@@ -40,15 +35,18 @@ const styles = StyleSheet.create({
 
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
 
     paddingLeft: 25,
     paddingRight: 25,
     paddingTop: 15,
+
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGrey,
   },
 
-  // ------------------------ CONTAINER
+  // ------------------------ TEXT
   text: {
     fontSize: 16,
     color: colors.blue,
@@ -60,4 +58,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default TopNavOverlay;
+export default CustomTopNavOverlay;

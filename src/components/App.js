@@ -8,7 +8,7 @@ import Home from './Home';
 import BottomNav from './BottomNav';
 import TopNav from './TopNav';
 import Login from './Login';
-import Search from './Search';
+import Search from './Search/Search';
 import UserProfileContainer from './UserProfileContainer';
 import RecordAnswer from './RecordAnswer';
 import Settings from './Settings/Settings';
@@ -75,7 +75,7 @@ class App extends Component {
             <Switch>
 
 
-              <Route exact path='/' render={() => <Redirect to={'/settings'} />} />
+              <Route exact path='/' render={() => <Redirect to={'/search'} />} />
 
                 {/* <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/> */}
               <Route path='/search' render={() => <Search users={this.getUsers()} /> }/>
