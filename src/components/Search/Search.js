@@ -31,8 +31,7 @@ class Search extends Component {
         </CustomTopNavOverlay>
 
         { this.state.searching ? (
-
-          <View></View>
+          <SearchResults results={this.state.searchResults} />
         ) : (
           <UserList users={this.props.users} />
         )}

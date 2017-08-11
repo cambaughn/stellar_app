@@ -7,7 +7,9 @@ const SearchResults = ({ results }) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.scrollView}>
-
+        { results.map(result => (
+          <Text>result.name</Text>
+        ))}
       </ScrollView>
     </View>
   )

@@ -19,6 +19,7 @@ class SearchBar extends Component {
 
   handleInputChange(searchText) {
     this.setState({ searchText });
+    // Live search
   }
 
   clearText() {
