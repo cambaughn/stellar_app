@@ -13,17 +13,29 @@ class Search extends Component {
 
     this.state = {
       searchResults: [],
+      searching: false,
     }
+
+    this.toggleSearching = this.toggleSearching.bind(this);
+  }
+
+  toggleSearching() {
+    this.setState({ searching: !this.state.searching })
   }
 
   render() {
     return (
       <View style={styles.container}>
         <CustomTopNavOverlay style={{backgroundColor: 'white'}}>
-          <SearchBar />
+          <SearchBar toggleSearching={this.toggleSearching} />
         </CustomTopNavOverlay>
-        <UserList users={this.props.users} />
 
+        { this.state.searching ? (
+
+          <View></View>
+        ) : (
+          <UserList users={this.props.users} />
+        )}
       </View>
     )
   }

@@ -41,6 +41,7 @@ class SearchBar extends Component {
               maxLength = {35}
               selectionColor={colors.midGrey}
 
+              onFocus={this.props.toggleSearching}
               onChangeText={this.handleInputChange}
               value={this.state.searchText}
               onSubmitEditing={() => console.log('SUBMITTING')}
@@ -49,13 +50,13 @@ class SearchBar extends Component {
 
         </View>
 
-        {/* { this.state.searchText.length > 0 && */}
-        <Icon
-          name={'times-circle'}
-          style={styles.exitIcon}
-          onPress={this.clearText}
-        />
-        {/* } */}
+        { this.state.searchText.length > 0 &&
+          <Icon
+            name={'times-circle'}
+            style={styles.exitIcon}
+            onPress={this.clearText}
+          />
+        }
       </View>
     )
   }
