@@ -4,6 +4,7 @@ import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 
 import UserList from '../UserList';
 import SearchBar from './SearchBar';
+import SearchResults from './SearchResults';
 import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';
 
 class Search extends Component {
@@ -11,6 +12,7 @@ class Search extends Component {
     super(props);
 
     this.state = {
+      searchResults: [],
     }
   }
 

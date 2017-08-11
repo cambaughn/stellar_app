@@ -14,30 +14,48 @@ class SearchBar extends Component {
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.clearText = this.clearText.bind(this);
   }
 
   handleInputChange(searchText) {
     this.setState({ searchText });
   }
 
+  clearText() {
+    this.setState({ searchText: '' });
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Icon name={'search'} style={styles.icon} />
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder={`Search`}
-            placeholderTextColor={colors.midGrey}
-            autoCorrect={false}
-            returnKeyType={'search'}
-            maxLength = {40}
-            selectionColor={colors.midGrey}
+        <View style={styles.inputGroup}>
+          <Icon name={'search'} style={styles.searchIcon} />
 
-            onChangeText={this.handleInputChange}
-            value={this.state.searchText}
-          />
+          <View>
+            <TextInput
+              style={styles.input}
+              placeholder={`Search`}
+              placeholderTextColor={colors.midGrey}
+              autoCorrect={false}
+              returnKeyType={'search'}
+              maxLength = {35}
+              selectionColor={colors.midGrey}
+
+              onChangeText={this.handleInputChange}
+              value={this.state.searchText}
+              onSubmitEditing={() => console.log('SUBMITTING')}
+            />
+          </View>
+
         </View>
+
+        {/* { this.state.searchText.length > 0 && */}
+        <Icon
+          name={'times-circle'}
+          style={styles.exitIcon}
+          onPress={this.clearText}
+        />
+        {/* } */}
       </View>
     )
   }
@@ -50,37 +68,51 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: colors.lightGrey,
     width: Dimensions.get('window').width - 40,
-    height: 25,
+    height: 28,
 
     borderRadius: 5,
 
-    paddingLeft: 20,
+    paddingLeft: 15,
+    paddingRight: 15,
 
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+
+  // ------------------------ INPUT
+
+  inputGroup: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
 
-  // ------------------------ INPUT
   input: {
-    // backgroundColor: 'lightgreen',
-
-    height: 25,
-    minWidth: '90%',
+    height: 28,
+    // minWidth: '70%',
+    minWidth: Dimensions.get('window').width - 110,
+    paddingTop: 2,
 
     fontSize: 15,
   },
 
-  // ------------------------ ICON
-  icon: {
-    // backgroundColor: 'coral',
-
-    fontSize: 15,
-    color: colors.midGrey,
-
+  // ------------------------ ICONS
+  searchIcon: {
     marginRight: 7,
+
+    fontSize: 14,
+    color: colors.midGrey,
   },
+
+  exitIcon: {
+    marginLeft: 7,
+
+    fontSize: 17,
+    color: colors.midGrey,
+  }
 
 })
 
