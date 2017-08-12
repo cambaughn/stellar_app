@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { searchUsers } from '../../util/requestHelpers/search';
 import colors from '../../util/colors';
 
 class SearchBar extends Component {
@@ -19,7 +20,9 @@ class SearchBar extends Component {
 
   handleInputChange(searchText) {
     this.setState({ searchText });
+
     // Live search
+    searchUsers(searchText, response => this.props.setSearchResults(response));
   }
 
   clearText() {
@@ -38,6 +41,7 @@ class SearchBar extends Component {
               placeholder={`Search`}
               placeholderTextColor={colors.midGrey}
               autoCorrect={false}
+              autoCapitalize={false}
               returnKeyType={'search'}
               maxLength = {35}
               selectionColor={colors.midGrey}

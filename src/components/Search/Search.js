@@ -19,17 +19,26 @@ class Search extends Component {
     }
 
     this.toggleSearching = this.toggleSearching.bind(this);
+    this.setSearchResults = this.setSearchResults.bind(this);
   }
 
   toggleSearching() {
     this.setState({ searching: !this.state.searching })
   }
 
+  setSearchResults(searchResults) {
+    this.setState({ searchResults });
+  }
+
   render() {
     return (
       <View style={styles.container}>
         <CustomTopNavOverlay style={{backgroundColor: 'white'}}>
-          <SearchBar toggleSearching={this.toggleSearching} searching={this.state.searching} />
+          <SearchBar
+            toggleSearching={this.toggleSearching}
+            searching={this.state.searching}
+            setSearchResults={this.setSearchResults}
+          />
           { this.state.searching &&
             <Text
               style={styles.cancelText}
