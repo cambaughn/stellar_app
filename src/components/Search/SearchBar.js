@@ -28,6 +28,7 @@ class SearchBar extends Component {
 
   clearText() {
     this.setState({ searchText: '' });
+    this.props.setSearchResults([]);
   }
 
   handleCancel() {

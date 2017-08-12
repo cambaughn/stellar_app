@@ -2,7 +2,11 @@ import { get } from '../getPostMethods';
 
 
 const searchUsers = (searchTerm, callback) => {
-  get(`/search/${searchTerm}`, callback);
+  if (searchTerm.length > 0) {
+    get(`/search/${searchTerm}`, callback);
+  } else {
+    callback([]);
+  }
 }
 
 
