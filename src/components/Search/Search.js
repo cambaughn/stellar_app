@@ -18,12 +18,12 @@ class Search extends Component {
       searching: false,
     }
 
-    this.toggleSearching = this.toggleSearching.bind(this);
+    this.setSearching = this.setSearching.bind(this);
     this.setSearchResults = this.setSearchResults.bind(this);
   }
 
-  toggleSearching() {
-    this.setState({ searching: !this.state.searching })
+  setSearching(searching) {
+    this.setState({ searching });
   }
 
   setSearchResults(searchResults) {
@@ -35,18 +35,10 @@ class Search extends Component {
       <View style={styles.container}>
         <CustomTopNavOverlay style={{backgroundColor: 'white'}}>
           <SearchBar
-            toggleSearching={this.toggleSearching}
+            setSearching={this.setSearching}
             searching={this.state.searching}
             setSearchResults={this.setSearchResults}
           />
-          { this.state.searching &&
-            <Text
-              style={styles.cancelText}
-              onPress={this.toggleSearching}
-            >
-              Cancel
-            </Text>
-          }
         </CustomTopNavOverlay>
 
         { this.state.searching ? (
@@ -69,14 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
 
     backgroundColor: 'white',
-  },
-
-  // ------------------------ CANCEL TEXT
-
-  cancelText: {
-    color: colors.blue,
-    fontSize: 16,
-    marginLeft: 15,
   },
 });
 

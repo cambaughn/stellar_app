@@ -16,6 +16,7 @@ class SearchBar extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.clearText = this.clearText.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   handleInputChange(searchText) {
@@ -29,38 +30,58 @@ class SearchBar extends Component {
     this.setState({ searchText: '' });
   }
 
+  handleCancel() {
+    this.clearText();
+    this.searchInput.blur();
+    this.props.setSearching(false);
+  }
+
   render() {
     return (
-      <View style={[styles.container, this.props.searching && styles.searching]}>
-        <View style={styles.inputGroup}>
-          <Icon name={'search'} style={styles.searchIcon} />
+      <View style={styles.container}>
+        <View style={[styles.searchBar, this.props.searching && styles.searching]}>
+          <View style={styles.inputGroup}>
+            <Icon name={'search'} style={styles.searchIcon} />
 
-          <View>
-            <TextInput
-              style={styles.input}
-              placeholder={`Search`}
-              placeholderTextColor={colors.midGrey}
-              autoCorrect={false}
-              autoCapitalize={'none'}
-              returnKeyType={'search'}
-              maxLength = {35}
-              selectionColor={colors.midGrey}
+            <View>
+              <TextInput
+                style={styles.input}
+                placeholder={`Search`}
+                placeholderTextColor={colors.midGrey}
+                autoCorrect={false}
+                autoCapitalize={'none'}
+                returnKeyType={'search'}
+                maxLength = {35}
+                selectionColor={colors.midGrey}
 
-              onFocus={this.props.toggleSearching}
-              onChangeText={this.handleInputChange}
-              value={this.state.searchText}
-              onSubmitEditing={() => console.log('SUBMITTING')}
-            />
+                onFocus={() => this.props.setSearching(true) }
+                // onBlur={this.props.setSearching(false)}
+                onChangeText={this.handleInputChange}
+                value={this.state.searchText}
+                onSubmitEditing={() => console.log('SUBMITTING')}
+
+                ref={ input => this.searchInput = input }
+              />
+            </View>
+
           </View>
 
+          { this.state.searchText.length > 0 &&
+            <Icon
+              name={'times-circle'}
+              style={styles.clearIcon}
+              onPress={this.clearText}
+            />
+          }
         </View>
 
-        { this.state.searchText.length > 0 &&
-          <Icon
-            name={'times-circle'}
-            style={styles.exitIcon}
-            onPress={this.clearText}
-          />
+        { this.props.searching &&
+          <Text
+            style={styles.cancelText}
+            onPress={this.handleCancel}
+          >
+            Cancel
+          </Text>
         }
       </View>
     )
@@ -72,6 +93,17 @@ const styles = StyleSheet.create({
   // ------------------------ CONTAINER
 
   container: {
+    width: '100%',
+
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  // ------------------------ SEARCH BAR
+
+  searchBar: {
     backgroundColor: colors.lightGrey,
     width: Dimensions.get('window').width - 40,
     height: 28,
@@ -103,10 +135,12 @@ const styles = StyleSheet.create({
   input: {
     height: 28,
     // minWidth: '70%',
-    minWidth: Dimensions.get('window').width - 110,
+    minWidth: Dimensions.get('window').width - 170,
     paddingTop: 2,
 
     fontSize: 15,
+
+    // backgroundColor: 'pink',
   },
 
   // ------------------------ ICONS
@@ -117,12 +151,20 @@ const styles = StyleSheet.create({
     color: colors.midGrey,
   },
 
-  exitIcon: {
+  clearIcon: {
     marginLeft: 7,
 
     fontSize: 17,
     color: colors.midGrey,
-  }
+  },
+
+  // ------------------------ CANCEL TEXT
+
+  cancelText: {
+    color: colors.blue,
+    fontSize: 16,
+    marginLeft: 15,
+  },
 
 })
 
