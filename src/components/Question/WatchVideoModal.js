@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight } from 'react-native';
 import { Link } from 'react-router-native';
 import Video from 'react-native-video';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { getVideoById } from '../util/getVideo';
-import { baseUrl } from '../util/getPostMethods';
+
+import { getVideoById } from '../../util/getVideo';
+import { baseUrl } from '../../util/getPostMethods';
 
 class WatchVideoModal extends Component {
   constructor(props) {
@@ -14,22 +14,10 @@ class WatchVideoModal extends Component {
     this.state = {
     }
 
-    this.loadStart = this.loadStart.bind(this);
     this.videoError = this.videoError.bind(this);
     this.onEnd = this.onEnd.bind(this);
   }
 
-  componentDidMount() {
-    let answerId = this.props.question.Answers[0].id;
-  }
-
-  receiveVideo(response) {
-    console.log('getting something! => ', response)
-  }
-
-  loadStart(data) {
-    console.log('LOADING VIDEO', data);
-  }
 
   onEnd() {
     console.log('reached the end')
@@ -47,25 +35,28 @@ class WatchVideoModal extends Component {
         visible={this.props.visible}
       >
         { this.props.visible &&
-          <Video source={{uri: `${baseUrl}/answer/${this.props.answer.path}`}}
-            ref={(ref) => {
-              this.player = ref
-            }}
-            rate={1.0}
-            volume={1.0}
-            muted={false}
-            paused={false}
-            resizeMode="cover"
-            repeat={false}
-            playInBackground={false}
-            playWhenInactive={false}
-            ignoreSilentSwitch={"ignore"}
-            progressUpdateInterval={250.0}
-            onLoadStart={this.loadStart}
-            onEnd={this.onEnd}
-            onError={this.videoError}
-            style={styles.backgroundVideo}
-          />
+          <View style={styles.videoWrapper}>
+            <Video source={{uri: `${baseUrl}/answer/${this.props.answer.path}`}}
+              ref={(ref) => {
+                this.player = ref
+              }}
+              rate={1.0}
+              volume={1.0}
+              muted={false}
+              paused={true}
+              resizeMode="cover"
+              repeat={false}
+              playInBackground={false}
+              playWhenInactive={false}
+              ignoreSilentSwitch={"ignore"}
+              progressUpdateInterval={250.0}
+
+              onEnd={this.onEnd}
+              onError={this.videoError}
+              // ------------------------ CONTAINER
+              style={styles.videoPlayer}
+            />
+          </View>
         }
 
 
@@ -96,13 +87,21 @@ class WatchVideoModal extends Component {
 }
 
 const styles = StyleSheet.create({
+  // ------------------------ CONTAINER
+
   container: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     backgroundColor: 'black',
   },
 
-  backgroundVideo: {
+  // ------------------------ VIDEO
+
+  videoWrapper: {
+
+  },
+
+  videoPlayer: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -111,6 +110,8 @@ const styles = StyleSheet.create({
 
     backgroundColor: 'black',
   },
+
+  // ------------------------ EXIT BUTTON
 
   exitWrapper: {
     width: Dimensions.get('window').width,
@@ -134,6 +135,8 @@ const styles = StyleSheet.create({
     textShadowOffset: {width: -1, height: 1},
     textShadowRadius: 1,
   },
+
+  // ------------------------ QUESTION
 
   questionWrapper: {
     width: Dimensions.get('window').width,
