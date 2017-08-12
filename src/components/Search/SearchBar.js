@@ -28,7 +28,7 @@ class SearchBar extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, this.props.searching && styles.searching]}>
         <View style={styles.inputGroup}>
           <Icon name={'search'} style={styles.searchIcon} />
 
@@ -81,6 +81,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+  },
+
+  searching: {
+    width: Dimensions.get('window').width - 105,
   },
 
   // ------------------------ INPUT

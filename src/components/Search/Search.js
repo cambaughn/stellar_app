@@ -7,6 +7,8 @@ import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';
 
+import colors from '../../util/colors';
+
 class Search extends Component {
   constructor(props) {
     super(props);
@@ -27,7 +29,15 @@ class Search extends Component {
     return (
       <View style={styles.container}>
         <CustomTopNavOverlay style={{backgroundColor: 'white'}}>
-          <SearchBar toggleSearching={this.toggleSearching} />
+          <SearchBar toggleSearching={this.toggleSearching} searching={this.state.searching} />
+          { this.state.searching &&
+            <Text
+              style={styles.cancelText}
+              onPress={this.toggleSearching}
+            >
+              Cancel
+            </Text>
+          }
         </CustomTopNavOverlay>
 
         { this.state.searching ? (
@@ -44,10 +54,20 @@ const styles = StyleSheet.create({
   // ------------------------ CONTAINER
 
   container: {
-    flex: 1,
-    justifyContent: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
     alignItems: 'center',
+
     backgroundColor: 'white',
+  },
+
+  // ------------------------ CANCEL TEXT
+
+  cancelText: {
+    color: colors.blue,
+    fontSize: 16,
+    marginLeft: 15,
   },
 });
 

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import ProfilePhoto from '../User/ProfilePhoto';
 import colors from '../../util/colors';
 
 const UserListItem = ({ user }) => {
@@ -12,10 +13,8 @@ const UserListItem = ({ user }) => {
         underlayColor={colors.lightGrey}
       >
         <View style={styles.container}>
-          <View style={styles.circle}>
-            <Icon name='user' style={styles.icon} />
-          </View>
 
+          <ProfilePhoto style={styles.profilePhoto} />
           <View>
             <Text style={styles.name}>{user.name}</Text>
             <Text style={styles.username}>@{user.username}</Text>
@@ -42,6 +41,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
+  // ------------------------ PROFILE PHOTO
+  profilePhoto: {
+    marginRight: 15,
+  },
+
   // ------------------------ TEXT
 
   name: {
@@ -54,26 +58,7 @@ const styles = StyleSheet.create({
     color: colors.midGrey,
   },
 
-  // ------------------------ IMAGE
 
-  circle: {
-    width: 45,
-    height: 45,
-
-    marginRight: 15,
-
-    borderRadius: 100,
-    backgroundColor: colors.lightGrey,
-
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  icon: {
-    fontSize: 25,
-    color: 'white',
-  },
 
 })
 

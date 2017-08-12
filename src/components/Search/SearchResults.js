@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { Link } from 'react-router-native';
 
+import UserList from '../UserList/UserList';
+import colors from '../../util/colors';
 
 const SearchResults = ({ results }) => {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.scrollView}>
-        { results.map(result => (
-          <Text>result.name</Text>
-        ))}
-      </ScrollView>
+      { !results.length > 0 &&
+        <View style={styles.searchMessageWrapper}>
+          <Text style={styles.searchMessage}>Search for friends to follow</Text>
+        </View>
+      }
+      <UserList users={results} />
     </View>
   )
 }
@@ -20,13 +23,22 @@ const styles = StyleSheet.create({
   // ------------------------ CONTAINER
 
   container: {
-    backgroundColor: 'white',
+    width: Dimensions.get('window').width,
   },
 
-  // ------------------------ SCROLLVIEW
-  scrollView: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height - 60,
+  // ------------------------ SEARCH MESSAGE
+
+  searchMessageWrapper: {
+    width: '100%',
+    height: 60,
+
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  searchMessage: {
+    color: colors.midGrey,
   },
 
 })

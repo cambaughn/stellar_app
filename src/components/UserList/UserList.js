@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 
 import UserListItem from './UserListItem';
 
@@ -16,7 +16,9 @@ const UserList = ({ users }) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: Dimensions.get('window').width,
+    height: '100%',
+    backgroundColor: 'white',
   },
 })
 
