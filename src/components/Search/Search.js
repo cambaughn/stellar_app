@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 
-import UserList from '../UserList';
+import UserList from '../UserList/UserList';
 import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';

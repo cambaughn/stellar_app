@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Route, Link, Redirect, Switch } from 'react-router-native';
 
 
-import UserList from './UserList';
+import UserList from './UserList/UserList';
 import Home from './Home';
 import BottomNav from './BottomNav';
 import TopNav from './TopNav';
