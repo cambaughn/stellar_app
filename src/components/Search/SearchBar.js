@@ -41,7 +41,7 @@ class SearchBar extends Component {
               placeholder={`Search`}
               placeholderTextColor={colors.midGrey}
               autoCorrect={false}
-              autoCapitalize={false}
+              autoCapitalize={'none'}
               returnKeyType={'search'}
               maxLength = {35}
               selectionColor={colors.midGrey}
