@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight, StatusBar } from 'react-native';
 import { Link } from 'react-router-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -34,29 +34,29 @@ class WatchVideoModal extends Component {
         transparent={false}
         visible={this.props.visible}
       >
-        { this.props.visible &&
-          <View style={styles.videoWrapper}>
-            <Video source={{uri: `${baseUrl}/answer/${this.props.answer.path}`}}
-              ref={(ref) => {
-                this.player = ref
-              }}
-              rate={1.0}
-              volume={1.0}
-              muted={false}
-              paused={true}
-              resizeMode="cover"
-              repeat={false}
-              playInBackground={false}
-              playWhenInactive={false}
-              ignoreSilentSwitch={"ignore"}
-              progressUpdateInterval={250.0}
+        <StatusBar hidden={this.props.visible} />
 
-              onEnd={this.onEnd}
-              onError={this.videoError}
-              // ------------------------ CONTAINER
-              style={styles.videoPlayer}
-            />
-          </View>
+        { this.props.visible &&
+          <Video source={{uri: `${baseUrl}/answer/${this.props.answer.path}`}}
+            ref={(ref) => {
+                this.player = ref
+            }}
+            rate={1.0}
+            volume={1.0}
+            muted={false}
+            paused={false}
+            resizeMode="cover"
+            repeat={false}
+            playInBackground={false}
+            playWhenInactive={false}
+            ignoreSilentSwitch={"ignore"}
+            progressUpdateInterval={250.0}
+
+            onEnd={this.onEnd}
+            onError={this.videoError}
+            // ------------------------ CONTAINER
+            style={styles.videoPlayer}
+          />
         }
 
 
@@ -96,10 +96,6 @@ const styles = StyleSheet.create({
   },
 
   // ------------------------ VIDEO
-
-  videoWrapper: {
-
-  },
 
   videoPlayer: {
     position: 'absolute',
@@ -156,7 +152,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 40,
     backgroundColor: 'white',
     borderRadius: 5,
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
 
     padding: 15,
   },
