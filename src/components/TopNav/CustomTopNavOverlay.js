@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
   container: {
     width: Dimensions.get('window').width,
     height: 60,
-    // backgroundColor: 'pink',
+    backgroundColor: 'transparent',
 
     position: 'absolute',
     top: -60,

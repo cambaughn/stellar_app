@@ -73,7 +73,7 @@ class App extends Component {
             <Switch>
 
 
-              <Route exact path='/' render={() => <Redirect to={'/settings'} />} />
+              <Route exact path='/' render={() => <Redirect to={'/user/2'} />} />
 
               {/* <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/> */}
               <Route path='/search' render={() => <Search users={this.getUsers()} /> }/>
