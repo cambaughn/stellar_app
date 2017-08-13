@@ -4,6 +4,8 @@ import { StyleSheet, Text, View, ScrollView, TextInput } from 'react-native';
 import { Link, Redirect } from 'react-router-native';
 
 import TextTopNavOverlay from '../TopNav/TextTopNavOverlay';
+import ProfilePhoto from '../User/ProfilePhoto';
+
 import colors from '../../util/colors';
 import { updateUser } from '../../util/updateUserProfile';
 
@@ -22,6 +24,7 @@ class ProfileSettings extends Component {
 
     this.handleCancel = this.handleCancel.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.updatePhoto = this.updatePhoto.bind(this);
   }
 
   handleCancel() {
@@ -42,6 +45,10 @@ class ProfileSettings extends Component {
     }
   }
 
+  updatePhoto() {
+    console.log('UPDATING PHOTO');
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -56,9 +63,17 @@ class ProfileSettings extends Component {
           <Redirect to={`/user/${this.props.user.id}`} />
         }
 
-        <ScrollView style={styles.scrollView}>
 
-          {/* <Text style={styles.text}>{this.props.user.profile_photo || 'Photo goes here'}</Text> */}
+        <ScrollView style={styles.scrollView}>
+          <View style={styles.profilePhotoWrapper}>
+            <ProfilePhoto photo={this.props.user.profile_photo} style={styles.profilePhoto} />
+            <Text
+              style={styles.changePhotoText}
+              onPress={this.updatePhoto}
+            >
+              Change photo
+            </Text>
+          </View>
 
           <View style={styles.inputWrapper}>
             <TextInput
@@ -112,10 +127,39 @@ const styles = StyleSheet.create({
   // ------------------------ CONTAINER
 
   container: {
+    backgroundColor: 'white',
   },
 
   scrollView: {
     height: '100%',
+  },
+
+  // ------------------------ PROFILE PHOTO
+
+  profilePhotoWrapper: {
+    width: '100%',
+    height: 120,
+
+    paddingTop: 20,
+    paddingBottom: 20,
+
+    borderBottomWidth: 1,
+    borderBottomColor: colors.lightGrey,
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  profilePhoto: {
+    width: 60,
+    height: 60,
+  },
+
+  changePhotoText: {
+    marginTop: 10,
+    color: colors.blue,
   },
 
   // ------------------------ INPUT
@@ -124,12 +168,12 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.lightGrey,
 
-    // backgroundColor: 'pink',
+    backgroundColor: 'white',
   },
 
   input: {
     minHeight: 50,
-    paddingLeft: 20,
+    paddingLeft: 30,
 
     fontSize: 16,
 
@@ -143,7 +187,7 @@ const styles = StyleSheet.create({
 
   multilineInput: {
     minHeight: 80,
-    paddingLeft: 20,
+    paddingLeft: 30,
     paddingTop: 10,
     paddingBottom: 10,
 
