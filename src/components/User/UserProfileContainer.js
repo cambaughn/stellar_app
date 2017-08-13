@@ -3,12 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'react-router-native';
 
 import UserProfile from './UserProfile';
-import AskQuestionModal from './AskQuestionModal';
+import AskQuestionModal from '../AskQuestionModal';
 
-import { getUserById } from '../util/getUsers';
-import { getQuestionsByUserId, getCurrentUserQuestions } from '../util/getQuestions';
-import { follow, isFollowing } from '../util/follow';
-import { updateFocusedUser, setFocusedUserQuestions } from '../redux/actionCreators';
+import { getUserById } from '../../util/getUsers';
+import { getQuestionsByUserId, getCurrentUserQuestions } from '../../util/getQuestions';
+import { follow, isFollowing } from '../../util/follow';
+import { updateFocusedUser, setFocusedUserQuestions } from '../../redux/actionCreators';
 
 
 class UserProfileContainer extends Component {

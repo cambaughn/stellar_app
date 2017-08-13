@@ -17,7 +17,7 @@ const UserListItem = ({ user }) => {
           <ProfilePhoto style={styles.profilePhoto} />
           <View>
             <Text style={styles.name}>{user.name}</Text>
-            <Text style={styles.username}>@{user.username}</Text>
+            <Text style={styles.username}>{user.username}</Text>
           </View>
         </View>
       </Link>

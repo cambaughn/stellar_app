@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Dimensions } from 'react-native';
 import { Link } from 'react-router-native';
 
-import AnsweredQuestionList from './AnsweredQuestionList';
-import MixedQuestionList from './MixedQuestionList';
-import PendingQuestionList from './PendingQuestionList';
-import UserProfileButtons from './UserProfileButtons';
-import colors from '../util/colors';
+import AnsweredQuestionList from '../AnsweredQuestionList';
+import MixedQuestionList from '../MixedQuestionList';
+import PendingQuestionList from '../PendingQuestionList';
 
+import ProfilePhoto from './ProfilePhoto';
+import UserProfileButtons from './UserProfileButtons';
+
+import colors from '../../util/colors';
 
 
 const UserProfile = ({ user, questions, toggleModal, handleFollow, following, isCurrentUser }) => {
@@ -15,8 +17,11 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
     return (
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
+
           <View style={styles.top}>
-            <Text style={styles.username}>{user.name}</Text>
+            <ProfilePhoto />
+            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.username}>{user.username}</Text>
             <Text style={styles.bio}>{user.bio}</Text>
           </View>
 
@@ -30,7 +35,8 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={styles.top}>
-            <Text style={styles.username}>{user.name}</Text>
+            <Text style={styles.name}>{user.name}</Text>
+            <Text style={styles.username}>{user.username}</Text>
             <Text style={styles.bio}>{user.bio}</Text>
 
 
@@ -52,10 +58,14 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
 export default UserProfile;
 
 const styles = StyleSheet.create({
+  // ------------------------ SCROLL VIEW
+
   scrollView: {
     height: Dimensions.get("window").height - 109,
     width: '100%'
   },
+
+  // ------------------------ CONTAINER
 
   container: {
     width: '100%',
@@ -66,6 +76,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
 
+  // ------------------------ TOP USER INFO
   top: {
     width: Dimensions.get('window').width - 20,
     minHeight: 100,
@@ -79,10 +90,16 @@ const styles = StyleSheet.create({
   },
 
 
-  username: {
-    fontSize: 20,
+  name: {
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 15,
+    marginBottom: 3,
+  },
+
+  username: {
+    fontSize: 15,
+    color: colors.darkGrey,
+    marginBottom: 5,
   },
 
   bio: {
