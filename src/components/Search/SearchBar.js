@@ -13,31 +13,44 @@ class SearchBar extends Component {
     this.state = {
       searchText: '',
       searchWidth: new Animated.Value(Dimensions.get('window').width - 40),
+      cancelOpacity: new Animated.Value(0),
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.clearText = this.clearText.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+    this.animateSearchBar = this.animateSearchBar.bind(this);
+    this.animateCancel = this.animateCancel.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.searching) {
-      Animated.timing(                                    // Animate over time
-        this.state.searchWidth,                           // The animated value to drive
-        {
-          toValue: Dimensions.get('window').width - 105,  // Animate to width
-          duration: 500,                                 // Make it take a while
-        }
-      ).start();
+      this.animateSearchBar(Dimensions.get('window').width - 105);
+      this.animateCancel(1);
     } else {
-      Animated.timing(                                    // Animate over time
-        this.state.searchWidth,                           // The animated value to drive
-        {
-          toValue: Dimensions.get('window').width - 40,  // Animate to width
-          duration: 500,                                 // Make it take a while
-        }
-      ).start();
+      this.animateSearchBar(Dimensions.get('window').width - 40);
+      this.animateCancel(0);
     }
+  }
+
+  animateSearchBar(width) {
+    Animated.timing(                                   // Animate over time
+      this.state.searchWidth,                          // The animated value to drive
+      {
+        toValue: width,                              // Animate to width
+        duration: 300,                                 // Make it take a while
+      }
+    ).start();
+  }
+
+  animateCancel(opacity) {
+    Animated.timing(                                   // Animate over time
+      this.state.cancelOpacity,                        // The animated value to drive
+      {
+        toValue: opacity,                              // Animate to width
+        duration: 500,                                 // Make it take a while
+      }
+    ).start();
   }
 
   handleInputChange(searchText) {
@@ -98,12 +111,12 @@ class SearchBar extends Component {
         </Animated.View>
 
         { this.props.searching &&
-          <Text
-            style={styles.cancelText}
+          <Animated.Text
+            style={[styles.cancelText, {opacity: this.state.cancelOpacity}]}
             onPress={this.handleCancel}
           >
             Cancel
-          </Text>
+          </Animated.Text>
         }
       </View>
     )
