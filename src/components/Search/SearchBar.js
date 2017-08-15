@@ -48,7 +48,7 @@ class SearchBar extends Component {
       this.state.cancelOpacity,                        // The animated value to drive
       {
         toValue: opacity,                              // Animate to width
-        duration: 500,                                 // Make it take a while
+        duration: 300,                                 // Make it take a while
       }
     ).start();
   }
@@ -110,14 +110,12 @@ class SearchBar extends Component {
           }
         </Animated.View>
 
-        { this.props.searching &&
-          <Animated.Text
-            style={[styles.cancelText, {opacity: this.state.cancelOpacity}]}
-            onPress={this.handleCancel}
-          >
-            Cancel
-          </Animated.Text>
-        }
+        <Animated.Text
+          style={[styles.cancelText, {opacity: this.state.cancelOpacity}]}
+          onPress={this.handleCancel}
+        >
+          Cancel
+        </Animated.Text>
       </View>
     )
   }
@@ -128,11 +126,14 @@ const styles = StyleSheet.create({
   // ------------------------ CONTAINER
 
   container: {
-    width: '100%',
+    width: Dimensions.get('window').width,
+    paddingLeft: 20,
+
+    overflow: 'hidden',
 
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center',
   },
 
@@ -154,9 +155,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  searching: {
-    width: Dimensions.get('window').width - 105,
-  },
 
   // ------------------------ INPUT
 
@@ -169,7 +167,6 @@ const styles = StyleSheet.create({
 
   input: {
     height: 28,
-    // minWidth: '70%',
     minWidth: Dimensions.get('window').width - 170,
     paddingTop: 2,
 
