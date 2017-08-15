@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Dimensions } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Dimensions, Animated } from 'react-native';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -12,11 +12,32 @@ class SearchBar extends Component {
 
     this.state = {
       searchText: '',
+      searchWidth: new Animated.Value(Dimensions.get('window').width - 40),
     }
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.clearText = this.clearText.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.searching) {
+      Animated.timing(                                    // Animate over time
+        this.state.searchWidth,                           // The animated value to drive
+        {
+          toValue: Dimensions.get('window').width - 105,  // Animate to width
+          duration: 500,                                 // Make it take a while
+        }
+      ).start();
+    } else {
+      Animated.timing(                                    // Animate over time
+        this.state.searchWidth,                           // The animated value to drive
+        {
+          toValue: Dimensions.get('window').width - 40,  // Animate to width
+          duration: 500,                                 // Make it take a while
+        }
+      ).start();
+    }
   }
 
   handleInputChange(searchText) {
@@ -40,7 +61,7 @@ class SearchBar extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={[styles.searchBar, this.props.searching && styles.searching]}>
+        <Animated.View style={[styles.searchBar, {width: this.state.searchWidth}]}>
           <View style={styles.inputGroup}>
             <Icon name={'search'} style={styles.searchIcon} />
 
@@ -74,7 +95,7 @@ class SearchBar extends Component {
               onPress={this.clearText}
             />
           }
-        </View>
+        </Animated.View>
 
         { this.props.searching &&
           <Text
@@ -106,7 +127,7 @@ const styles = StyleSheet.create({
 
   searchBar: {
     backgroundColor: colors.lightGrey,
-    width: Dimensions.get('window').width - 40,
+    // width: Dimensions.get('window').width - 40,
     height: 28,
 
     borderRadius: 5,
