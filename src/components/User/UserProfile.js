@@ -15,9 +15,9 @@ import colors from '../../util/colors';
 
 
 const UserProfile = ({ user, questions, toggleModal, handleFollow, following, isCurrentUser }) => {
-  if (isCurrentUser) {
-    return (
-      <View style={styles.container}>
+  return (
+    <View style={styles.container}>
+      { isCurrentUser &&
         <CustomTopNavOverlay>
           <View style={styles.topBarWrapper}>
             <Link to={'/settings'} underlayColor={'transparent'}>
@@ -25,48 +25,35 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
             </Link>
           </View>
         </CustomTopNavOverlay>
+      }
 
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-
-          <View style={styles.mainContentWrapper}>
-
-            <View style={styles.top}>
-              <ProfilePhoto />
-              <Text style={styles.name}>{user.name}</Text>
-              <Text style={styles.username}>{user.username}</Text>
-              <Text style={styles.bio}>{user.bio}</Text>
-            </View>
-
-            <MixedQuestionList questions={questions} />
-
-          </View>
-        </ScrollView>
-      </View>
-    )
-  } else {
-    return (
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <View style={styles.container}>
+
+        <View style={styles.mainContentWrapper}>
+
           <View style={styles.top}>
             <ProfilePhoto />
             <Text style={styles.name}>{user.name}</Text>
             <Text style={styles.username}>{user.username}</Text>
             <Text style={styles.bio}>{user.bio}</Text>
 
-
-            <UserProfileButtons
-              toggleModal={toggleModal}
-              handleFollow={handleFollow}
-              following={following}
-            />
+            { !isCurrentUser &&
+              <UserProfileButtons
+                toggleModal={toggleModal}
+                handleFollow={handleFollow}
+                following={following}
+              />
+            }
 
           </View>
 
           <MixedQuestionList questions={questions} />
+
         </View>
       </ScrollView>
-    )
-  }
+    </View>
+  )
+
 }
 
 export default UserProfile;

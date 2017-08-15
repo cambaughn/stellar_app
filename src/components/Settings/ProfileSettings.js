@@ -63,7 +63,7 @@ class ProfileSettings extends Component {
           <Redirect to={`/user/${this.props.user.id}`} />
         }
 
-
+        
         <ScrollView style={styles.scrollView}>
           <View style={styles.profilePhotoWrapper}>
             <ProfilePhoto photo={this.props.user.profile_photo} style={styles.profilePhoto} />
