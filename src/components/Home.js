@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 
-import AnsweredQuestionList from './AnsweredQuestionList';
+import AnsweredQuestionList from './Question/AnsweredQuestionList';
 
 const Home = ({ questions }) => {
   if (questions.length) {

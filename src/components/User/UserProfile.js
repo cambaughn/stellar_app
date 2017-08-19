@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Dimensions } fr
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import AnsweredQuestionList from '../AnsweredQuestionList';
+import AnsweredQuestionList from '../Question/AnsweredQuestionList';
 import MixedQuestionList from '../MixedQuestionList';
 import PendingQuestionList from '../PendingQuestionList';
 import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';

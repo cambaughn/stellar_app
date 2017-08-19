@@ -44,7 +44,7 @@ class WatchVideoModal extends Component {
             rate={1.0}
             volume={1.0}
             muted={false}
-            paused={false}
+            paused={true}
             resizeMode="cover"
             repeat={false}
             playInBackground={false}
@@ -152,7 +152,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 40,
     backgroundColor: 'white',
     borderRadius: 5,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
 
     padding: 15,
   },

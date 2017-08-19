@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 
-import AnsweredQuestion from './AnsweredQuestion';
+import AnsweredQuestion from './Question/AnsweredQuestion';
 import UnansweredQuestion from './UnansweredQuestion';
 
 
