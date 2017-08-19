@@ -6,8 +6,8 @@ import Video from 'react-native-video';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import colors from '../util/colors';
-import { postAnswer } from '../util/postAnswer';
+import colors from '../../util/colors';
+import { postAnswer } from '../../util/postAnswer';
 
 class RecordAnswer extends Component {
 
@@ -258,7 +258,7 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 40,
     backgroundColor: 'white',
     borderRadius: 5,
-    backgroundColor: 'rgba(255, 255, 255, 0.6)',
+    backgroundColor: 'rgba(255, 255, 255, 1)',
 
     padding: 15,
   },

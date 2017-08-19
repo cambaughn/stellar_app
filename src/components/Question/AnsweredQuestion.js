@@ -4,6 +4,7 @@ import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import WatchVideoModal from './WatchVideoModal';
+import ProfilePhoto from '../User/ProfilePhoto';
 import colors from '../../util/colors';
 
 class AnsweredQuestion extends Component {

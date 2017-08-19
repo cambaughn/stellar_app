@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-na
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import RecordAnswer from './RecordAnswer';
+import RecordAnswer from './Question/RecordAnswer';
 import colors from '../util/colors';
 
 class UnansweredQuestion extends Component {
