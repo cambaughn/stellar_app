@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight, StatusBar, Animated } from 'react-native';
 import { Link } from 'react-router-native';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -12,10 +12,13 @@ class WatchVideoModal extends Component {
     super(props);
 
     this.state = {
+      overlayOpacity: new Animated.Value(1),
+      overlayVisible: true,
     }
 
     this.videoError = this.videoError.bind(this);
     this.onEnd = this.onEnd.bind(this);
+    this.toggleOverlayOpacity = this.toggleOverlayOpacity.bind(this);
   }
 
 
@@ -26,6 +29,20 @@ class WatchVideoModal extends Component {
   videoError(error) {
     console.log('ERROR => ', error)
   }
+
+  toggleOverlayOpacity() {
+    console.log(this.state.overlayVisible);
+    this.setState({ overlayVisible: !this.state.overlayVisible}, () => {
+      Animated.timing(
+        this.state.overlayOpacity,
+        {
+          toValue: this.state.overlayVisible ? 1 : 0,
+          duration: 300,
+        }
+      ).start();
+    })
+  }
+
 
   render() {
     return (
@@ -44,7 +61,7 @@ class WatchVideoModal extends Component {
             rate={1.0}
             volume={1.0}
             muted={false}
-            paused={true}
+            paused={false}
             resizeMode="cover"
             repeat={false}
             playInBackground={false}
@@ -54,32 +71,38 @@ class WatchVideoModal extends Component {
 
             onEnd={this.onEnd}
             onError={this.videoError}
-            // ------------------------ CONTAINER
             style={styles.videoPlayer}
           />
         }
 
+        <TouchableHighlight
+          underlayColor={'transparent'}
+          style={styles.overlay}
+          onPress={this.toggleOverlayOpacity}
+        >
+          <Animated.View style={[styles.overlay, {opacity: this.state.overlayOpacity}]}>
 
-
-        <View style={styles.exitWrapper}>
-          <TouchableHighlight
-            onPress={this.props.toggleModal}
-            style={styles.exit}
-            underlayColor={'transparent'}
-          >
-            <Icon name='times' style={styles.exitText} />
-          </TouchableHighlight>
-        </View>
-
-        { this.props.question &&
-          <View style={styles.questionWrapper}>
-            <View style={styles.question}>
-              <Text>{this.props.question.asker.name} asks:</Text>
-              <Text>{this.props.question.text}</Text>
+            <View style={styles.exitWrapper}>
+              <TouchableHighlight
+                onPress={this.props.toggleModal}
+                style={styles.exit}
+                underlayColor={'transparent'}
+              >
+                <Icon name='times' style={styles.exitText} />
+              </TouchableHighlight>
             </View>
 
-          </View>
-        }
+            { this.props.question &&
+              <View style={styles.questionWrapper}>
+                <View style={styles.question}>
+                  <Text>{this.props.question.asker.name} asks:</Text>
+                  <Text>{this.props.question.text}</Text>
+                </View>
+
+              </View>
+            }
+          </Animated.View>
+        </TouchableHighlight>
 
       </Modal>
     )
@@ -105,6 +128,16 @@ const styles = StyleSheet.create({
     right: 0,
 
     backgroundColor: 'black',
+  },
+
+  // ------------------------ OVERLAY
+
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
   },
 
   // ------------------------ EXIT BUTTON

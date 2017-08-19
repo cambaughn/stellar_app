@@ -12,7 +12,7 @@ class AnsweredQuestion extends Component {
     super(props);
 
     this.state = {
-      modalVisible: true,
+      modalVisible: false,
     }
 
     this.toggleModal = this.toggleModal.bind(this);
@@ -59,7 +59,7 @@ class AnsweredQuestion extends Component {
 
 const styles = StyleSheet.create({
   // ------------------------ CONTAINER
-  
+
   container: {
     minHeight: 50,
 
