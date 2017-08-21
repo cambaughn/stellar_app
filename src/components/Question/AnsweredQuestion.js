@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-native';
 import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import TimeAgo from 'react-native-timeago';
 
 import WatchVideoModal from './WatchVideoModal';
 import ProfilePhoto from '../User/ProfilePhoto';
@@ -32,16 +33,20 @@ class AnsweredQuestion extends Component {
             <Link to={`/user/${this.props.question.answerer.id}`} style={styles.link} underlayColor='white'>
               <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
             </Link>
+
+            <Text style={styles.username}>  @{this.props.question.answerer.username} · </Text>
+            <TimeAgo style={styles.time} time={this.props.question.Answers[0].createdAt} />
           </View>
 
           <TouchableHighlight
             underlayColor={'white'}
             onPress={this.toggleModal}
           >
-            <Icon name={'play'} style={styles.replyText} />
+            <Icon name={'play'} style={styles.playButton} />
           </TouchableHighlight>
 
         </View>
+
 
         <Text style={styles.questionText}>{this.props.question.text}</Text>
 
@@ -74,6 +79,8 @@ const styles = StyleSheet.create({
     width: Dimensions.get('window').width - 20,
   },
 
+  // ------------------------ NAME & USERNAME
+
   topRow: {
     display: 'flex',
     flexDirection: 'row',
@@ -90,15 +97,30 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 
+  username: {
+    color: colors.darkGrey,
+  },
+
   link: {
     marginBottom: 10,
   },
+
+  // ------------------------ NAME
+
+  time: {
+    color: colors.darkGrey,
+  },
+
+
+  // ------------------------ QUESTION
 
   questionText: {
     marginBottom: 10,
   },
 
-  replyText: {
+  // ------------------------ PLAY BUTTON
+
+  playButton: {
     color: colors.midGrey,
     fontSize: 15,
   }
