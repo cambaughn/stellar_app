@@ -34,7 +34,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
           <View style={styles.top}>
             <ProfilePhoto />
             <Text style={styles.name}>{user.name}</Text>
-            <Text style={styles.username}>{user.username}</Text>
+            <Text style={styles.username}>@{user.username}</Text>
             <Text style={styles.bio}>{user.bio}</Text>
 
             { !isCurrentUser &&

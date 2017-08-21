@@ -34,8 +34,7 @@ class AnsweredQuestion extends Component {
               <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
             </Link>
 
-            <Text style={styles.username}>  @{this.props.question.answerer.username} · </Text>
-            <TimeAgo style={styles.time} time={this.props.question.Answers[0].createdAt} />
+            <Text style={styles.username}>  @{this.props.question.answerer.username} </Text>
           </View>
 
           <TouchableHighlight
@@ -49,6 +48,7 @@ class AnsweredQuestion extends Component {
 
 
         <Text style={styles.questionText}>{this.props.question.text}</Text>
+        <TimeAgo style={styles.time} time={this.props.question.Answers[0].createdAt} hideAgo={false} />
 
         <WatchVideoModal
           visible={this.state.modalVisible}
@@ -108,7 +108,8 @@ const styles = StyleSheet.create({
   // ------------------------ NAME
 
   time: {
-    color: colors.darkGrey,
+    color: colors.midGrey,
+    fontSize: 12,
   },
 
 
