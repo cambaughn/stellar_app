@@ -19,7 +19,7 @@ const postAnswer = (video, questionId, callback) => {
 
 
 	let options = {
-		url: `${baseUrl}/answers/new`,
+		url: `${baseUrl}/answer/new`,
 		files: files,
 		method: 'POST',                             // optional: POST or PUT
 		// headers: { 'Accept': 'application/json' },  // optional
