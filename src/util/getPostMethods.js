@@ -50,7 +50,7 @@ function postMedia(path, file, callback) {
     'Content-Type': 'multipart/form-data',
   });
 
-  let formData  = new FormData();
+  let formData = new FormData();
 
   for(let name in file) {
     formData.append(name, file[name]);

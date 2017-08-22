@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, Dimensions, TouchableHighlight, StatusBar, Animated } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Modal,
+  Dimensions,
+  TouchableHighlight,
+  StatusBar,
+  Animated
+} from 'react-native';
 import { Link } from 'react-router-native';
+
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { getVideoById } from '../../util/getVideo';
 import { baseUrl } from '../../util/getPostMethods';
+import { postView } from '../../util/requestHelpers/view';
 
 class WatchVideoModal extends Component {
   constructor(props) {
@@ -14,16 +25,39 @@ class WatchVideoModal extends Component {
     this.state = {
       overlayOpacity: new Animated.Value(1),
       overlayVisible: true,
+      viewed: false,
     }
 
-    this.videoError = this.videoError.bind(this);
+    this.countView = this.countView.bind(this);
+    this.handleProgress = this.handleProgress.bind(this);
     this.onEnd = this.onEnd.bind(this);
+    this.videoError = this.videoError.bind(this);
     this.toggleOverlayOpacity = this.toggleOverlayOpacity.bind(this);
+  }
+
+  countView() {
+    this.setState({ viewed: true }, () => {
+      postView(this.props.answer.id, console.log);
+    })
+  }
+
+  handleProgress(e) {
+    let { atValue, playableDuration, atTimescale } = e;
+    let currentTime = atValue / atTimescale;
+
+    if (!this.state.viewed && currentTime * 2 >= playableDuration) {
+      this.countView();
+    }
+
   }
 
 
   onEnd() {
     console.log('reached the end')
+    setTimeout(() => {
+      this.props.toggleModal();
+      console.log(this)
+    }, 1000);
   }
 
   videoError(error) {
@@ -67,8 +101,10 @@ class WatchVideoModal extends Component {
             playInBackground={false}
             playWhenInactive={false}
             ignoreSilentSwitch={"ignore"}
-            progressUpdateInterval={250.0}
+            progressUpdateInterval={1000}
 
+            // onLoad={this.countView}
+            onProgress={this.handleProgress}
             onEnd={this.onEnd}
             onError={this.videoError}
             style={styles.videoPlayer}

@@ -1,5 +1,8 @@
-import { post } from './getPostMethods';
+import { post } from '../getPostMethods';
 
-const postQuestion = (answerId, callback) => {
-  post('/answer/view', answerId, callback);
+const postView = (answerId, callback) => {
+  post('/answer/view', { answerId }, callback);
 }
+
+
+export { postView };
