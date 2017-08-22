@@ -9,7 +9,7 @@ const MixedQuestionList = ({ questions }) => {
   return (
     <View style={styles.container}>
       { questions.map(question => {
-        if (question.Answers.length > 0) {
+        if (question.answers.length > 0) {
           return <AnsweredQuestion key={question.id} question={question} />
         } else {
           return <UnansweredQuestion key={question.id} question={question} />

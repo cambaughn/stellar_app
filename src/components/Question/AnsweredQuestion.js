@@ -48,13 +48,13 @@ class AnsweredQuestion extends Component {
 
 
         <Text style={styles.questionText}>{this.props.question.text}</Text>
-        <TimeAgo style={styles.time} time={this.props.question.Answers[0].createdAt} hideAgo={false} />
+        <TimeAgo style={styles.time} time={this.props.question.answers[0].createdAt} hideAgo={false} />
 
         <WatchVideoModal
           visible={this.state.modalVisible}
           toggleModal={this.toggleModal}
           question={this.props.question}
-          answer={this.props.question.Answers[0]}
+          answer={this.props.question.answers[0]}
         />
 
       </View>
