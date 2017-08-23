@@ -4,8 +4,7 @@ import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AnsweredQuestionList from '../Question/AnsweredQuestionList';
-import MixedQuestionList from '../MixedQuestionList';
-import PendingQuestionList from '../PendingQuestionList';
+import MixedQuestionList from '../Question/MixedQuestionList';
 import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';
 
 import ProfilePhoto from './ProfilePhoto';

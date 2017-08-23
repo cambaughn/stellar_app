@@ -12,8 +12,8 @@ import {
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import { postQuestion } from '../util/postQuestion';
-import colors from '../util/colors';
+import { postQuestion } from '../../util/postQuestion';
+import colors from '../../util/colors';
 
 class AskQuestionModal extends Component {
 
