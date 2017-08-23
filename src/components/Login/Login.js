@@ -4,8 +4,8 @@ import { NativeRouter, Route, Link } from 'react-router-native';
 
 import LoginButtons from './LoginButtons';
 import LoginModal from './LoginModal';
-import stylePresets from '../util/stylePresets';
-import colors from '../util/colors';
+import stylePresets from '../../util/stylePresets';
+import colors from '../../util/colors';
 
 class Login extends Component {
   constructor(props) {

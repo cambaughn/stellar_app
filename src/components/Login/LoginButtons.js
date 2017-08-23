@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { Link } from 'react-router-native';
 
-import colors from '../util/colors';
+import colors from '../../util/colors';
 
 const LoginButtons = ({ handlePress }) => {
   return (

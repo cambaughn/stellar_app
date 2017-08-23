@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NativeRouter, Route, Link } from 'react-router-native';
 
-import stylePresets from '../util/stylePresets';
-import colors from '../util/colors';
+import colors from '../../util/colors';
 
 
 const TopNav = () => {

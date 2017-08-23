@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Dimensions, StyleSheet, Text, View, Modal, TouchableHighlight, TextInput } from 'react-native';
 import { Link } from 'react-router-native';
 
-import { postQuestion } from '../util/postQuestion';
-import colors from '../util/colors';
-import { signup, login } from '../util/signInHelpers';
+import { postQuestion } from '../../util/postQuestion';
+import colors from '../../util/colors';
+import { signup, login } from '../../util/signInHelpers';
 
 class LoginModal extends Component {
 

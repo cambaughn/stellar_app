@@ -3,10 +3,9 @@ import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import { Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import NavIcon from './NavIcon';
-import stylePresets from '../util/stylePresets';
-import colors from '../util/colors';
-import { setSelectedTab } from '../redux/actionCreators';
+import stylePresets from '../../util/stylePresets';
+import colors from '../../util/colors';
+import { setSelectedTab } from '../../redux/actionCreators';
 
 
 class BottomNav extends Component {
