@@ -53,11 +53,8 @@ class WatchVideoModal extends Component {
 
 
   onEnd() {
-    console.log('reached the end')
-    setTimeout(() => {
-      this.props.toggleModal();
-      console.log(this)
-    }, 1000);
+    // Close the modal after one second (TODO: Fix timeout - doesn't work for times longer than 1000 ms)
+    this.props.toggleModal(1000);
   }
 
   videoError(error) {

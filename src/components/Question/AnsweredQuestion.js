@@ -21,8 +21,15 @@ class AnsweredQuestion extends Component {
   }
 
 
-  toggleModal() {
-    this.setState({ modalVisible: !this.state.modalVisible })
+  toggleModal(time) {
+
+    if (time > 0) {
+      setTimeout(() => {
+        this.setState({ modalVisible: !this.state.modalVisible });
+      }, time);
+    } else {
+      this.setState({ modalVisible: !this.state.modalVisible });
+    }
   }
 
   render() {
