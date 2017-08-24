@@ -35,6 +35,7 @@ class AppStart extends Component {
     Icon.getImageSource('user', 20, 'red').then((source) => {
       console.log(source);
     });
+
     this.startApp();
   }
 

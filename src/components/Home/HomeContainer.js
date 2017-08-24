@@ -12,10 +12,14 @@ import { setUsers, setQuestions, updateCurrentUser } from '../../redux/actionCre
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
+
+
   }
 
   // Get questions
   componentDidMount() {
+    this.context.store.subscribe(this.forceUpdate.bind(this));
+    
     getAllQuestions(questions => {
       this.context.store.dispatch(setQuestions(questions));
     })

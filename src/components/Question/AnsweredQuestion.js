@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, Dimensions } from 'react-native';
-import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TimeAgo from 'react-native-timeago';
 
@@ -37,10 +36,8 @@ class AnsweredQuestion extends Component {
       <View style={styles.container}>
         <View style={styles.topRow}>
           <View style={styles.questionAnswerer}>
-            <Link to={`/user/${this.props.question.answerer.id}`} style={styles.link} underlayColor='white'>
-              <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
-            </Link>
-
+            <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
+            
             <Text style={styles.username}>  @{this.props.question.answerer.username} </Text>
           </View>
 
