@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+
 import { Navigation } from 'react-native-navigation';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import store from '../redux/store';
 import { registerScreens } from '../util/navigation/screens';
 import colors from '../util/design/colors';
 
 
 
-registerScreens();
+registerScreens(store, Provider);
 
 const navigatorStyle = {
 	navBarTextColor: colors.primary,
@@ -31,7 +34,6 @@ class AppStart extends Component {
 
     Icon.getImageSource('user', 20, 'red').then((source) => {
       console.log(source);
-      this.setState({ userIcon: source })
     });
     this.startApp();
   }
