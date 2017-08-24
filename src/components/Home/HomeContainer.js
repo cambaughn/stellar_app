@@ -2,28 +2,21 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import Home from './Home';
 
-class Template extends Component {
+class HomeContainer extends Component {
   constructor(props) {
     super(props);
   }
 
   render() {
     return (
-      <View style={styles.container}>
-
+      <View>
+        <Home questions={null} />
       </View>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  // ------------------------ CONTAINER
 
-  container: {
-
-  },
-})
-
-
-export default Template;
+export default HomeContainer;
