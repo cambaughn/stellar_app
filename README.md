@@ -10,8 +10,11 @@
 
 ### Running the app
 
-1. `react-native run-ios` to start the app in the simulator
+- `react-native run-ios` to start the app in the simulator
 
+- [Follow these instructions](https://facebook.github.io/react-native/docs/running-on-device.html) to run the app on a device
+
+>NOTE: The camera (in src/components/Question/RecordAnswer.js) will only work on a device. In the simulator it will just be a black screen and won't execute callbacks.
 
 ## Notes
 
