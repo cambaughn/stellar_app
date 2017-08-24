@@ -6,7 +6,7 @@ import { Link, Redirect } from 'react-router-native';
 import TextTopNavOverlay from '../TopNav/TextTopNavOverlay';
 import ProfilePhoto from '../User/ProfilePhoto';
 
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 import { updateUser } from '../../util/updateUserProfile';
 
 

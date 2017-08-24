@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 import { Link } from 'react-router-native';
 
 import UserList from '../UserList/UserList';
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 
 const SearchResults = ({ results }) => {
   return (

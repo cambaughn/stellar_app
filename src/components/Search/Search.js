@@ -7,7 +7,7 @@ import SearchBar from './SearchBar';
 import SearchResults from './SearchResults';
 import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';
 
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 
 class Search extends Component {
   constructor(props) {

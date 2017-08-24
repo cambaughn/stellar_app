@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 
 const ProfilePhoto = ({ photo, style }) => {
   return (

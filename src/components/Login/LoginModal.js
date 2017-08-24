@@ -3,7 +3,7 @@ import { Dimensions, StyleSheet, Text, View, Modal, TouchableHighlight, TextInpu
 import { Link } from 'react-router-native';
 
 import { postQuestion } from '../../util/postQuestion';
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 import { signup, login } from '../../util/signInHelpers';
 
 class LoginModal extends Component {

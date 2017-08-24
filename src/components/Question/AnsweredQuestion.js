@@ -6,7 +6,7 @@ import TimeAgo from 'react-native-timeago';
 
 import WatchVideoModal from './WatchVideoModal';
 import ProfilePhoto from '../User/ProfilePhoto';
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 
 class AnsweredQuestion extends Component {
 

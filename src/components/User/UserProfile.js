@@ -10,7 +10,7 @@ import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';
 import ProfilePhoto from './ProfilePhoto';
 import UserProfileButtons from './UserProfileButtons';
 
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 
 
 const UserProfile = ({ user, questions, toggleModal, handleFollow, following, isCurrentUser }) => {

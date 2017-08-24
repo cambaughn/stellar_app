@@ -3,8 +3,19 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Navigation } from 'react-native-navigation';
 
 import { registerScreens } from '../util/navigation/screens';
+import colors from '../util/design/colors';
 
 registerScreens();
+
+const navigatorStyle = {
+	navBarTextColor: colors.primary,
+  navBarTextFontSize: 18,
+  navBarBackgroundColor: 'white',
+};
+
+const tabsStyle = {
+  tabBarBackgroundColor: colors.blue,
+}
 
 class AppStart extends Component {
   constructor(props) {
@@ -21,9 +32,11 @@ class AppStart extends Component {
 					screen: 'stellar.Home',
 					// icon: iconsMap['ios-person'],
 					// selectedIcon: iconsMap['ios-person'],
-					title: 'Stellar',
+					title: 'stellar',
+          navigatorStyle
 				}
 			],
+      tabsStyle
 		});
 	}
 }

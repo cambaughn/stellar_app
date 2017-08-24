@@ -6,7 +6,7 @@ import Video from 'react-native-video';
 import Camera from 'react-native-camera';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 import { postAnswer } from '../../util/postAnswer';
 
 class RecordAnswer extends Component {

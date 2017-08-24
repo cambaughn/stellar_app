@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import stylePresets from '../../util/stylePresets';
-import colors from '../../util/colors';
+import colors from '../../util/design/colors';
 import { setSelectedTab } from '../../redux/actionCreators';
 
 
