@@ -6,7 +6,7 @@
 
 ### Installation
 
-1. From the root directory, run `yarn` or `npm install`
+1. From the root of this directory, run `yarn` or `npm install`
 
 ### Running the app
 
