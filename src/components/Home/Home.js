@@ -5,7 +5,7 @@ import { NativeRouter, Route, Link, Redirect } from 'react-router-native';
 import AnsweredQuestionList from '../Question/AnsweredQuestionList';
 
 const Home = ({ questions }) => {
-  if (questions.length) {
+  if (questions) {
     return (
       <ScrollView style={styles.scrollView}>
         <AnsweredQuestionList questions={questions} />

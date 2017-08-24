@@ -14,7 +14,8 @@ const navigatorStyle = {
 };
 
 const tabsStyle = {
-  tabBarBackgroundColor: colors.blue,
+  tabBarBackgroundColor: 'white',
+  tabBarSelectedButtonColor: colors.blue,
 }
 
 class AppStart extends Component {
@@ -34,7 +35,15 @@ class AppStart extends Component {
 					// selectedIcon: iconsMap['ios-person'],
 					title: 'stellar',
           navigatorStyle
-				}
+				},
+        {
+          label: 'Search',
+          screen: 'stellar.Search',
+          // icon: iconsMap['ios-person'],
+          // selectedIcon: iconsMap['ios-person'],
+          title: 'stellar',
+          navigatorStyle
+        },
 			],
       tabsStyle
 		});
