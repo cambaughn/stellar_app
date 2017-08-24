@@ -7,7 +7,7 @@
 ### Installation
 
 1. From the root of this directory, run `yarn` or `npm install` to install packages
-  * If necessary, run `react-native link` to link native dependencies
+    * If necessary, run `react-native link` to link native dependencies
 
 ### Running the app
 
