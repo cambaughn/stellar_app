@@ -7,7 +7,7 @@
 ### Installation
 
 1. From the root of this directory, run `yarn` or `npm install` to install packages
-    * If necessary, run `react-native link` to link native dependencies
+    - If necessary, run `react-native link` to link native dependencies
 
 ### Running the app
 
@@ -19,6 +19,6 @@
 
 ## Notes
 
-* Use Deepfreeze to protect against mutability in tests
+- Use Deepfreeze to protect against mutability in tests
 
-* Use Expect library to make test assertions
+- Use Expect library to make test assertions
