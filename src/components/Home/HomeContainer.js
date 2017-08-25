@@ -13,16 +13,12 @@ import { setQuestions } from '../../redux/actionCreators';
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
-
-    console.log(this.props.questions)
   }
 
-  // Get questions
   componentDidMount() {
+    // Get questions
     getAllQuestions(questions => {
       this.props.updateQuestions(questions);
-    //   this.context.store.dispatch(setQuestions(questions));
-    //   console.log(this.context.store.getState())
     })
   }
 
@@ -35,6 +31,8 @@ class HomeContainer extends Component {
   }
 }
 
+
+
 const mapStateToProps = state => {
   return {
     questions: state.questions
@@ -46,13 +44,6 @@ const mapDispatchToProps = dispatch => {
     updateQuestions: questions => dispatch(setQuestions(questions))
   }
 }
-
-// HomeContainer.contextTypes = {
-//   store: PropTypes.object
-// };
-
-
-// export default HomeContainer;
 
 export default connect(
   mapStateToProps,
