@@ -10,7 +10,6 @@ import { registerScreens } from '../util/navigation/screens';
 import colors from '../util/design/colors';
 
 
-
 registerScreens(store, Provider);
 
 const navigatorStyle = {
@@ -27,7 +26,7 @@ const tabsStyle = {
 class AppStart extends Component {
   constructor(props) {
     super(props);
-    
+
     this.startApp();
   }
 
