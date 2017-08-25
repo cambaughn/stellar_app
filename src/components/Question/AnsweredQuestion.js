@@ -37,7 +37,7 @@ class AnsweredQuestion extends Component {
         <View style={styles.topRow}>
           <View style={styles.questionAnswerer}>
             <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
-            
+
             <Text style={styles.username}>  @{this.props.question.answerer.username} </Text>
           </View>
 
@@ -89,6 +89,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 10,
   },
 
   questionAnswerer: {
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  // ------------------------ NAME
+  // ------------------------ TIME
 
   time: {
     color: colors.midGrey,

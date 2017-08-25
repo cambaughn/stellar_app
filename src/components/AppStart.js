@@ -27,17 +27,10 @@ const tabsStyle = {
 class AppStart extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      userIcon: null,
-    }
-
-    Icon.getImageSource('user', 20, 'red').then((source) => {
-      console.log(source);
-    });
-
+    
     this.startApp();
   }
+
 
   startApp() {
 		Navigation.startTabBasedApp({
