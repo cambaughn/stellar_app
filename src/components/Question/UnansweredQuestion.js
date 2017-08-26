@@ -28,9 +28,9 @@ class UnansweredQuestion extends Component {
       <View style={styles.container}>
         <View style={styles.topRow}>
           <View style={styles.questionAsker}>
-            <Link to={`/user/${this.props.question.asker.id}`} style={styles.link} underlayColor='white'>
+            <TouchableHighlight underlayColor='white'>
               <Text style={styles.bold}>{this.props.question.asker.name}</Text>
-            </Link>
+            </TouchableHighlight>
             <Text> asks:</Text>
           </View>
 

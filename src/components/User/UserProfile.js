@@ -14,6 +14,7 @@ import colors from '../../util/design/colors';
 
 
 const UserProfile = ({ user, questions, toggleModal, handleFollow, following, isCurrentUser }) => {
+  console.log(isCurrentUser)
   return (
     <View style={styles.container}>
       { isCurrentUser &&

@@ -72,7 +72,7 @@ class UserProfileContainer extends Component {
           toggleModal={this.toggleModal}
           handleFollow={this.handleFollow}
           following={this.state.following}
-          isCurrentUser={this.state.user.id === this.props.currentUser}
+          isCurrentUser={this.state.user.id === this.props.currentUser.id}
         />
         <AskQuestionModal
           visible={this.state.modalVisible}
