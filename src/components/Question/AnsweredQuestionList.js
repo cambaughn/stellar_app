@@ -4,11 +4,11 @@ import { AppRegistry, StyleSheet, Text, View, ScrollView, Dimensions } from 'rea
 import AnsweredQuestion from './AnsweredQuestion';
 
 
-const AnsweredQuestionList = ({ questions }) => {
+const AnsweredQuestionList = ({ questions, navToUser }) => {
   return (
     <View style={styles.container}>
       { questions.map(question => {
-        return <AnsweredQuestion key={question.id} question={question} />
+        return <AnsweredQuestion key={question.id} question={question} navToUser={navToUser} />
       })}
     </View>
   )

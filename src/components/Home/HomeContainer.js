@@ -13,6 +13,8 @@ import { setQuestions } from '../../redux/actionCreators';
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
+
+    this.navToUser = this.navToUser.bind(this);
   }
 
   componentDidMount() {
@@ -22,10 +24,22 @@ class HomeContainer extends Component {
     })
   }
 
+  navToUser(user) {
+    this.props.navigator.push({
+      screen: 'stellar.Search',
+      title: user.username,
+      backButtonTitle: '',
+      navigatorStyle: {
+        navBarTextColor: 'black',
+        navBarTextFontSize: 15,
+      },
+    })
+  }
+
   render() {
     return (
       <View>
-        <Home questions={this.props.questions} />
+        <Home questions={this.props.questions} navToUser={this.navToUser} />
       </View>
     )
   }

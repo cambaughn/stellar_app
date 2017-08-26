@@ -21,7 +21,6 @@ class AnsweredQuestion extends Component {
 
 
   toggleModal(time) {
-
     if (time > 0) {
       setTimeout(() => {
         this.setState({ modalVisible: !this.state.modalVisible });
@@ -31,12 +30,19 @@ class AnsweredQuestion extends Component {
     }
   }
 
+
+
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.topRow}>
           <View style={styles.questionAnswerer}>
-            <Text style={styles.bold}>{this.props.question.answerer.name}</Text>
+            <Text
+              style={styles.bold}
+              onPress={() => this.props.navToUser(this.props.question.answerer)}
+            >
+              {this.props.question.answerer.name}
+            </Text>
 
             <Text style={styles.username}>  @{this.props.question.answerer.username} </Text>
           </View>

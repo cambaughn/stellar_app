@@ -3,12 +3,12 @@ import { StyleSheet, Text, View, ScrollView, Dimensions } from 'react-native';
 
 import AnsweredQuestionList from '../Question/AnsweredQuestionList';
 
-const Home = ({ questions }) => {
+const Home = ({ questions, navToUser }) => {
   console.log(questions)
   if (questions.length) {
     return (
       <ScrollView style={styles.scrollView}>
-        <AnsweredQuestionList questions={questions} />
+        <AnsweredQuestionList questions={questions} navToUser={navToUser} />
       </ScrollView>
     )
   } else {
