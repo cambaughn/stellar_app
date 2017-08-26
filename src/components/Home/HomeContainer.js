@@ -18,7 +18,7 @@ class HomeContainer extends Component {
   }
 
   componentDidMount() {
-    // Get questions
+    // Get questions and dispatch Redux action
     getAllQuestions(questions => {
       this.props.updateQuestions(questions);
     })

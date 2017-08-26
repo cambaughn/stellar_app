@@ -11,6 +11,20 @@ import { setUsers } from '../../redux/actionCreators';
 class SearchContainer extends Component {
   constructor(props) {
     super(props);
+
+    this.navToUser = this.navToUser.bind(this);
+  }
+
+  navToUser(user) {
+    this.props.navigator.push({
+      screen: 'stellar.Search',
+      title: user.username,
+      backButtonTitle: '',
+      navigatorStyle: {
+        navBarTextColor: 'black',
+        navBarTextFontSize: 15,
+      },
+    })
   }
 
   componentDidMount() {
@@ -19,10 +33,11 @@ class SearchContainer extends Component {
     });
   }
 
+
   render() {
     return (
       <View>
-        <Search users={this.props.users} />
+        <Search users={this.props.users} navToUser={this.navToUser} />
       </View>
     )
   }

@@ -44,7 +44,7 @@ class Search extends Component {
         { this.state.searching ? (
           <SearchResults results={this.state.searchResults} />
         ) : (
-          <UserList users={this.props.users || []} />
+          <UserList users={this.props.users} navToUser={this.props.navToUser} />
         )}
       </View>
     )

@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Link } from 'react-router-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import ProfilePhoto from '../User/ProfilePhoto';
 import colors from '../../util/design/colors';
 
-const UserListItem = ({ user }) => {
+const UserListItem = ({ user, navToUser }) => {
   return (
-      <Link
-        to={`/user/${user.id}`}
-        underlayColor={colors.lightGrey}
-      >
-        <View style={styles.container}>
+    <TouchableHighlight
+      underlayColor={'white'}
+      onPress={() => navToUser(user)}
+    >
+      <View style={styles.container}>
 
-          <ProfilePhoto style={styles.profilePhoto} />
-          <View>
-            <Text style={styles.name}>{user.name}</Text>
-            <Text style={styles.username}>{user.username}</Text>
-          </View>
+        <ProfilePhoto style={styles.profilePhoto} />
+        <View>
+          <Text style={styles.name}>{user.name}</Text>
+          <Text style={styles.username}>{user.username}</Text>
         </View>
-      </Link>
+      </View>
+    </TouchableHighlight>
   )
 }
 
