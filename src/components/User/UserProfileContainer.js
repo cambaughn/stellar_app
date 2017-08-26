@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Link } from 'react-router-native';
+import { connect } from 'react-redux';
 
 import UserProfile from './UserProfile';
 import AskQuestionModal from '../Question/AskQuestionModal';
@@ -17,6 +17,8 @@ class UserProfileContainer extends Component {
     super(props);
 
     this.state = {
+      user: this.props.user,
+      questions: [],
       modalVisible: false,
       following: false,
     }
@@ -28,13 +30,17 @@ class UserProfileContainer extends Component {
     this.store = this.props.store;
   }
 
+  componentDidMount() {
+    this.getData(this.state.user.id);
+  }
+
   toggleModal() {
     this.setState({ modalVisible: !this.state.modalVisible });
   }
 
   handleFollow() {
-    let followerId = this.store.getState().currentUser.id;
-    let followingId = this.store.getState().focusedUser.id;
+    let followerId = this.props.currentUser.id;
+    let followingId = this.state.user.id;
     follow(followerId, followingId, follow => this.checkFollowing(followerId, followingId));
 
     this.getData(followingId);
@@ -45,47 +51,55 @@ class UserProfileContainer extends Component {
   }
 
   getData(userId) {
-    getUserById(userId, this.store.getState().currentUser.id, user => {
-      this.store.dispatch(updateFocusedUser(user))
+    getUserById(userId, this.props.currentUser.id, user => {
+      this.setState({ user });
     });
 
-    if (userId === this.store.getState().currentUser.id) {
-      getCurrentUserQuestions(userId, questions => this.store.dispatch(setFocusedUserQuestions(questions)));
+    if (userId === this.props.currentUser.id) {
+      getCurrentUserQuestions(userId, questions => this.setState({ questions }));
     } else {
-      getQuestionsByUserId(userId, questions => this.store.dispatch(setFocusedUserQuestions(questions)));
+      getQuestionsByUserId(userId, questions => this.setState({ questions }));
     }
-    this.checkFollowing(this.store.getState().currentUser.id, userId);
+    this.checkFollowing(this.props.currentUser.id, userId);
   }
 
   render() {
-
-    let userId = +this.props.match.params.userId;
-    if (userId !== this.store.getState().focusedUser.id) {
-      this.getData(userId);
-    }
-
     return (
       <View>
         <UserProfile
-          user={this.store.getState().focusedUser}
-          questions={this.store.getState().focusedUserQuestions}
+          user={this.state.user}
+          questions={this.state.questions}
           toggleModal={this.toggleModal}
           handleFollow={this.handleFollow}
           following={this.state.following}
-          isCurrentUser={this.store.getState().focusedUser.id === this.store.getState().currentUser.id}
+          isCurrentUser={this.state.user.id === this.props.currentUser}
         />
         <AskQuestionModal
           visible={this.state.modalVisible}
           toggleModal={this.toggleModal}
-          asker={this.store.getState().currentUser}
-          answerer={this.store.getState().focusedUser}
+          asker={this.props.currentUser}
+          answerer={this.state.user}
           getData={this.getData}
-        />
+          />
       </View>
     )
   }
 
-
 }
 
-export default UserProfileContainer;
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    updateUsers: users => dispatch(setUsers(users))
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(UserProfileContainer);

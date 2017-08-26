@@ -16,6 +16,7 @@ const navigatorStyle = {
 	navBarTextColor: colors.primary,
   navBarTextFontSize: 18,
   navBarBackgroundColor: 'white',
+  navBarButtonColor: colors.midGrey,
 };
 
 const tabsStyle = {
