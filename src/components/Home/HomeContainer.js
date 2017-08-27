@@ -26,9 +26,12 @@ class HomeContainer extends Component {
 
   navToUser(user) {
     this.props.navigator.push({
-      screen: 'stellar.Search',
+      screen: 'stellar.UserProfile',
       title: user.username,
       backButtonTitle: '',
+      passProps: {
+        user
+      },
       navigatorStyle: {
         navBarTextColor: 'black',
         navBarTextFontSize: 15,
