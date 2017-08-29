@@ -13,7 +13,7 @@ const UserListItem = ({ user, navToUser }) => {
     >
       <View style={styles.container}>
 
-        <ProfilePhoto style={styles.profilePhoto} />
+        {/* <ProfilePhoto style={styles.profilePhoto} /> */}
         <View>
           <Text style={styles.name}>{user.name}</Text>
           <Text style={styles.username}>{user.username}</Text>

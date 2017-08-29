@@ -2,7 +2,7 @@
 import { combineReducers } from 'redux';
 
 // Tact as a logged in user for development, add an id to the default state of currentUser
-function currentUser(state = {id: 2, name: 'Obi-Wan Kenobi', email: 'obi-wan@gmail.com', profile_photo: null, bio: null}, action) {
+function currentUser(state = {id: 2, name: 'Obi-Wan Kenobi', username: 'obiwan', email: 'obi-wan@gmail.com', profile_photo: null, bio: null}, action) {
   switch (action.type) {
     case 'UPDATE_USER':
       return action.user;

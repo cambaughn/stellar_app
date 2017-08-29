@@ -13,9 +13,6 @@ import { updateFocusedUser, setFocusedUserQuestions } from '../../redux/actionCr
 
 class UserProfileContainer extends Component {
 
-  static navigatorStyle = {
-  };
-
   constructor(props) {
     super(props);
 
@@ -31,7 +28,18 @@ class UserProfileContainer extends Component {
     this.checkFollowing = this.checkFollowing.bind(this);
     this.getData = this.getData.bind(this);
     this.navToUser = this.navToUser.bind(this);
+    this.setNavigator = this.setNavigator.bind(this);
 
+    this.setNavigator();
+  }
+
+  setNavigator() {
+    this.props.navigator.setTitle({ title: this.state.user.username });
+
+    this.props.navigator.setStyle({
+      navBarTextColor: 'black',
+      navBarTextFontSize: 15,
+    });
   }
 
   componentDidMount() {
