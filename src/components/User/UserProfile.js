@@ -13,8 +13,7 @@ import UserProfileButtons from './UserProfileButtons';
 import colors from '../../util/design/colors';
 
 
-const UserProfile = ({ user, questions, toggleModal, handleFollow, following, isCurrentUser }) => {
-  console.log(isCurrentUser)
+const UserProfile = ({ user, questions, toggleModal, handleFollow, following, isCurrentUser, navToUser }) => {
   return (
     <View style={styles.container}>
       { isCurrentUser &&
@@ -47,7 +46,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
 
           </View>
 
-          <MixedQuestionList questions={questions} />
+          <MixedQuestionList questions={questions} navToUser={navToUser} />
 
         </View>
       </ScrollView>

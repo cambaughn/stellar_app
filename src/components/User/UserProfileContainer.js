@@ -13,11 +13,14 @@ import { updateFocusedUser, setFocusedUserQuestions } from '../../redux/actionCr
 
 class UserProfileContainer extends Component {
 
+  static navigatorStyle = {
+  };
+
   constructor(props) {
     super(props);
 
     this.state = {
-      user: this.props.user,
+      user: this.props.user || this.props.currentUser,
       questions: [],
       modalVisible: false,
       following: false,
@@ -27,7 +30,8 @@ class UserProfileContainer extends Component {
     this.handleFollow = this.handleFollow.bind(this);
     this.checkFollowing = this.checkFollowing.bind(this);
     this.getData = this.getData.bind(this);
-    this.store = this.props.store;
+    this.navToUser = this.navToUser.bind(this);
+
   }
 
   componentDidMount() {
@@ -63,6 +67,21 @@ class UserProfileContainer extends Component {
     this.checkFollowing(this.props.currentUser.id, userId);
   }
 
+  navToUser(user) {
+    this.props.navigator.push({
+      screen: 'stellar.UserProfile',
+      title: user.username,
+      backButtonTitle: '',
+      passProps: {
+        user
+      },
+      navigatorStyle: {
+        navBarTextColor: 'black',
+        navBarTextFontSize: 15,
+      },
+    })
+  }
+
   render() {
     return (
       <View>
@@ -73,7 +92,9 @@ class UserProfileContainer extends Component {
           handleFollow={this.handleFollow}
           following={this.state.following}
           isCurrentUser={this.state.user.id === this.props.currentUser.id}
+          navToUser={this.navToUser}
         />
+
         <AskQuestionModal
           visible={this.state.modalVisible}
           toggleModal={this.toggleModal}

@@ -48,6 +48,14 @@ class AppStart extends Component {
           screen: 'stellar.Search',
           // icon: iconsMap['ios-person'],
           // selectedIcon: iconsMap['ios-person'],
+          title: 'search',
+          navigatorStyle
+        },
+        {
+          label: 'Profile',
+          screen: 'stellar.UserProfile',
+          // icon: iconsMap['ios-person'],
+          // selectedIcon: iconsMap['ios-person'],
           title: 'stellar',
           navigatorStyle
         },
