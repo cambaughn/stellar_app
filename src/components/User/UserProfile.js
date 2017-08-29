@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableHighlight, Dimensions } from 'react-native';
-import { Link } from 'react-router-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import AnsweredQuestionList from '../Question/AnsweredQuestionList';
@@ -19,9 +18,7 @@ const UserProfile = ({ user, questions, toggleModal, handleFollow, following, is
       { isCurrentUser &&
         <CustomTopNavOverlay>
           <View style={styles.topBarWrapper}>
-            <Link to={'/settings'} underlayColor={'transparent'}>
-              <Icon name='cog' style={styles.settingsIcon} />
-            </Link>
+            <Icon name='cog' style={styles.settingsIcon} />
           </View>
         </CustomTopNavOverlay>
       }

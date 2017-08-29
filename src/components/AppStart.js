@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 import store from '../redux/store';
 import { registerScreens } from '../util/navigation/screens';
+import { iconsMap, iconsLoaded } from '../util/navigation/appIcons';
 import colors from '../util/design/colors';
 
 
@@ -28,7 +29,9 @@ class AppStart extends Component {
   constructor(props) {
     super(props);
 
-    this.startApp();
+    iconsLoaded.then(() => {
+      this.startApp();
+    });
   }
 
 
@@ -36,30 +39,28 @@ class AppStart extends Component {
 		Navigation.startTabBasedApp({
 			tabs: [
 				{
-					label: 'Home',
 					screen: 'stellar.Home',
-					// icon: this.state.userIcon,
+					icon: iconsMap['home'],
 					// selectedIcon: iconsMap['ios-person'],
 					title: 'stellar',
           navigatorStyle
 				},
         {
-          label: 'Search',
           screen: 'stellar.Search',
-          // icon: iconsMap['ios-person'],
+          icon: iconsMap['search'],
           // selectedIcon: iconsMap['ios-person'],
           title: 'search',
           navigatorStyle
         },
         {
-          label: 'Profile',
           screen: 'stellar.UserProfile',
-          // icon: iconsMap['ios-person'],
+          icon: iconsMap['user'],
           // selectedIcon: iconsMap['ios-person'],
           title: 'stellar',
           navigatorStyle
         },
 			],
+      portraitOnlyMode: true,
       tabsStyle
 		});
 	}

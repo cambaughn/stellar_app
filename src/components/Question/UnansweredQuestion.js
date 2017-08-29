@@ -25,7 +25,6 @@ class UnansweredQuestion extends Component {
 
 
   render() {
-    console.log(this.props.question)
     return (
       <View style={styles.container}>
         <View style={styles.topRow}>
