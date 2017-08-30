@@ -14,6 +14,7 @@ const icons = {
   'home': [25, colors.midGrey],
   'search': [25, colors.midGrey],
   'user': [25, colors.midGrey],
+  'cog': [20, colors.midGrey],
 
 
   // Use other Icon provider, see the logic at L39

@@ -9,9 +9,14 @@ import { getUserById } from '../../util/getUsers';
 import { getQuestionsByUserId, getCurrentUserQuestions } from '../../util/getQuestions';
 import { follow, isFollowing } from '../../util/follow';
 import { updateFocusedUser, setFocusedUserQuestions } from '../../redux/actionCreators';
+import { iconsMap } from '../../util/navigation/appIcons';
 
 
 class UserProfileContainer extends Component {
+
+  static navigatorButtons = {
+
+  }
 
   constructor(props) {
     super(props);
@@ -40,6 +45,17 @@ class UserProfileContainer extends Component {
       navBarTextColor: 'black',
       navBarTextFontSize: 15,
     });
+
+    this.props.navigator.setButtons(
+      {
+        rightButtons: [
+          {
+           icon: iconsMap['cog'], // for icon button, provide the local image asset name
+           id: 'settings' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
+         }
+        ]
+      }
+    )
   }
 
   componentDidMount() {
