@@ -1,14 +1,63 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
-import ProfileSettings from './ProfileSettings';
 
-const Settings = ({ user }) => {
-  return (
-    <View>
-      <ProfileSettings user={user} />
-    </View>
-  )
+import ProfileSettings from './ProfileSettings';
+import colors from '../../util/design/colors';
+
+class Settings extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      saveButtonDisabled: false,
+    }
+
+    this.configureNavigator = this.configureNavigator.bind(this);
+    this.onNavigatorEvent = this.onNavigatorEvent.bind(this);
+
+    this.configureNavigator();
+  }
+
+  configureNavigator() {
+
+    let saveButton = {
+       title: 'Save',
+       id: 'save',
+       disabled: this.state.saveButtonDisabled,
+       buttonFontWeight: '600',
+       buttonFontSize: 15,
+     }
+
+    let saveButtonActive = {
+       buttonColor: colors.blue,
+    }
+
+    this.props.navigator.setButtons({
+      rightButtons: [
+        this.state.saveButtonDisabled ? saveButton : {...saveButton, ...saveButtonActive}
+      ]
+    })
+
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+  }
+
+  onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+    if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
+      if (event.id == 'save') {
+        console.log('SAVING SETTINGS');
+      }
+    }
+  }
+
+  render() {
+    return (
+      <View>
+        <ProfileSettings user={this.props.user} />
+      </View>
+    )
+  }
 }
 
 

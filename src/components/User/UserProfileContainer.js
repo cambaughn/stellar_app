@@ -63,7 +63,6 @@ class UserProfileContainer extends Component {
   onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
     if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
       if (event.id == 'settings') {
-        console.log('Settings button pressed');
         this.navToSettings();
       }
     }
@@ -124,7 +123,7 @@ class UserProfileContainer extends Component {
       title: 'Settings',
       backButtonTitle: '',
       passProps: {
-        user: this.state.user
+        user: this.state.user,
       },
       navigatorStyle: {
         navBarTextColor: 'black',
