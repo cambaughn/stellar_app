@@ -34,6 +34,8 @@ class UserProfileContainer extends Component {
     this.getData = this.getData.bind(this);
     this.navToUser = this.navToUser.bind(this);
     this.setNavigator = this.setNavigator.bind(this);
+    this.onNavigatorEvent = this.onNavigatorEvent.bind(this);
+    this.navToSettings = this.navToSettings.bind(this);
 
     this.setNavigator();
   }
@@ -46,17 +48,27 @@ class UserProfileContainer extends Component {
       navBarTextFontSize: 15,
     });
 
-    this.props.navigator.setButtons(
-      {
-        rightButtons: [
-          {
-           icon: iconsMap['cog'], // for icon button, provide the local image asset name
-           id: 'settings' // id for this button, given in onNavigatorEvent(event) to help understand which button was clicked
-         }
-        ]
-      }
-    )
+    this.props.navigator.setButtons({
+      rightButtons: [
+        {
+         icon: iconsMap['cog'],
+         id: 'settings',
+       }
+      ]
+    })
+
+    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
+
+  onNavigatorEvent(event) { // this is the onPress handler for the two buttons together
+    if (event.type == 'NavBarButtonPress') { // this is the event type for button presses
+      if (event.id == 'settings') {
+        console.log('Settings button pressed');
+        this.navToSettings();
+      }
+    }
+  }
+
 
   componentDidMount() {
     this.getData(this.state.user.id);
@@ -98,6 +110,21 @@ class UserProfileContainer extends Component {
       backButtonTitle: '',
       passProps: {
         user
+      },
+      navigatorStyle: {
+        navBarTextColor: 'black',
+        navBarTextFontSize: 15,
+      },
+    })
+  }
+
+  navToSettings() {
+    this.props.navigator.push({
+      screen: 'stellar.Settings',
+      title: 'Settings',
+      backButtonTitle: '',
+      passProps: {
+        user: this.state.user
       },
       navigatorStyle: {
         navBarTextColor: 'black',
