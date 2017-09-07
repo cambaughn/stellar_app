@@ -13,6 +13,18 @@ class SearchContainer extends Component {
     super(props);
 
     this.navToUser = this.navToUser.bind(this);
+    this.setNavigator = this.setNavigator.bind(this);
+
+    this.setNavigator();
+  }
+
+  setNavigator() {
+    this.props.navigator.setStyle({
+      navBarTextColor: 'black',
+      navBarTextFontSize: 16,
+      
+      navBarCustomView: 'stellar.SearchBar',
+    });
   }
 
   navToUser(user) {

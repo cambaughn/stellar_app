@@ -127,6 +127,7 @@ const styles = StyleSheet.create({
 
   container: {
     width: Dimensions.get('window').width,
+    height: '100%',
     paddingLeft: 20,
 
     overflow: 'hidden',

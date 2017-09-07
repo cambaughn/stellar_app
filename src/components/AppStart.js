@@ -45,13 +45,13 @@ class AppStart extends Component {
 				// 	title: 'stellar',
         //   navigatorStyle
 				// },
-        // {
-        //   screen: 'stellar.Search',
-        //   icon: iconsMap['search'],
-        //   // selectedIcon: iconsMap['ios-person'],
-        //   title: 'search',
-        //   navigatorStyle
-        // },
+        {
+          screen: 'stellar.Search',
+          icon: iconsMap['search'],
+          // selectedIcon: iconsMap['ios-person'],
+          title: 'search',
+          navigatorStyle
+        },
         {
           screen: 'stellar.UserProfile',
           icon: iconsMap['user'],
