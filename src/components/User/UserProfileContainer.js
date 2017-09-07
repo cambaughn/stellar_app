@@ -48,16 +48,16 @@ class UserProfileContainer extends Component {
       navBarTextFontSize: 15,
     });
 
-    this.props.navigator.setButtons({
-      rightButtons: [
-        {
-         icon: iconsMap['cog'],
-         id: 'settings',
-       }
-      ]
-    })
-
-    this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
+    // this.props.navigator.setButtons({
+    //   rightButtons: [
+    //     {
+    //      icon: iconsMap['cog'],
+    //      id: 'settings',
+    //    }
+    //   ]
+    // })
+    //
+    // this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent);
   }
 
   onNavigatorEvent(event) { // this is the onPress handler for the two buttons together

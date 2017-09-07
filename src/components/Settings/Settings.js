@@ -11,7 +11,7 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      saveButtonDisabled: false,
+      saveButtonActive: false,
     }
 
     this.configureNavigator = this.configureNavigator.bind(this);
@@ -25,7 +25,7 @@ class Settings extends Component {
     let saveButton = {
        title: 'Save',
        id: 'save',
-       disabled: this.state.saveButtonDisabled,
+       disabled: !this.state.saveButtonDisabled,
        buttonFontWeight: '600',
        buttonFontSize: 15,
      }
@@ -36,7 +36,7 @@ class Settings extends Component {
 
     this.props.navigator.setButtons({
       rightButtons: [
-        this.state.saveButtonDisabled ? saveButton : {...saveButton, ...saveButtonActive}
+        this.state.saveButtonActive ? {...saveButton, ...saveButtonActive} : saveButton
       ]
     })
 
