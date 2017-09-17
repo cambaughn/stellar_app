@@ -1,13 +1,14 @@
 import { get, post } from './getPostMethods';
 
+let route = 'user';
 
 function getAllUsers(callback) {
-  get('/users', callback);
+  get(`/${route}/all`, callback);
 }
 
 function getUserById(userId, currentUserId, callback) {
   let body = { userId, currentUserId };
-  post(`/user_profile`, body, callback);
+  post(`/${route}/profile`, body, callback);
 }
 
 

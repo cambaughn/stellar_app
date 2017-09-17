@@ -38,14 +38,16 @@ class AppStart extends Component {
   startApp() {
 		Navigation.startTabBasedApp({
 			tabs: [
-				// {
-				// 	screen: 'stellar.Home',
-				// 	icon: iconsMap['home'],
-				// 	// selectedIcon: iconsMap['ios-person'],
-				// 	title: 'stellar',
-        //   navigatorStyle
-				// },
+				{
+          label: 'Home',
+					screen: 'stellar.Home',
+					icon: iconsMap['home'],
+					// selectedIcon: iconsMap['ios-person'],
+					title: 'stellar',
+          navigatorStyle
+				},
         {
+          label: 'Search',
           screen: 'stellar.Search',
           icon: iconsMap['search'],
           // selectedIcon: iconsMap['ios-person'],
@@ -53,6 +55,7 @@ class AppStart extends Component {
           navigatorStyle
         },
         {
+          label: 'Profile',
           screen: 'stellar.UserProfile',
           icon: iconsMap['user'],
           // selectedIcon: iconsMap['ios-person'],
