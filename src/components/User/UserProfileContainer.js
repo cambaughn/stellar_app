@@ -91,7 +91,6 @@ class UserProfileContainer extends Component {
 
   getData(userId) {
     getUserById(userId, this.props.currentUser.id, user => {
-      console.log(user);
       this.setState({ user });
     });
 
