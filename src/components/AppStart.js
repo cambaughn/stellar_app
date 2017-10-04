@@ -38,14 +38,14 @@ class AppStart extends Component {
   startApp() {
 		Navigation.startTabBasedApp({
 			tabs: [
-				{
-          label: 'Home',
-					screen: 'stellar.Home',
-					icon: iconsMap['home'],
-					// selectedIcon: iconsMap['ios-person'],
-					title: 'stellar',
-          navigatorStyle
-				},
+				// {
+        //   label: 'Home',
+				// 	screen: 'stellar.Home',
+				// 	icon: iconsMap['home'],
+				// 	// selectedIcon: iconsMap['ios-person'],
+				// 	title: 'stellar',
+        //   navigatorStyle
+				// },
         {
           label: 'Search',
           screen: 'stellar.Search',

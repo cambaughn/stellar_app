@@ -5,7 +5,6 @@ import { NativeRouter, Route, Link, Redirect, Switch } from 'react-router-native
 
 import UserList from './UserList/UserList';
 import Home from './Home/Home';
-import BottomNav from './BottomNav/BottomNav';
 import TopNav from './TopNav/TopNav';
 import Login from './Login/Login';
 import Search from './Search/Search';
@@ -84,8 +83,6 @@ class App extends Component {
               <Route path='/login' component={Login} />
 
             </Switch>
-
-            <Route path='/' render={({match, location}) => <BottomNav currentUser={this.getCurrentUser()} selectedTab={this.store.getState().selectedTab} store={this.store} /> }/>
 
           </View>
         </NativeRouter>

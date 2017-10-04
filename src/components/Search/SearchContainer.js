@@ -12,18 +12,39 @@ class SearchContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      searchResults: [],
+      searching: false,
+    }
+
     this.navToUser = this.navToUser.bind(this);
     this.setNavigator = this.setNavigator.bind(this);
+    this.setSearching = this.setSearching.bind(this);
+    this.setSearchResults = this.setSearchResults.bind(this);
 
     this.setNavigator();
+  }
+
+  setSearching(searching) {
+    this.setState({ searching });
+  }
+
+  setSearchResults(searchResults) {
+    this.setState({ searchResults });
   }
 
   setNavigator() {
     this.props.navigator.setStyle({
       navBarTextColor: 'black',
       navBarTextFontSize: 16,
-      
+
       navBarCustomView: 'stellar.SearchBar',
+      // TODO: Redo this search functionality via redux
+      navBarCustomViewInitialProps: {
+        searching: this.state.searching,
+        setSearching: this.setSearching,
+        setSearchResults: this.setSearchResults,
+      },
     });
   }
 
