@@ -48,22 +48,12 @@ function users(state = [], action) {
   }
 }
 
-function selectedTab(state = 'home', action) {
-  switch (action.type) {
-    case 'SET_SELECTED_TAB':
-      return action.selected;
-    default:
-      return state;
-  }
-}
-
 const stellarApp = combineReducers({
   currentUser,
   focusedUser,
   focusedUserQuestions,
   questions,
   users,
-  selectedTab
 });
 
-export { currentUser, questions, users, focusedUser, focusedUserQuestions, selectedTab, stellarApp };
+export { currentUser, questions, users, focusedUser, focusedUserQuestions, stellarApp };

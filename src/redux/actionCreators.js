@@ -46,11 +46,11 @@ function setFocusedUserQuestions(questions) {
   }
 }
 
-function setSelectedTab(selected) {
-  return {
-    type: SET_SELECTED_TAB,
-    selected
-  }
-}
 
-export { setUsers, setQuestions, updateCurrentUser, updateFocusedUser, setFocusedUserQuestions, setSelectedTab };
+export {
+  setUsers,
+  setQuestions,
+  updateCurrentUser,
+  updateFocusedUser,
+  setFocusedUserQuestions, 
+};

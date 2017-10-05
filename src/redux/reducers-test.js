@@ -84,11 +84,3 @@ testQuestions();
 testUsers();
 
 console.log('All tests passed');
-
-console.log(`State =>`, store.getState());
-
-store.dispatch({ type: 'UPDATE_USER', user: { name: 'C3P0' } })
-console.log(`State =>`, store.getState());
-
-store.dispatch({ type: 'SET_QUESTIONS', questions: [{ text: 'I have a bad feeling about this' }] })
-console.log(`State =>`, store.getState());
