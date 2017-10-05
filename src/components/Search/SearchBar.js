@@ -16,8 +16,6 @@ class SearchBar extends Component {
       cancelOpacity: new Animated.Value(0),
     }
 
-    console.log('HERE ARE THE PROPS => ', this.props)
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.clearText = this.clearText.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
