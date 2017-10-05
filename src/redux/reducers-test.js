@@ -1,7 +1,7 @@
 import expect, { createSpy, spyOn, isSpy } from 'expect';
 let deepfreeze = require('deepfreeze');
 
-import { currentUser, questions, users, focusedUser, focusedUserQuestions } from './reducers';
+import { currentUser, questions, users, focusedUser, focusedUserQuestions, search } from './reducers';
 import store from './store';
 
 function testCurrentUser() {
@@ -76,11 +76,27 @@ function testUsers() {
   .toEqual(stateAfter);
 }
 
+function testSearching() {
+  let stateBefore = { searching: false, searchResults: [] };
+  let action = {
+    type: 'SET_SEARCH_RESULTS',
+    searchResults: [
+      { name: 'Poe Dameron' }
+    ]
+  }
+  let stateAfter = { searching: true, searchResults: [{ name: 'Poe Dameron' }] }
+
+  deepfreeze(stateBefore);
+
+  expect(search(stateBefore, action)).toEqual(stateAfter);
+}
+
 
 testCurrentUser();
 testFocusedUser();
 testFocusedUserQuestions();
 testQuestions();
 testUsers();
+testSearching();
 
 console.log('All tests passed');

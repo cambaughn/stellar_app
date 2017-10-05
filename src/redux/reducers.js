@@ -48,12 +48,22 @@ function users(state = [], action) {
   }
 }
 
+function search(state = { searching: false, searchResults: [] }, action) {
+  switch (action.type) {
+    case 'SET_SEARCH_RESULTS':
+      return { searching: action.searchResults.length > 0, searchResults: action.searchResults };
+    default:
+      return state;
+  }
+}
+
 const stellarApp = combineReducers({
   currentUser,
   focusedUser,
   focusedUserQuestions,
   questions,
   users,
+  search
 });
 
-export { currentUser, questions, users, focusedUser, focusedUserQuestions, stellarApp };
+export { currentUser, questions, users, focusedUser, focusedUserQuestions, search, stellarApp };
