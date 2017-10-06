@@ -90,7 +90,6 @@ class SearchBar extends Component {
                 selectionColor={colors.midGrey}
 
                 onFocus={() => this.props.setSearching(true) }
-                // onBlur={this.props.setSearching(false)}
                 onChangeText={this.handleInputChange}
                 value={this.state.searchText}
                 onSubmitEditing={() => console.log('SUBMITTING')}

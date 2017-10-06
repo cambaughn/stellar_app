@@ -69,4 +69,5 @@ export {
   updateFocusedUser,
   setFocusedUserQuestions,
   setSearchResults,
+  setSearching,
 };
