@@ -5,7 +5,7 @@ import { Link } from 'react-router-native';
 import UserList from '../UserList/UserList';
 import colors from '../../util/design/colors';
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({ results, navToUser }) => {
   return (
     <View style={styles.container}>
       { !results.length > 0 &&
@@ -13,7 +13,7 @@ const SearchResults = ({ results }) => {
           <Text style={styles.searchMessage}>Search for friends to follow</Text>
         </View>
       }
-      <UserList users={results} />
+      <UserList users={results} navToUser={navToUser} />
     </View>
   )
 }

@@ -13,7 +13,7 @@ const Search = ({ searching, searchResults, users, navToUser }) => {
   return (
     <View style={styles.container}>
       { searching ? (
-        <SearchResults results={searchResults} />
+        <SearchResults results={searchResults} navToUser={navToUser} />
       ) : (
         <UserList users={users} navToUser={navToUser} />
       )}

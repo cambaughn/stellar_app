@@ -11,6 +11,7 @@ class SearchBarContainer extends Component {
     super(props);
   }
 
+
   render() {
     return (
       <View>
