@@ -48,10 +48,12 @@ function users(state = [], action) {
   }
 }
 
-function selectedTab(state = 'home', action) {
+function search(state = { searching: false, searchResults: [] }, action) {
   switch (action.type) {
-    case 'SET_SELECTED_TAB':
-      return action.selected;
+    case 'SET_SEARCH_RESULTS':
+      return { ...state, searchResults: action.searchResults };
+    case 'SET_SEARCHING':
+      return { ...state, searching: action.searching };
     default:
       return state;
   }
@@ -63,7 +65,7 @@ const stellarApp = combineReducers({
   focusedUserQuestions,
   questions,
   users,
-  selectedTab
+  search
 });
 
-export { currentUser, questions, users, focusedUser, focusedUserQuestions, selectedTab, stellarApp };
+export { currentUser, questions, users, focusedUser, focusedUserQuestions, search, stellarApp };

@@ -15,14 +15,6 @@ class SearchBar extends Component {
       searchWidth: new Animated.Value(Dimensions.get('window').width - 40),
       cancelOpacity: new Animated.Value(0),
     }
-
-    console.log('HERE ARE THE PROPS => ', this.props)
-
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.clearText = this.clearText.bind(this);
-    this.handleCancel = this.handleCancel.bind(this);
-    this.animateSearchBar = this.animateSearchBar.bind(this);
-    this.animateCancel = this.animateCancel.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +27,7 @@ class SearchBar extends Component {
     }
   }
 
-  animateSearchBar(width) {
+  animateSearchBar = (width) => {
     Animated.timing(                                   // Animate over time
       this.state.searchWidth,                          // The animated value to drive
       {
@@ -45,7 +37,7 @@ class SearchBar extends Component {
     ).start();
   }
 
-  animateCancel(opacity) {
+  animateCancel = (opacity) => {
     Animated.timing(                                   // Animate over time
       this.state.cancelOpacity,                        // The animated value to drive
       {
@@ -55,19 +47,19 @@ class SearchBar extends Component {
     ).start();
   }
 
-  handleInputChange(searchText) {
+  handleInputChange = (searchText) => {
     this.setState({ searchText });
 
     // Live search
     searchUsers(searchText, response => this.props.setSearchResults(response));
   }
 
-  clearText() {
+  clearText = () => {
     this.setState({ searchText: '' });
     this.props.setSearchResults([]);
   }
 
-  handleCancel() {
+  handleCancel = () => {
     this.clearText();
     this.searchInput.blur();
     this.props.setSearching(false);
@@ -92,7 +84,6 @@ class SearchBar extends Component {
                 selectionColor={colors.midGrey}
 
                 onFocus={() => this.props.setSearching(true) }
-                // onBlur={this.props.setSearching(false)}
                 onChangeText={this.handleInputChange}
                 value={this.state.searchText}
                 onSubmitEditing={() => console.log('SUBMITTING')}
@@ -174,8 +165,6 @@ const styles = StyleSheet.create({
     paddingTop: 2,
 
     fontSize: 15,
-
-    // backgroundColor: 'pink',
   },
 
   // ------------------------ ICONS
