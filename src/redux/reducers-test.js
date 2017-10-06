@@ -84,6 +84,7 @@ function testSearching() {
       { name: 'Poe Dameron' }
     ]
   }
+  
   let stateAfter = { searching: true, searchResults: [{ name: 'Poe Dameron' }] }
 
   deepfreeze(stateBefore);

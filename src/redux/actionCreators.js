@@ -8,7 +8,7 @@ import {
   SET_USERS,
   UPDATE_FOCUSED_USER,
   SET_FOCUSED_USER_QUESTIONS,
-  SET_SELECTED_TAB,
+  SET_SEARCH_RESULTS
 } from './actionTypes';
 
 function setUsers(users) {
@@ -46,11 +46,19 @@ function setFocusedUserQuestions(questions) {
   }
 }
 
+function setSearchResults(searchResults) {
+  return {
+    type: SET_SEARCH_RESULTS,
+    searchResults
+  }
+}
+
 
 export {
   setUsers,
   setQuestions,
   updateCurrentUser,
   updateFocusedUser,
-  setFocusedUserQuestions, 
+  setFocusedUserQuestions,
+  setSearchResults,
 };
