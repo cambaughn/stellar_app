@@ -9,7 +9,6 @@ import { setSearchResults, setSearching } from '../../redux/actionCreators';
 class SearchBarContainer extends Component {
   constructor(props) {
     super(props);
-
   }
 
   render() {

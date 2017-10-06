@@ -9,46 +9,16 @@ import CustomTopNavOverlay from '../TopNav/CustomTopNavOverlay';
 
 import colors from '../../util/design/colors';
 
-class Search extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchResults: [],
-      searching: false,
-    }
-
-    this.setSearching = this.setSearching.bind(this);
-    this.setSearchResults = this.setSearchResults.bind(this);
-  }
-
-  setSearching(searching) {
-    this.setState({ searching });
-  }
-
-  setSearchResults(searchResults) {
-    this.setState({ searchResults });
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <CustomTopNavOverlay style={{backgroundColor: 'white'}}>
-          <SearchBar
-            setSearching={this.setSearching}
-            searching={this.state.searching}
-            setSearchResults={this.setSearchResults}
-          />
-        </CustomTopNavOverlay>
-
-        { this.state.searching ? (
-          <SearchResults results={this.state.searchResults} />
-        ) : (
-          <UserList users={this.props.users} navToUser={this.props.navToUser} />
-        )}
-      </View>
-    )
-  }
+const Search = ({ searching, searchResults, users, navToUser }) => {
+  return (
+    <View style={styles.container}>
+      { searching ? (
+        <SearchResults results={searchResults} />
+      ) : (
+        <UserList users={users} navToUser={navToUser} />
+      )}
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({

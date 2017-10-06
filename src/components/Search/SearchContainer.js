@@ -12,28 +12,10 @@ class SearchContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      searchResults: [],
-      searching: false,
-    }
-
-    this.navToUser = this.navToUser.bind(this);
-    this.setNavigator = this.setNavigator.bind(this);
-    this.setSearching = this.setSearching.bind(this);
-    this.setSearchResults = this.setSearchResults.bind(this);
-
     this.setNavigator();
   }
 
-  setSearching(searching) {
-    this.setState({ searching });
-  }
-
-  setSearchResults(searchResults) {
-    this.setState({ searchResults });
-  }
-
-  setNavigator() {
+  setNavigator = () => {
     this.props.navigator.setStyle({
       navBarTextColor: 'black',
       navBarTextFontSize: 16,
@@ -42,7 +24,7 @@ class SearchContainer extends Component {
     });
   }
 
-  navToUser(user) {
+  navToUser = (user) => {
     this.props.navigator.push({
       screen: 'stellar.UserProfile',
       title: user.username,
@@ -57,6 +39,7 @@ class SearchContainer extends Component {
     })
   }
 
+
   componentDidMount() {
     getAllUsers(users => {
       this.props.updateUsers(users);
@@ -67,7 +50,12 @@ class SearchContainer extends Component {
   render() {
     return (
       <View>
-        <Search users={this.props.users} navToUser={this.navToUser} />
+        <Search
+          users={this.props.users}
+          navToUser={this.navToUser}
+          searching={this.props.search.searching}
+          searchResults={this.props.search.searchResults}
+        />
       </View>
     )
   }
