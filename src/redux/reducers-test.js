@@ -76,7 +76,7 @@ function testUsers() {
   .toEqual(stateAfter);
 }
 
-function testSearching() {
+function testSearchResults() {
   let stateBefore = { searching: false, searchResults: [] };
   let action = {
     type: 'SET_SEARCH_RESULTS',
@@ -84,8 +84,22 @@ function testSearching() {
       { name: 'Poe Dameron' }
     ]
   }
-  
-  let stateAfter = { searching: true, searchResults: [{ name: 'Poe Dameron' }] }
+
+  let stateAfter = { searching: false, searchResults: [{ name: 'Poe Dameron' }] }
+
+  deepfreeze(stateBefore);
+
+  expect(search(stateBefore, action)).toEqual(stateAfter);
+}
+
+function testSearching() {
+  let stateBefore = { searching: false, searchResults: [] };
+  let action = {
+    type: 'SET_SEARCHING',
+    searching: true
+  }
+
+  let stateAfter = { searching: true, searchResults: [] }
 
   deepfreeze(stateBefore);
 
@@ -93,11 +107,13 @@ function testSearching() {
 }
 
 
+
 testCurrentUser();
 testFocusedUser();
 testFocusedUserQuestions();
 testQuestions();
 testUsers();
+testSearchResults();
 testSearching();
 
 console.log('All tests passed');

@@ -8,7 +8,8 @@ import {
   SET_USERS,
   UPDATE_FOCUSED_USER,
   SET_FOCUSED_USER_QUESTIONS,
-  SET_SEARCH_RESULTS
+  SET_SEARCH_RESULTS,
+  SET_SEARCHING,
 } from './actionTypes';
 
 function setUsers(users) {
@@ -50,6 +51,13 @@ function setSearchResults(searchResults) {
   return {
     type: SET_SEARCH_RESULTS,
     searchResults
+  }
+}
+
+function setSearching(searching) {
+  return {
+    type: SET_SEARCHING,
+    searching
   }
 }
 

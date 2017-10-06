@@ -39,12 +39,6 @@ class SearchContainer extends Component {
       navBarTextFontSize: 16,
 
       navBarCustomView: 'stellar.SearchBar',
-      // TODO: Redo this search functionality via redux
-      navBarCustomViewInitialProps: {
-        searching: this.state.searching,
-        setSearching: this.setSearching,
-        setSearchResults: this.setSearchResults,
-      },
     });
   }
 
@@ -82,7 +76,8 @@ class SearchContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    users: state.users
+    users: state.users,
+    search: state.search
   }
 }
 

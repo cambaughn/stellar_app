@@ -51,7 +51,9 @@ function users(state = [], action) {
 function search(state = { searching: false, searchResults: [] }, action) {
   switch (action.type) {
     case 'SET_SEARCH_RESULTS':
-      return { searching: action.searchResults.length > 0, searchResults: action.searchResults };
+      return { ...state, searchResults: action.searchResults };
+    case 'SET_SEARCHING':
+      return { ...state, searching: action.searching };
     default:
       return state;
   }
