@@ -1,102 +1,73 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { NativeRouter, Route, Link, Redirect, Switch } from 'react-router-native';
+import { Provider } from 'react-redux';
+
+import { Navigation } from 'react-native-navigation';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+import store from '../redux/store';
+import { registerScreens } from '../util/navigation/screens';
+import { iconsMap, iconsLoaded } from '../util/navigation/appIcons';
+import colors from '../util/design/colors';
 
 
-import UserList from './UserList/UserList';
-import Home from './Home/Home';
-import TopNav from './TopNav/TopNav';
-import Login from './Login/Login';
-import Search from './Search/Search';
-import UserProfileContainer from './User/UserProfileContainer';
-import Settings from './Settings/Settings';
+registerScreens(store, Provider);
 
-import { getAllUsers } from '../util/getUsers';
-import { getAllQuestions } from '../util/getQuestions';
-import { setUsers, setQuestions, updateCurrentUser } from '../redux/actionCreators';
+const navigatorStyle = {
+	navBarTextColor: colors.primary,
+  navBarTextFontSize: 18,
+  navBarBackgroundColor: 'white',
+  navBarButtonColor: colors.midGrey,
+};
 
+const tabsStyle = {
+  tabBarBackgroundColor: 'white',
+  tabBarSelectedButtonColor: colors.blue,
+}
 
 class App extends Component {
-
   constructor(props) {
     super(props);
 
-    this.store = this.props.store;
-    this.getUsers = this.getUsers.bind(this);
-    this.setCurrentUser = this.setCurrentUser.bind(this);
-    this.props.store.subscribe(this.forceUpdate.bind(this))
-  }
-
-  getUsers() {
-    return this.store.getState().users;
-  }
-
-  getQuestions() {
-    return this.store.getState().questions;
-  }
-
-  getCurrentUser() {
-    return this.store.getState().currentUser;
-  }
-
-  setCurrentUser(user) {
-    this.store.dispatch(updateCurrentUser(user));
+    iconsLoaded.then(() => {
+      this.startApp();
+    });
   }
 
 
-  componentDidMount() {
-    getAllQuestions(questions => {
-      this.store.dispatch(setQuestions(questions));
-    })
-
-    getAllUsers(users => {
-      this.store.dispatch(setUsers(users));
-    })
-
-  }
-
-
-  render() {
-    if (!this.store.getState().currentUser.id) {
-      return (
-        <View>
-          <Login setCurrentUser={this.setCurrentUser} />
-        </View>
-      )
-    } else {
-      return (
-        <NativeRouter>
-          <View style={styles.container}>
-            <TopNav />
-            <Switch>
-
-
-              {/* <Route exact path='/' render={() => <Redirect to={'/search'} />} /> */}
-
-              <Route exact path='/' render={() => <Home questions={this.getQuestions()} /> }/>
-              <Route path='/search' render={() => <Search users={this.getUsers()} /> }/>
-
-              <Route path='/user/:userId' render={({ match }) =>  <UserProfileContainer match={match} store={this.store} /> } />
-
-              <Route path='/settings' render={({ match }) =>  <Settings user={this.getCurrentUser()} /> } />
-
-              <Route path='/login' component={Login} />
-
-            </Switch>
-
-          </View>
-        </NativeRouter>
-      );
-    }
-  }
+  startApp() {
+		Navigation.startTabBasedApp({
+			tabs: [
+				{
+          label: 'Home',
+					screen: 'stellar.Home',
+					icon: iconsMap['home'],
+					// selectedIcon: iconsMap['ios-person'],
+					title: 'stellar',
+          navigatorStyle
+				},
+        {
+          label: 'Search',
+          screen: 'stellar.Search',
+          icon: iconsMap['search'],
+          // selectedIcon: iconsMap['ios-person'],
+          title: 'search',
+          navigatorStyle
+        },
+        {
+          label: 'Profile',
+          screen: 'stellar.UserProfile',
+          icon: iconsMap['user'],
+          // selectedIcon: iconsMap['ios-person'],
+          title: 'stellar',
+          navigatorStyle
+        },
+			],
+      portraitOnlyMode: true,
+      tabsStyle
+		});
+	}
 }
 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
-});
 
 export default App;

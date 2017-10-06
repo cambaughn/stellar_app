@@ -10,9 +10,8 @@ import { Navigation } from 'react-native-navigation';
 import store from './src/redux/store';
 import { registerScreens } from './src/util/navigation/screens';
 import App from './src/components/App';
-import AppStart from './src/components/AppStart';
 
-const app = new AppStart();
+const app = new App();
 
 
 
